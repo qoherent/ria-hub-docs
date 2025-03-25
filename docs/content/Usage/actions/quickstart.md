@@ -122,7 +122,7 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
 ```
 
-You can upload it as a file with the extension `.yaml` in the directory `.gitea/workflows/` of the repository, for example `.gitea/workflows/demo.yaml`.
+You can upload it as a file with the extension `.yaml` in the directory `.riahub/workflows/` of the repository, for example `.riahub/workflows/demo.yaml`.
 You might notice that this is fairly similar from the [Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart).
 That is because  Gitea Actions is designed to be compatible with GitHub Actions wherever possible.
 
