@@ -17,13 +17,13 @@ menu:
 
 # Email setup
 
-Gitea has mailer functionality for sending transactional emails (such as registration confirmation). It can be configured to either use Sendmail (or compatible MTAs like Postfix and msmtp) or directly use SMTP server.
+RIA Hub has mailer functionality for sending transactional emails (such as registration confirmation). It can be configured to either use Sendmail (or compatible MTAs like Postfix and msmtp) or directly use SMTP server.
 
 ## Using Sendmail
 
 Use `sendmail` command as mailer.
 
-Note: For use in the official Gitea Docker image, please configure with the SMTP version (see the following section).
+Note: For use in the official RIA Hub Docker image, please configure with the SMTP version (see the following section).
 
 Note: For Internet-facing sites consult documentation of your MTA for instructions to send emails over TLS. Also set up SPF, DMARC, and DKIM DNS records to make emails sent be accepted as legitimate by various email providers.
 
@@ -51,9 +51,9 @@ USER           = gitea@mydomain.com
 PASSWD         = `password`
 ```
 
-Restart Gitea for the configuration changes to take effect.
+Restart RIA Hub for the configuration changes to take effect.
 
-To send a test email to validate the settings, go to Gitea > Site Administration > Configuration > SMTP Mailer Configuration.
+To send a test email to validate the settings, go to RIA Hub > Site Administration > Configuration > SMTP Mailer Configuration.
 
 For the full list of options check the [Config Cheat Sheet](administration/config-cheat-sheet.md)
 
@@ -73,7 +73,7 @@ The following configuration should work with GMail's SMTP server:
 ```ini
 [mailer]
 ENABLED        = true
-HOST           = smtp.gmail.com:465 ; Remove this line for Gitea >= 1.18.0
+HOST           = smtp.gmail.com:465 ; Remove this line for RIA Hub >= 1.18.0
 SMTP_ADDR      = smtp.gmail.com
 SMTP_PORT      = 465
 FROM           = example.user@gmail.com

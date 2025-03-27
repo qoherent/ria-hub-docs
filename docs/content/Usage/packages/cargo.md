@@ -28,15 +28,15 @@ The following section describes how to create it.
 ## Index Repository
 
 Cargo stores information about the available packages in a package index stored in a git repository.
-In Gitea this repository has the special name `_cargo-index`.
+In RIA Hub this repository has the special name `_cargo-index`.
 After a package was uploaded, its metadata is automatically written to the index.
 The content of this repository should not be manually modified.
 
 The user or organization package settings page allows to create the index repository along with the configuration file.
 If needed this action will rewrite the configuration file.
-This can be useful if for example the Gitea instance domain was changed.
+This can be useful if for example the RIA Hub instance domain was changed.
 
-If the case arises where the packages stored in Gitea and the information in the index repository are out of sync, the settings page allows to rebuild the index repository.
+If the case arises where the packages stored in RIA Hub and the information in the index repository are out of sync, the settings page allows to rebuild the index repository.
 This action iterates all packages in the registry and writes their information to the index.
 If there are lot of packages this process may take some time.
 
@@ -50,8 +50,8 @@ Add the following text to the configuration file located in the current users ho
 default = "gitea"
 
 [registries.gitea]
-index = "sparse+https://gitea.example.com/api/packages/{owner}/cargo/" # Sparse index
-# index = "https://gitea.example.com/{owner}/_cargo-index.git" # Git
+index = "sparse+https://riahub.example.com/api/packages/{owner}/cargo/" # Sparse index
+# index = "https://riahub.example.com/{owner}/_cargo-index.git" # Git
 
 # [net]
 # git-fetch-with-cli = true

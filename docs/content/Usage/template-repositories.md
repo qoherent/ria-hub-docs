@@ -17,16 +17,16 @@ menu:
 
 # Template Repositories
 
-Gitea (starting with version `1.11.0`) supports creating template repositories
+RIA Hub (starting with version `1.11.0`) supports creating template repositories
 which can be used to generate repositories based on the template, complete with
 variable expansion of certain pre-defined variables.
 
 All files in the template repository are included in a generated repository from the
 template except for the `.gitea/template` file. The `.gitea/template` file tells
-Gitea which files are subject to the variable expansion when creating a
+RIA Hub which files are subject to the variable expansion when creating a
 repository from the template.
 
-Gitea uses [gobwas/glob](https://github.com/gobwas/glob) for its glob syntax. It closely resembles a traditional `.gitignore`, however there may be slight differences.
+RIA Hub uses [gobwas/glob](https://github.com/gobwas/glob) for its glob syntax. It closely resembles a traditional `.gitignore`, however there may be slight differences.
 
 ## Example `.gitea/template` file
 
@@ -71,7 +71,7 @@ All variables must be of the form `$VAR` or `${VAR}`. To escape an expansion, us
 
 ## Transformers :robot:
 
-Gitea `1.12.0` adds a few transformers to some of the applicable variables above.
+RIA Hub `1.12.0` adds a few transformers to some of the applicable variables above.
 
 For example, to get `REPO_NAME` in `PASCAL`-case, your template would use `${REPO_NAME_PASCAL}`
 

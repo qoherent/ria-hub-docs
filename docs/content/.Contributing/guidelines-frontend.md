@@ -19,7 +19,7 @@ menu:
 
 ## Background
 
-Gitea uses [Fomantic-UI](https://fomantic-ui.com/introduction/getting-started.html) (based on [jQuery](https://api.jquery.com)) and [Vue3](https://vuejs.org/) for its frontend.
+RIA Hub uses [Fomantic-UI](https://fomantic-ui.com/introduction/getting-started.html) (based on [jQuery](https://api.jquery.com)) and [Vue3](https://vuejs.org/) for its frontend.
 
 The HTML pages are rendered by [Go HTML Template](https://pkg.go.dev/html/template).
 
@@ -34,12 +34,12 @@ The source files can be found in the following directories:
 
 We recommend [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.html) and [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
 
-### Gitea specific guidelines
+### RIA Hub specific guidelines
 
 1. Every feature (Fomantic-UI/jQuery module) should be put in separate files/directories.
 2. HTML ids and classes should use kebab-case, it's preferred to contain 2-3 feature related keywords.
 3. HTML ids and classes used in JavaScript should be unique for the whole project, and should contain 2-3 feature related keywords. We recommend to use the `js-` prefix for classes that are only used in JavaScript.
-4. CSS styling for classes provided by frameworks should not be overwritten. Always use new class names with 2-3 feature related keywords to overwrite framework styles. Gitea's helper CSS classes in `helpers.less` could be helpful.
+4. CSS styling for classes provided by frameworks should not be overwritten. Always use new class names with 2-3 feature related keywords to overwrite framework styles. RIA Hub's helper CSS classes in `helpers.less` could be helpful.
 5. The backend can pass complex data to the frontend by using `ctx.PageData["myModuleData"] = map[]{}`, but do not expose whole models to the frontend to avoid leaking sensitive data.
 6. Simple pages and SEO-related pages use Go HTML Template render to generate static Fomantic-UI HTML output. Complex pages can use Vue3.
 7. Clarify variable types, prefer `elem.disabled = true` instead of `elem.setAttribute('disabled', 'anything')`, prefer `$el.prop('checked', var === 'yes')` instead of `$el.prop('checked', var)`.
@@ -47,13 +47,13 @@ We recommend [Google HTML/CSS Style Guide](https://google.github.io/styleguide/h
 9. Avoid unnecessary `!important` in CSS, add comments to explain why it's necessary if it can't be avoided.
 10. Avoid mixing different events in one event listener, prefer to use individual event listeners for every event.
 11. Custom event names are recommended to use `ce-` prefix.
-12. Prefer using Tailwind CSS which is available via `tw-` prefix, e.g. `tw-relative`. Gitea's helper CSS classes use `gt-` prefix (`gt-word-break`), while Gitea's own private framework-level CSS classes use `g-` prefix (`g-modal-confirm`).
+12. Prefer using Tailwind CSS which is available via `tw-` prefix, e.g. `tw-relative`. RIA Hub's helper CSS classes use `gt-` prefix (`gt-word-break`), while RIA Hub's own private framework-level CSS classes use `g-` prefix (`g-modal-confirm`).
 13. Avoid inline scripts & styles as much as possible, it's recommended to put JS code into JS files and use CSS classes. If inline scripts & styles are unavoidable, explain the reason why it can't be avoided.
 
 ### Accessibility / ARIA
 
-In history, Gitea heavily uses Fomantic UI which is not an accessibility-friendly framework.
-Gitea uses some patches to make Fomantic UI more accessible (see `aria.md` and related JS files),
+In history, RIA Hub heavily uses Fomantic UI which is not an accessibility-friendly framework.
+RIA Hub uses some patches to make Fomantic UI more accessible (see `aria.md` and related JS files),
 but there are still many problems which need a lot of work and time to fix.
 
 ### Framework Usage
@@ -142,8 +142,8 @@ A lot of legacy code already existed before this document's written. It's recomm
 
 ### Vue3 and JSX
 
-Gitea is using Vue3 now. We decided not to introduce JSX to keep the HTML and the JavaScript code separated.
+RIA Hub is using Vue3 now. We decided not to introduce JSX to keep the HTML and the JavaScript code separated.
 
 ### UI Examples
 
-Gitea uses some self-made UI elements and customizes others to integrate them better into the general UI approach. When running Gitea in development mode (`RUN_MODE=dev`), a page with some standardized UI examples is available under `http(s)://your-gitea-url:port/devtest`.
+RIA Hub uses some self-made UI elements and customizes others to integrate them better into the general UI approach. When running RIA Hub in development mode (`RUN_MODE=dev`), a page with some standardized UI examples is available under `http(s)://your-gitea-url:port/devtest`.

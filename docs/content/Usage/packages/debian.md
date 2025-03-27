@@ -27,7 +27,7 @@ The following examples use `apt`.
 To register the Debian registry add the url to the list of known apt sources:
 
 ```shell
-echo "deb [signed-by=/etc/apt/keyrings/gitea-{owner}.asc] https://gitea.example.com/api/packages/{owner}/debian {distribution} {component}" | sudo tee -a /etc/apt/sources.list.d/gitea.list
+echo "deb [signed-by=/etc/apt/keyrings/gitea-{owner}.asc] https://riahub.example.com/api/packages/{owner}/debian {distribution} {component}" | sudo tee -a /etc/apt/sources.list.d/gitea.list
 ```
 
 | Placeholder    | Description |
@@ -39,13 +39,13 @@ echo "deb [signed-by=/etc/apt/keyrings/gitea-{owner}.asc] https://gitea.example.
 If the registry is private, provide credentials in the url. You can use a password or a [personal access token](development/api-usage.md#authentication):
 
 ```shell
-echo "deb [signed-by=/etc/apt/keyrings/gitea-{owner}.asc] https://{username}:{your_password_or_token}@gitea.example.com/api/packages/{owner}/debian {distribution} {component}" | sudo tee -a /etc/apt/sources.list.d/gitea.list
+echo "deb [signed-by=/etc/apt/keyrings/gitea-{owner}.asc] https://{username}:{your_password_or_token}@riahub.example.com/api/packages/{owner}/debian {distribution} {component}" | sudo tee -a /etc/apt/sources.list.d/gitea.list
 ```
 
 The Debian registry files are signed with a PGP key which must be known to apt:
 
 ```shell
-sudo curl https://gitea.example.com/api/packages/{owner}/debian/repository.key -o /etc/apt/keyrings/gitea-{owner}.asc
+sudo curl https://riahub.example.com/api/packages/{owner}/debian/repository.key -o /etc/apt/keyrings/gitea-{owner}.asc
 ```
 
 Afterwards update the local package index:
@@ -59,7 +59,7 @@ apt update
 To publish a Debian package (`*.deb`), perform a HTTP `PUT` operation with the package content in the request body.
 
 ```
-PUT https://gitea.example.com/api/packages/{owner}/debian/pool/{distribution}/{component}/upload
+PUT https://riahub.example.com/api/packages/{owner}/debian/pool/{distribution}/{component}/upload
 ```
 
 | Parameter      | Description |
@@ -73,7 +73,7 @@ Example request using HTTP Basic authentication:
 ```shell
 curl --user your_username:your_password_or_token \
      --upload-file path/to/file.deb \
-     https://gitea.example.com/api/packages/testuser/debian/pool/bionic/main/upload
+     https://riahub.example.com/api/packages/testuser/debian/pool/bionic/main/upload
 ```
 
 If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password.
@@ -93,7 +93,7 @@ The server responds with the following HTTP Status codes.
 To delete a Debian package perform a HTTP `DELETE` operation. This will delete the package version too if there is no file left.
 
 ```
-DELETE https://gitea.example.com/api/packages/{owner}/debian/pool/{distribution}/{component}/{package_name}/{package_version}/{architecture}
+DELETE https://riahub.example.com/api/packages/{owner}/debian/pool/{distribution}/{component}/{package_name}/{package_version}/{architecture}
 ```
 
 | Parameter         | Description |
@@ -109,7 +109,7 @@ Example request using HTTP Basic authentication:
 
 ```shell
 curl --user your_username:your_token_or_password -X DELETE \
-     https://gitea.example.com/api/packages/testuser/debian/pools/bionic/main/test-package/1.0.0/amd64
+     https://riahub.example.com/api/packages/testuser/debian/pools/bionic/main/test-package/1.0.0/amd64
 ```
 
 The server responds with the following HTTP Status codes.

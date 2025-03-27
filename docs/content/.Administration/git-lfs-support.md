@@ -17,7 +17,7 @@ menu:
 
 # Git Large File Storage setup
 
-To use Gitea's built-in LFS support, you must update the `app.ini` file:
+To use RIA Hub's built-in LFS support, you must update the `app.ini` file:
 
 ```ini
 [server]

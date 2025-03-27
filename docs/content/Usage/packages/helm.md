@@ -26,20 +26,20 @@ To work with the Helm Chart registry use a simple HTTP client like `curl` or the
 Publish a package by running the following command:
 
 ```shell
-curl --user {username}:{password} -X POST --upload-file ./{chart_file}.tgz https://gitea.example.com/api/packages/{owner}/helm/api/charts
+curl --user {username}:{password} -X POST --upload-file ./{chart_file}.tgz https://riahub.example.com/api/packages/{owner}/helm/api/charts
 ```
 
 or with the `helm cm-push` plugin:
 
 ```shell
-helm repo add  --username {username} --password {password} {repo} https://gitea.example.com/api/packages/{owner}/helm
+helm repo add  --username {username} --password {password} {repo} https://riahub.example.com/api/packages/{owner}/helm
 helm cm-push ./{chart_file}.tgz {repo}
 ```
 
 | Parameter    | Description |
 | ------------ | ----------- |
-| `username`   | Your Gitea username. |
-| `password`   | Your Gitea password. If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password. |
+| `username`   | Your RIA Hub username. |
+| `password`   | Your RIA Hub password. If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password. |
 | `repo`       | The name for the repository. |
 | `chart_file` | The Helm Chart archive. |
 | `owner`      | The owner of the package. |
@@ -49,15 +49,15 @@ helm cm-push ./{chart_file}.tgz {repo}
 To install a Helm char from the registry, execute the following command:
 
 ```shell
-helm repo add  --username {username} --password {password} {repo} https://gitea.example.com/api/packages/{owner}/helm
+helm repo add  --username {username} --password {password} {repo} https://riahub.example.com/api/packages/{owner}/helm
 helm repo update
 helm install {name} {repo}/{chart}
 ```
 
 | Parameter  | Description |
 | ---------- | ----------- |
-| `username` | Your Gitea username. |
-| `password` | Your Gitea password or a personal access token. |
+| `username` | Your RIA Hub username. |
+| `password` | Your RIA Hub password or a personal access token. |
 | `repo`     | The name for the repository. |
 | `owner`    | The owner of the package. |
 | `name`     | The local name. |

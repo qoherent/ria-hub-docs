@@ -1,6 +1,6 @@
 ---
 date: "2023-04-27T15:00:00+08:00"
-title: "Frequently Asked Questions of Gitea Actions"
+title: "Frequently Asked Questions of RIA Hub Actions"
 slug: "faq"
 sidebar_position: 100
 draft: false
@@ -13,14 +13,14 @@ menu:
     identifier: "actions-faq"
 ---
 
-# Frequently Asked Questions of Gitea Actions
+# Frequently Asked Questions of RIA Hub Actions
 
-This page contains some common questions and answers about Gitea Actions.
+This page contains some common questions and answers about RIA Hub Actions.
 
 ## Why is Actions not enabled by default?
 
 We know it's annoying to enable Actions for the whole instance and each repository one by one, but not everyone likes or needs this feature.
-We believe that more work needs to be done to improve Gitea Actions before it deserves any further special treatment.
+We believe that more work needs to be done to improve RIA Hub Actions before it deserves any further special treatment.
 
 ## Is it possible to enable Actions for new repositories by default for my own instance?
 
@@ -33,9 +33,9 @@ DEFAULT_REPO_UNITS = ...,repo.actions
 
 ## Should we use `${{ github.xyz }}` or `${{ gitea.xyz }}`  in workflow files?
 
-You can use `github.xyz` and Gitea will work fine.
-As mentioned, Gitea Actions is designed to be compatible with GitHub Actions.
-However, we recommend using `gitea.xyz` in case Gitea adds something that GitHub does not have to avoid different kinds of secrets in your workflow file (and because you are using this workflow on Gitea, not GitHub).
+You can use `github.xyz` and RIA Hub will work fine.
+As mentioned, RIA Hub Actions is designed to be compatible with GitHub Actions.
+However, we recommend using `gitea.xyz` in case RIA Hub adds something that GitHub does not have to avoid different kinds of secrets in your workflow file (and because you are using this workflow on RIA Hub, not GitHub).
 Still, this is completely optional since both options have the same effect at the moment.
 
 ## Is it possible to register runners for a specific user (not organization)?
@@ -46,10 +46,10 @@ It is technically possible to implement, but we need to discuss whether it is ne
 ## Where will the runner download scripts when using actions such as `actions/checkout@v4`?
 
 There are tens of thousands of [actions scripts](https://github.com/marketplace?type=actions) in GitHub, and when you write `uses: actions/checkout@v4`, it downloads the scripts from [github.com/actions/checkout](http://github.com/actions/checkout) by default.
-But what if you want to use actions from other places such as gitea.com instead of GitHub?
+But what if you want to use actions from other places such as riahub.ai instead of GitHub?
 
 The good news is that you can specify the URL prefix to use actions from anywhere.
-This is an extra syntax in Gitea Actions.
+This is an extra syntax in RIA Hub Actions.
 For example:
 
 - `uses: https://gitea.com/xxx/xxx@xxx`
@@ -61,17 +61,17 @@ Be careful, the `https://` or `http://` prefix is necessary!
 This is one of the differences from GitHub Actions which supports actions scripts only from GitHub.
 But it should allow users much more flexibility in how they run Actions.
 
-Alternatively, if you want your runners to download actions from your own Gitea instance by default, you can configure it by setting `[actions].DEFAULT_ACTIONS_URL`.
+Alternatively, if you want your runners to download actions from your own RIA Hub instance by default, you can configure it by setting `[actions].DEFAULT_ACTIONS_URL`.
 See [Configuration Cheat Sheet](administration/config-cheat-sheet.md#actions-actions).
 
 ## How to limit the permission of the runners?
 
-Runners have no more permissions than simply connecting to your Gitea instance.
+Runners have no more permissions than simply connecting to your RIA Hub instance.
 When any runner receives a job to run, it will temporarily gain limited permission to the repository associated with the job.
 If you want to give more permissions to the runner, allowing it to access more private repositories or external systems, you can pass [secrets](usage/secrets.md) to it.
 
 Refined permission control to Actions is a complicated job.
-In the future, we will add more options to Gitea to make it more configurable, such as allowing more write access to repositories or read access to all repositories in the same organization.
+In the future, we will add more options to RIA Hub to make it more configurable, such as allowing more write access to repositories or read access to all repositories in the same organization.
 
 ## How to avoid being hacked?
 
@@ -80,7 +80,7 @@ There are two types of possible attacks: unknown runner stealing the code or sec
 Avoiding the former means not allowing people you don't know to register runners for your repository, organization, or instance.
 
 The latter is a bit more complicated.
-If you're using a private Gitea instance for your company, you may not need to worry about security since you trust your colleagues and can hold them accountable.
+If you're using a private RIA Hub instance for your company, you may not need to worry about security since you trust your colleagues and can hold them accountable.
 
 For public instances, things are a little different.
 Here's how we do it on [gitea.com](http://gitea.com/):
@@ -132,7 +132,7 @@ But we need to map label groups to environments instead, like so:
 
 We also need to re-design how tasks are assigned to runners.
 A runner with `ubuntu`, `centos`, or `with-gpu` does not necessarily indicate that it can accept jobs with `[centos, with-gpu]`.
-Therefore, the runner should inform the Gitea instance that it can only accept jobs with `[ubuntu]`, `[centos]`, `[with-gpu]`, and `[ubuntu, with-gpu]`.
+Therefore, the runner should inform the RIA Hub instance that it can only accept jobs with `[ubuntu]`, `[centos]`, `[with-gpu]`, and `[ubuntu, with-gpu]`.
 This is not a technical problem, it was just overlooked in the early design.
 See [runtime.go#L65](https://gitea.com/gitea/act_runner/src/commit/90b8cc6a7a48f45cc28b5ef9660ebf4061fcb336/runtime/runtime.go#L65).
 
@@ -142,8 +142,8 @@ Currently, the act runner attempts to match everyone in the labels and uses the 
 
 ![labels](/img/usage/actions/labels.png)
 
-Agent labels are reported to the Gitea instance by the runner during registration.
-Custom labels, on the other hand, are added manually by a Gitea administrator or owners of the organization or repository (depending on the level of the runner).
+Agent labels are reported to the RIA Hub instance by the runner during registration.
+Custom labels, on the other hand, are added manually by a RIA Hub administrator or owners of the organization or repository (depending on the level of the runner).
 
 However, the design here needs improvement, as it currently has some rough edges.
 You can add a custom label such as `centos` to a registered runner, which means the runner will receive jobs with `runs-on: centos`.
@@ -153,14 +153,14 @@ See [runtime.go#L71](https://gitea.com/gitea/act_runner/src/commit/90b8cc6a7a48f
 
 In the meantime, we suggest that you re-register your runner if you want to change its labels.
 
-## Will there be more implementations for Gitea Actions runner?
+## Will there be more implementations for RIA Hub Actions runner?
 
 Although we would like to provide more options, our limited manpower means that act runner will be the only officially supported runner.
-However, both Gitea and act runner are completely open source, so anyone can create a new/better implementation.
+However, both RIA Hub and act runner are completely open source, so anyone can create a new/better implementation.
 We support your choice, no matter how you decide.
 In case you fork act runner to create your own version: Please contribute the changes back if you can and if you think your changes will help others as well.
 
-## What workflow trigger events does Gitea support?
+## What workflow trigger events does RIA Hub support?
 
 All events listed in this table are supported events and are compatible with GitHub.
 For events supported only by GitHub, see GitHub's [documentation](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows).
@@ -180,5 +180,5 @@ For events supported only by GitHub, see GitHub's [documentation](https://docs.g
 | release                     | `published`, `edited`                                                                                                    |
 | registry_package            | `published`                                                                                                              |
 
-> For `pull_request` events, in [GitHub Actions](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request), the `ref` is `refs/pull/:prNumber/merge`, which is a reference to the merge commit preview. However, Gitea has no such reference.
-> Therefore, the `ref` in Gitea Actions is `refs/pull/:prNumber/head`, which points to the head of pull request rather than the preview of the merge commit.
+> For `pull_request` events, in [GitHub Actions](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request), the `ref` is `refs/pull/:prNumber/merge`, which is a reference to the merge commit preview. However, RIA Hub has no such reference.
+> Therefore, the `ref` in RIA Hub Actions is `refs/pull/:prNumber/head`, which points to the head of pull request rather than the preview of the merge commit.

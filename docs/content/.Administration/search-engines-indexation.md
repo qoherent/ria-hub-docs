@@ -15,14 +15,14 @@ menu:
     identifier: "search-engines-indexation"
 ---
 
-# Search engines indexation of your Gitea installation
+# Search engines indexation of your RIA Hub installation
 
-By default your Gitea installation will be indexed by search engines.
+By default your RIA Hub installation will be indexed by search engines.
 If you don't want your repository to be visible for search engines read further.
 
 ## Block search engines indexation using robots.txt
 
-To make Gitea serve a custom `robots.txt` (default: empty 404) for top level installations,
+To make RIA Hub serve a custom `robots.txt` (default: empty 404) for top level installations,
 create a file with path `public/robots.txt` in the [`custom` folder or `CustomPath`](administration/customizing-gitea.md)
 
 Examples on how to configure the `robots.txt` can be found at [https://moz.com/learn/seo/robotstxt](https://moz.com/learn/seo/robotstxt).
@@ -32,7 +32,7 @@ User-agent: *
 Disallow: /
 ```
 
-If you installed Gitea in a subdirectory, you will need to create or edit the `robots.txt` in the top level directory.
+If you installed RIA Hub in a subdirectory, you will need to create or edit the `robots.txt` in the top level directory.
 
 ```txt
 User-agent: *

@@ -17,11 +17,11 @@ menu:
 
 # Permissions
 
-Gitea supports permissions for repository so that you can give different access for different people. At first, we need to know about `Unit`.
+RIA Hub supports permissions for repository so that you can give different access for different people. At first, we need to know about `Unit`.
 
 ## Unit
 
-In Gitea, we call a sub module of a repository `Unit`. Now we have following possible units.
+In RIA Hub, we call a sub module of a repository `Unit`. Now we have following possible units.
 
 | Name            | Description                                          | Permissions |
 | --------------- | ---------------------------------------------------- | ----------- |

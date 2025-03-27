@@ -24,7 +24,7 @@ You cannot publish a package if a package of the same name and version already e
 The package must follow the [documented structure](https://go.dev/ref/mod#zip-files).
 
 ```
-PUT https://gitea.example.com/api/packages/{owner}/go/upload
+PUT https://riahub.example.com/api/packages/{owner}/go/upload
 ```
 
 | Parameter | Description |
@@ -36,7 +36,7 @@ To authenticate to the package registry, you need to provide [custom HTTP header
 ```shell
 curl --user your_username:your_password_or_token \
      --upload-file path/to/file.zip \
-     https://gitea.example.com/api/packages/testuser/go/upload
+     https://riahub.example.com/api/packages/testuser/go/upload
 ```
 
 If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password.
@@ -57,11 +57,11 @@ To install a Go package instruct Go to use the package registry as proxy:
 
 ```shell
 # use latest version
-GOPROXY=https://gitea.example.com/api/packages/{owner}/go go install {package_name}
+GOPROXY=https://riahub.example.com/api/packages/{owner}/go go install {package_name}
 # or
-GOPROXY=https://gitea.example.com/api/packages/{owner}/go go install {package_name}@latest
+GOPROXY=https://riahub.example.com/api/packages/{owner}/go go install {package_name}@latest
 # use specific version
-GOPROXY=https://gitea.example.com/api/packages/{owner}/go go install {package_name}@{package_version}
+GOPROXY=https://riahub.example.com/api/packages/{owner}/go go install {package_name}@{package_version}
 ```
 
 | Parameter         | Description |

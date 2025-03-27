@@ -17,17 +17,17 @@ menu:
 
 # Badge
 
-Gitea has its builtin Badge system which allows you to display the status of your repository in other places. You can use the following badges:
+RIA Hub has its builtin Badge system which allows you to display the status of your repository in other places. You can use the following badges:
 
 ## Workflow Badge
 
-The Gitea Actions workflow badge is a badge that shows the status of the latest workflow run.
+The RIA Hub Actions workflow badge is a badge that shows the status of the latest workflow run.
 It is designed to be compatible with [GitHub Actions workflow badge](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge).
 
 You can use the following URL to get the badge:
 
 ```
-https://your-gitea-instance.com/{owner}/{repo}/actions/workflows/{workflow_file}?branch={branch}&event={event}
+https://your-riahub-instance.com/{owner}/{repo}/actions/workflows/{workflow_file}?branch={branch}&event={event}
 ```
 
 - `{owner}`: The owner of the repository.

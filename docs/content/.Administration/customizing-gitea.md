@@ -1,6 +1,6 @@
 ---
 date: "2017-04-15T14:56:00+02:00"
-title: "Customizing Gitea"
+title: "Customizing RIA Hub"
 slug: "customizing-gitea"
 sidebar_position: 100
 toc: false
@@ -10,14 +10,14 @@ aliases:
 menu:
   sidebar:
     parent: "administration"
-    name: "Customizing Gitea"
+    name: "Customizing RIA Hub"
     identifier: "customizing-gitea"
     sidebar_position: 100
 ---
 
-# Customizing Gitea
+# Customizing RIA Hub
 
-Customizing Gitea is typically done using the `CustomPath` folder - by default this is
+Customizing RIA Hub is typically done using the `CustomPath` folder - by default this is
 the `custom` folder from the working directory (WorkPath), but may be different if your build has
 set this differently. This is the central place to override configuration settings,
 templates, etc. You can check the `CustomPath` using `gitea help`. You can also find
@@ -26,9 +26,9 @@ the `CustomPath` by setting either the `GITEA_CUSTOM` environment variable or by
 using the `--custom-path` option on the `gitea` binary. (The option will override the
 environment variable.)
 
-If Gitea is deployed from binary, all default paths will be relative to the Gitea
+If RIA Hub is deployed from binary, all default paths will be relative to the RIA Hub
 binary. If installed from a distribution, these paths will likely be modified to
-the Linux Filesystem Standard. Gitea will attempt to create required folders, including
+the Linux Filesystem Standard. RIA Hub will attempt to create required folders, including
 `custom/`. Distributions may provide a symlink for `custom` using `/etc/gitea/`.
 
 Application settings can be found in file `CustomConf` which is by default,
@@ -46,11 +46,11 @@ is set under the "Configuration" tab on the site administration page.
 
 - [List of Environment Variables](administration/environment-variables.md)
 
-**Note:** Gitea must perform a full restart to see configuration changes.
+**Note:** RIA Hub must perform a full restart to see configuration changes.
 
 ## Serving custom public files
 
-To make Gitea serve custom public files (like pages and images), use the folder
+To make RIA Hub serve custom public files (like pages and images), use the folder
 `$GITEA_CUSTOM/public/` as the webroot. Symbolic links will be followed.
 At the moment, only the following files are served:
 
@@ -63,7 +63,7 @@ the url `http://gitea.domain.tld/assets/image.png`.
 
 ## Changing the logo
 
-To build a custom logo and/or favicon clone the Gitea source repository, replace `assets/logo.svg` and/or `assets/favicon.svg` and run
+To build a custom logo and/or favicon clone the RIA Hub source repository, replace `assets/logo.svg` and/or `assets/favicon.svg` and run
 `make generate-images`. `assets/favicon.svg` is used for the favicon only. This will update below output files which you can then place in `$GITEA_CUSTOM/public/assets/img` on your server:
 
 - `public/assets/img/logo.svg` - Used for site icon, app icon
@@ -75,28 +75,28 @@ To build a custom logo and/or favicon clone the Gitea source repository, replace
 
 In case the source image is not in vector format, you can attempt to convert a raster image using tools like [this](https://www.aconvert.com/image/png-to-svg/).
 
-## Customizing Gitea pages and resources
+## Customizing RIA Hub pages and resources
 
-Gitea's executable contains all the resources required to run: templates, images, style-sheets
+RIA Hub's executable contains all the resources required to run: templates, images, style-sheets
 and translations. Any of them can be overridden by placing a replacement in a matching path
 inside the `custom` directory. For example, to replace the default `.gitignore` provided
 for C++ repositories, we want to replace `options/gitignore/C++`. To do this, a replacement
 must be placed in `$GITEA_CUSTOM/options/gitignore/C++` (see about the location of the `CustomPath`
 directory at the top of this document).
 
-Every single page of Gitea can be changed. Dynamic content is generated using [go templates](https://pkg.go.dev/html/template),
+Every single page of RIA Hub can be changed. Dynamic content is generated using [go templates](https://pkg.go.dev/html/template),
 which can be modified by placing replacements below the `$GITEA_CUSTOM/templates` directory.
 
-To obtain any embedded file (including templates), the [`gitea embedded` tool](administration/cmd-embedded.md) can be used. Alternatively, they can be found in the [`templates`](https://github.com/go-gitea/gitea/tree/main/templates) directory of Gitea source (Note: the example link is from the `main` branch. Make sure to use templates compatible with the release you are using).
+To obtain any embedded file (including templates), the [`gitea embedded` tool](administration/cmd-embedded.md) can be used. Alternatively, they can be found in the [`templates`](https://github.com/go-gitea/gitea/tree/main/templates) directory of RIA Hub source (Note: the example link is from the `main` branch. Make sure to use templates compatible with the release you are using).
 
-Be aware that any statement contained inside `{{` and `}}` are Gitea's template syntax and
+Be aware that any statement contained inside `{{` and `}}` are RIA Hub's template syntax and
 shouldn't be touched without fully understanding these components.
 
 ### Customizing startpage / homepage
 
-Copy [`home.tmpl`](https://github.com/go-gitea/gitea/blob/main/templates/home.tmpl) for your version of Gitea from `templates` to `$GITEA_CUSTOM/templates`.
+Copy [`home.tmpl`](https://github.com/go-gitea/gitea/blob/main/templates/home.tmpl) for your version of RIA Hub from `templates` to `$GITEA_CUSTOM/templates`.
 Edit as you wish.
-Dont forget to restart your Gitea to apply the changes.
+Dont forget to restart your RIA Hub to apply the changes.
 
 ### Adding links and tabs
 
@@ -126,11 +126,11 @@ Apart from `extra_links.tmpl` and `extra_tabs.tmpl`, there are other useful temp
 - `body_outer_post.tmpl`, before the bottom `<footer>` element.
 - `footer.tmpl`, right before the end of the `<body>` tag, a good place for additional JavaScript.
 
-### Using Gitea variables
+### Using RIA Hub variables
 
-It's possible to use various Gitea variables in your custom templates.
+It's possible to use various RIA Hub variables in your custom templates.
 
-First, _temporarily_ enable development mode: in your `app.ini` change from `RUN_MODE = prod` to `RUN_MODE = dev`. Then add `{{ $ | DumpVar }}` to any of your templates, restart Gitea and refresh that page; that will dump all available variables.
+First, _temporarily_ enable development mode: in your `app.ini` change from `RUN_MODE = prod` to `RUN_MODE = dev`. Then add `{{ $ | DumpVar }}` to any of your templates, restart RIA Hub and refresh that page; that will dump all available variables.
 
 Find the data that you need, and use the corresponding variable; for example, if you need the name of the repository then you'd use `{{.Repository.Name}}`.
 
@@ -138,7 +138,7 @@ If you need to transform that data somehow, and aren't familiar with Go, an easy
 
 ### Example: PlantUML
 
-You can add [PlantUML](https://plantuml.com/) support to Gitea's markdown by using a PlantUML server.
+You can add [PlantUML](https://plantuml.com/) support to RIA Hub's markdown by using a PlantUML server.
 The data is encoded and sent to the PlantUML server which generates the picture. There is an online
 demo server at http://www.plantuml.com/plantuml, but if you (or your users) have sensitive data you
 can set up your own [PlantUML server](https://plantuml.com/server) instead. To set up PlantUML rendering,
@@ -174,7 +174,7 @@ The script will detect tags with `class="language-plantuml"`, but you can change
 
 ### Example: STL Preview
 
-You can display STL file directly in Gitea by adding:
+You can display STL file directly in RIA Hub by adding:
 
 ```html
 <script>
@@ -266,23 +266,23 @@ $GITEA_CUSTOM/public/assets/
            `-- three.min.js
 ```
 
-Then restart Gitea and open a STL file on your Gitea instance.
+Then restart RIA Hub and open a STL file on your RIA Hub instance.
 
-## Customizing Gitea mails
+## Customizing RIA Hub mails
 
-The `$GITEA_CUSTOM/templates/mail` folder allows changing the body of every mail of Gitea.
+The `$GITEA_CUSTOM/templates/mail` folder allows changing the body of every mail of RIA Hub.
 Templates to override can be found in the
 [`templates/mail`](https://github.com/go-gitea/gitea/tree/main/templates/mail)
-directory of Gitea source.
+directory of RIA Hub source.
 Override by making a copy of the file under `$GITEA_CUSTOM/templates/mail` using a
 full path structure matching source.
 
-Any statement contained inside `{{` and `}}` are Gitea's template
+Any statement contained inside `{{` and `}}` are RIA Hub's template
 syntax and shouldn't be touched without fully understanding these components.
 
-## Adding Analytics to Gitea
+## Adding Analytics to RIA Hub
 
-Google Analytics, Matomo (previously Piwik), and other analytics services can be added to Gitea. To add the tracking code, refer to the `Other additions to the page` section of this document, and add the JavaScript to the `$GITEA_CUSTOM/templates/custom/header.tmpl` file.
+Google Analytics, Matomo (previously Piwik), and other analytics services can be added to RIA Hub. To add the tracking code, refer to the `Other additions to the page` section of this document, and add the JavaScript to the `$GITEA_CUSTOM/templates/custom/header.tmpl` file.
 
 ## Customizing gitignores, labels, licenses, locales, and readmes
 
@@ -296,7 +296,7 @@ To add custom .gitignore, add a file with existing [.gitignore rules](https://gi
 
 ## Customizing the git configuration
 
-Starting with Gitea 1.20, you can customize the git configuration via the `git.config` section.
+Starting with RIA Hub 1.20, you can customize the git configuration via the `git.config` section.
 
 ### Enabling signed git pushes
 
@@ -312,7 +312,7 @@ receive.certNonceSeed = <randomstring>
 
 ### Labels
 
-Starting with Gitea 1.19, you can add a file that follows the [YAML label format](https://github.com/go-gitea/gitea/blob/main/options/label/Advanced.yaml) to `$GITEA_CUSTOM/options/label`:
+Starting with RIA Hub 1.19, you can add a file that follows the [YAML label format](https://github.com/go-gitea/gitea/blob/main/options/label/Advanced.yaml) to `$GITEA_CUSTOM/options/label`:
 
 ```yaml
 labels:
@@ -336,9 +336,9 @@ To add a custom license, add a file with the license text to `$GITEA_CUSTOM/opti
 
 Locales are managed via our [Crowdin](https://crowdin.com/project/gitea).
 You can override a locale by placing an altered locale file in `$GITEA_CUSTOM/options/locale`.
-Gitea's default locale files can be found in the [`options/locale`](https://github.com/go-gitea/gitea/tree/main/options/locale) source folder and these should be used as examples for your changes.
+RIA Hub's default locale files can be found in the [`options/locale`](https://github.com/go-gitea/gitea/tree/main/options/locale) source folder and these should be used as examples for your changes.
 
-To add a completely new locale, as well as placing the file in the above location, you will need to add the new lang and name to the `[i18n]` section in your `app.ini`. Keep in mind that Gitea will use those settings as **overrides**, so if you want to keep the other languages as well you will need to copy/paste the default values and add your own to them.
+To add a completely new locale, as well as placing the file in the above location, you will need to add the new lang and name to the `[i18n]` section in your `app.ini`. Keep in mind that RIA Hub will use those settings as **overrides**, so if you want to keep the other languages as well you will need to copy/paste the default values and add your own to them.
 
 ```
 [i18n]
@@ -368,13 +368,13 @@ REACTIONS = +1, -1, laugh, confused, heart, hooray, eyes
 
 A full list of supported emoji's is at [emoji list](https://gitea.com/gitea/gitea.com/issues/8)
 
-## Customizing the look of Gitea
+## Customizing the look of RIA Hub
 
 The built-in themes are `gitea-light`, `gitea-dark`, and `gitea-auto` (which automatically adapts to OS settings).
 
 The default theme can be changed via `DEFAULT_THEME` in the [ui](administration/config-cheat-sheet.md#ui-ui) section of `app.ini`.
 
-Gitea also has support for user themes, which means every user can select which theme should be used.
+RIA Hub also has support for user themes, which means every user can select which theme should be used.
 The list of themes a user can choose from can be configured with the `THEMES` value in the [ui](administration/config-cheat-sheet.md#ui-ui) section of `app.ini`.
 
 To make a custom theme available to all users:
@@ -388,7 +388,7 @@ Community themes are listed in [gitea/awesome-gitea#themes](https://gitea.com/gi
 The default theme sources can be found [here](https://github.com/go-gitea/gitea/blob/main/web_src/css/themes).
 
 If your custom theme is considered a dark theme, set the global css variable `--is-dark-theme` to `true`.
-This allows Gitea to adjust the Monaco code editor's theme accordingly.
+This allows RIA Hub to adjust the Monaco code editor's theme accordingly.
 
 ## Customizing fonts
 

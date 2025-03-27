@@ -18,7 +18,7 @@ menu:
 # Issue and Pull Request Templates
 
 Some projects have a standard list of questions that users need to answer
-when creating an issue or pull request. Gitea supports adding templates to the
+when creating an issue or pull request. RIA Hub supports adding templates to the
 **default branch of the repository** so that they can autopopulate the form when users are
 creating issues and pull requests. This will cut down on the initial back and forth
 of getting some clarifying details.
@@ -224,7 +224,7 @@ Attributes:
 | description | A description of the text area to provide context or guidance, which is displayed in the form.                                                                                | Optional | String | Empty String | -                         |
 | placeholder | A semi-opaque placeholder that renders in the text area when empty.                                                                                                           | Optional | String | Empty String | -                         |
 | value       | Text that is pre-filled in the text area.                                                                                                                                     | Optional | String | -            | -                         |
-| render      | If a value is provided, submitted text will be formatted into a codeblock. When this key is provided, the text area will not expand for file attachments or Markdown editing. | Optional | String | -            | Languages known to Gitea. |
+| render      | If a value is provided, submitted text will be formatted into a codeblock. When this key is provided, the text area will not expand for file attachments or Markdown editing. | Optional | String | -            | Languages known to RIA Hub. |
 
 Validations:
 
@@ -307,9 +307,9 @@ This is a example for a issue config file
 ```yaml
 blank_issues_enabled: true
 contact_links:
-  - name: Gitea
+  - name: RIA Hub
     url: https://gitea.io
-    about: Visit the Gitea Website
+    about: Visit the RIA Hub Website
 ```
 
 ### Possible Options

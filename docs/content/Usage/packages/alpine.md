@@ -27,7 +27,7 @@ The following examples use `apk`.
 To register the Alpine registry add the url to the list of known apk sources (`/etc/apk/repositories`):
 
 ```
-https://gitea.example.com/api/packages/{owner}/alpine/<branch>/<repository>
+https://riahub.example.com/api/packages/{owner}/alpine/<branch>/<repository>
 ```
 
 | Placeholder  | Description |
@@ -39,13 +39,13 @@ https://gitea.example.com/api/packages/{owner}/alpine/<branch>/<repository>
 If the registry is private, provide credentials in the url. You can use a password or a [personal access token](development/api-usage.md#authentication):
 
 ```
-https://{username}:{your_password_or_token}@gitea.example.com/api/packages/{owner}/alpine/<branch>/<repository>
+https://{username}:{your_password_or_token}@riahub.example.com/api/packages/{owner}/alpine/<branch>/<repository>
 ```
 
 The Alpine registry files are signed with a RSA key which must be known to apk. Download the public key and store it in `/etc/apk/keys/`:
 
 ```shell
-curl -JO https://gitea.example.com/api/packages/{owner}/alpine/key
+curl -JO https://riahub.example.com/api/packages/{owner}/alpine/key
 ```
 
 Afterwards update the local package index:
@@ -59,7 +59,7 @@ apk update
 To publish an Alpine package (`*.apk`), perform a HTTP `PUT` operation with the package content in the request body.
 
 ```
-PUT https://gitea.example.com/api/packages/{owner}/alpine/{branch}/{repository}
+PUT https://riahub.example.com/api/packages/{owner}/alpine/{branch}/{repository}
 ```
 
 | Parameter    | Description |
@@ -73,7 +73,7 @@ Example request using HTTP Basic authentication:
 ```shell
 curl --user your_username:your_password_or_token \
      --upload-file path/to/file.apk \
-     https://gitea.example.com/api/packages/testuser/alpine/v3.17/main
+     https://riahub.example.com/api/packages/testuser/alpine/v3.17/main
 ```
 
 If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password.
@@ -93,7 +93,7 @@ The server responds with the following HTTP Status codes.
 To delete an Alpine package perform a HTTP `DELETE` operation. This will delete the package version too if there is no file left.
 
 ```
-DELETE https://gitea.example.com/api/packages/{owner}/alpine/{branch}/{repository}/{architecture}/{filename}
+DELETE https://riahub.example.com/api/packages/{owner}/alpine/{branch}/{repository}/{architecture}/{filename}
 ```
 
 | Parameter      | Description |
@@ -108,7 +108,7 @@ Example request using HTTP Basic authentication:
 
 ```shell
 curl --user your_username:your_token_or_password -X DELETE \
-     https://gitea.example.com/api/packages/testuser/alpine/v3.17/main/test-package-1.0.0.apk
+     https://riahub.example.com/api/packages/testuser/alpine/v3.17/main/test-package-1.0.0.apk
 ```
 
 The server responds with the following HTTP Status codes.

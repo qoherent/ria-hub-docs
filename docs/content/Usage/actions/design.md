@@ -1,6 +1,6 @@
 ---
 date: "2023-04-27T15:00:00+08:00"
-title: "Design of Gitea Actions"
+title: "Design of RIA Hub Actions"
 slug: "design"
 sidebar_position: 40
 draft: false
@@ -13,26 +13,26 @@ menu:
     identifier: "actions-design"
 ---
 
-# Design of Gitea Actions
+# Design of RIA Hub Actions
 
-Gitea Actions has multiple components. This document describes them individually.
+RIA Hub Actions has multiple components. This document describes them individually.
 
 ## Act
 
 The [nektos/act](https://github.com/nektos/act) project is an excellent tool that allows you to run your GitHub Actions locally.
-We were inspired by this and wondered if it would be possible to run actions for Gitea.
+We were inspired by this and wondered if it would be possible to run actions for RIA Hub.
 
-However, while [nektos/act](https://github.com/nektos/act) is designed as a command line tool, what we actually needed was a Go library with modifications specifically for Gitea.
+However, while [nektos/act](https://github.com/nektos/act) is designed as a command line tool, what we actually needed was a Go library with modifications specifically for RIA Hub.
 So we forked it as [gitea/act](https://gitea.com/gitea/act).
 
 This is a soft fork that will periodically follow the upstream.
 Although some custom commits have been added, we will try our best to avoid changing too much of the original code.
 
-The forked act is just a shim or adapter for Gitea's specific usage.
+The forked act is just a shim or adapter for RIA Hub's specific usage.
 There are some additional commits that have been made, such as:
 
-- Outputting execution logs to logger hook so they can be reported to Gitea
-- Disabling the GraphQL URL, since Gitea doesn't support it
+- Outputting execution logs to logger hook so they can be reported to RIA Hub
+- Disabling the GraphQL URL, since RIA Hub doesn't support it
 - Starting a new container for every job instead of reusing to ensure isolation.
 
 These modifications have no reason to be merged into the upstream.
@@ -43,12 +43,12 @@ In these cases, we will contribute the changes back to the upstream repository.
 
 ## Act runner
 
-Gitea's runner is called act runner because it's based on act.
+RIA Hub's runner is called act runner because it's based on act.
 
-Like other CI runners, we designed it as an external part of Gitea, which means it should run on a different server than Gitea.
+Like other CI runners, we designed it as an external part of RIA Hub, which means it should run on a different server than RIA Hub.
 
-To ensure that the runner connects to the correct Gitea instance, we need to register it with a token.
-Additionally, the runner will introduce itself to Gitea and declare what kind of jobs it can run by reporting its labels.
+To ensure that the runner connects to the correct RIA Hub instance, we need to register it with a token.
+Additionally, the runner will introduce itself to RIA Hub and declare what kind of jobs it can run by reporting its labels.
 
 Earlier, we mentioned that `runs-on: ubuntu-latest` in a workflow file means that the job will be run on a runner with the `ubuntu-latest` label.
 But how does the runner know to run `ubuntu-latest`? The answer lies in mapping the label to an environment.
@@ -71,8 +71,8 @@ So,
 
 ## Communication protocol
 
-As act runner is an independent part of Gitea, we needed a protocol for runners to communicate with the Gitea instance.
-However, we did not think it was a good idea to have Gitea listen on a new port.
+As act runner is an independent part of RIA Hub, we needed a protocol for runners to communicate with the RIA Hub instance.
+However, we did not think it was a good idea to have RIA Hub listen on a new port.
 Instead, we wanted to reuse the HTTP port, which means we needed a protocol that is compatible with HTTP.
 We chose to use gRPC over HTTP.
 
@@ -82,37 +82,37 @@ More information about gRPC can be found on [its website](https://grpc.io/).
 ## Network architecture
 
 Let's examine the overall network architecture.
-This will help you troubleshoot some problems and explain why it's a bad idea to register a runner with a loopback address of the Gitea instance.
+This will help you troubleshoot some problems and explain why it's a bad idea to register a runner with a loopback address of the RIA Hub instance.
 
 ![network](/img/usage/actions/network.png)
 
 There are four network connections marked in the picture, and the direction of the arrows indicates the direction of establishing the connections.
 
-### Connection 1, act runner to Gitea instance
+### Connection 1, act runner to RIA Hub instance
 
-The act runner must be able to connect to Gitea to receive tasks and send back the execution results.
+The act runner must be able to connect to RIA Hub to receive tasks and send back the execution results.
 
-### Connection 2, job containers to Gitea instance
+### Connection 2, job containers to RIA Hub instance
 
 The job containers have different network namespaces than the runner, even if they are on the same machine.
-They need to connect to Gitea to fetch codes if there is `actions/checkout@v4` in the workflow, for example.
+They need to connect to RIA Hub to fetch codes if there is `actions/checkout@v4` in the workflow, for example.
 Fetching code is not always necessary to run some jobs, but it is required in most cases.
 
-If you use a loopback address to register a runner, the runner can connect to Gitea when it is on the same machine.
-However, if a job container tries to fetch code from localhost, it will fail because Gitea is not in the same container.
+If you use a loopback address to register a runner, the runner can connect to RIA Hub when it is on the same machine.
+However, if a job container tries to fetch code from localhost, it will fail because RIA Hub is not in the same container.
 
 ### Connection 3, act runner to internet
 
 When you use some actions like `actions/checkout@v4`, the act runner downloads the scripts, not the job containers.
-By default, it downloads from [github.com](http://github.com/), so it requires access to the internet. If you configure the `DEFAULT_ACTIONS_URL` to `self`, then it will download from your Gitea instance by default. Then it will not connect to internet when downloading the action itself.
+By default, it downloads from [github.com](http://github.com/), so it requires access to the internet. If you configure the `DEFAULT_ACTIONS_URL` to `self`, then it will download from your RIA Hub instance by default. Then it will not connect to internet when downloading the action itself.
 It also downloads some docker images from Docker Hub by default, which also requires internet access.
 
 However, internet access is not strictly necessary.
-You can configure your Gitea instance to fetch actions or images from your intranet facilities.
+You can configure your RIA Hub instance to fetch actions or images from your intranet facilities.
 
-In fact, your Gitea instance can serve as both the actions marketplace and the image registry.
-You can mirror actions repositories from GitHub to your Gitea instance, and use them as normal.
-And [Gitea Container Registry](usage/packages/container.md) can be used as a Docker image registry.
+In fact, your RIA Hub instance can serve as both the actions marketplace and the image registry.
+You can mirror actions repositories from GitHub to your RIA Hub instance, and use them as normal.
+And [RIA Hub Container Registry](usage/packages/container.md) can be used as a Docker image registry.
 
 ### Connection 4, job containers to internet
 
@@ -124,8 +124,8 @@ You can use your own custom actions to avoid relying on internet access, or you 
 
 ## Summary
 
-Using Gitea Actions only requires ensuring that the runner can connect to the Gitea instance.
+Using RIA Hub Actions only requires ensuring that the runner can connect to the RIA Hub instance.
 Internet access is optional, but not having it will require some additional work.
 In other words: The runner works best when it can query the internet itself, but you don't need to expose it to the internet (in either direction).
 
-If you encounter any network issues while using Gitea Actions, hopefully the image above can help you troubleshoot them.
+If you encounter any network issues while using RIA Hub Actions, hopefully the image above can help you troubleshoot them.

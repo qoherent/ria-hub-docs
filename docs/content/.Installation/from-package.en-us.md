@@ -23,7 +23,7 @@ menu:
 
 Currently, the only supported method of installation on MacOS is [Homebrew](http://brew.sh/).
 Following the [deployment from binary](installation/from-binary.md) guide may work,
-but is not supported. To install Gitea via `brew`:
+but is not supported. To install RIA Hub via `brew`:
 
 ```
 brew install gitea
@@ -33,7 +33,7 @@ brew install gitea
 
 ### Alpine Linux
 
-Alpine Linux has [Gitea](https://pkgs.alpinelinux.org/packages?name=gitea&branch=edge) in its community repository which follows the latest stable version.
+Alpine Linux has [RIA Hub](https://pkgs.alpinelinux.org/packages?name=gitea&branch=edge) in its community repository which follows the latest stable version.
 
 ```sh
 apk add gitea
@@ -41,7 +41,7 @@ apk add gitea
 
 ### Arch Linux
 
-The rolling release distribution has [Gitea](https://www.archlinux.org/packages/extra/x86_64/gitea/) in their official extra repository and package updates are provided with new Gitea releases.
+The rolling release distribution has [RIA Hub](https://www.archlinux.org/packages/extra/x86_64/gitea/) in their official extra repository and package updates are provided with new RIA Hub releases.
 
 ```sh
 pacman -S gitea
@@ -57,7 +57,7 @@ pacman -S gitea
 
 ### Gentoo Linux
 
-The rolling release distribution has [Gitea](https://packages.gentoo.org/packages/www-apps/gitea) in their official community repository and package updates are provided with new Gitea releases.
+The rolling release distribution has [RIA Hub](https://packages.gentoo.org/packages/www-apps/gitea) in their official community repository and package updates are provided with new RIA Hub releases.
 
 ```sh
 emerge gitea -va
@@ -65,8 +65,8 @@ emerge gitea -va
 
 ### Canonical Snap
 
-There is a [Gitea Snap](https://snapcraft.io/gitea) package which follows the latest stable version.
-*Note: The Gitea snap package is [strictly confined](https://snapcraft.io/docs/snap-confinement). Strictly confined snaps run in complete isolation, so some of the Gitea functionals may not work with the confinement*
+There is a [RIA Hub Snap](https://snapcraft.io/gitea) package which follows the latest stable version.
+*Note: The RIA Hub snap package is [strictly confined](https://snapcraft.io/docs/snap-confinement). Strictly confined snaps run in complete isolation, so some of the RIA Hub functionals may not work with the confinement*
 
 ```sh
 snap install gitea
@@ -79,7 +79,7 @@ in the Development Software Configuration Management Repository
 
 ### Windows
 
-There is a [Gitea](https://chocolatey.org/packages/gitea) package for Windows by [Chocolatey](https://chocolatey.org/).
+There is a [RIA Hub](https://chocolatey.org/packages/gitea) package for Windows by [Chocolatey](https://chocolatey.org/).
 
 ```sh
 choco install gitea
@@ -108,11 +108,11 @@ The port uses the standard FreeBSD file system layout: config files are in `/usr
 bundled templates, options, plugins and themes are in `/usr/local/share/gitea`, and a start script
 is in `/usr/local/etc/rc.d/gitea`.
 
-To enable Gitea to run as a service, run `sysrc gitea_enable=YES` and start it with `service gitea start`.
+To enable RIA Hub to run as a service, run `sysrc gitea_enable=YES` and start it with `service gitea start`.
 
 ### Others
 
-Various other third-party packages of Gitea exist.
+Various other third-party packages of RIA Hub exist.
 To see a curated list, head over to [awesome-gitea](https://gitea.com/gitea/awesome-gitea/src/branch/master/README.md#user-content-packages).
 
 Do you know of an existing package that isn't on the list? Send in a PR to get it added!

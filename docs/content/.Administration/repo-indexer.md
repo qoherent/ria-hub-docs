@@ -25,7 +25,7 @@ Better code search support could be achieved by setting up the repository indexe
 
 ## Setting up the repository indexer
 
-Gitea can search through the files of the repositories by enabling this function in your [`app.ini`](administration/config-cheat-sheet.md):
+RIA Hub can search through the files of the repositories by enabling this function in your [`app.ini`](administration/config-cheat-sheet.md):
 
 ```ini
 [indexer]
@@ -37,7 +37,7 @@ REPO_INDEXER_INCLUDE =
 REPO_INDEXER_EXCLUDE = resources/bin/**
 ```
 
-Please bear in mind that indexing the contents can consume a lot of system resources, especially when the index is created for the first time or globally updated (e.g. after upgrading Gitea).
+Please bear in mind that indexing the contents can consume a lot of system resources, especially when the index is created for the first time or globally updated (e.g. after upgrading RIA Hub).
 
 ### Choosing the files for indexing by size
 
@@ -45,7 +45,7 @@ The `MAX_FILE_SIZE` option will make the indexer skip all files larger than the 
 
 ### Choosing the files for indexing by path
 
-Gitea applies glob pattern matching from the [`gobwas/glob` library](https://github.com/gobwas/glob) to choose which files will be included in the index.
+RIA Hub applies glob pattern matching from the [`gobwas/glob` library](https://github.com/gobwas/glob) to choose which files will be included in the index.
 
 Limiting the list of files prevents the indexes from becoming polluted with derived or irrelevant files (e.g. lss, sym, map, etc.), so the search results are more relevant. It can also help reduce the index size.
 

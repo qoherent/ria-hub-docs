@@ -17,7 +17,7 @@ menu:
 
 # Integrations
 
-Gitea has a wonderful community of third-party integrations, as well as first-class support in various other
+RIA Hub has a wonderful community of third-party integrations, as well as first-class support in various other
 projects.
 
 We are curating a list over at [awesome-gitea](https://gitea.com/gitea/awesome-gitea) to track these!

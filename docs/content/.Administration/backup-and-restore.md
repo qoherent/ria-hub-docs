@@ -17,18 +17,18 @@ menu:
 
 # Backup and Restore
 
-Gitea currently has a `dump` command that will save the installation to a ZIP file. This
+RIA Hub currently has a `dump` command that will save the installation to a ZIP file. This
 file can be unpacked and used to restore an instance.
 
 ## Backup Consistency
 
-To ensure the consistency of the Gitea instance, it must be shutdown during backup.
+To ensure the consistency of the RIA Hub instance, it must be shutdown during backup.
 
-Gitea consists of a database, files and git repositories, all of which change when it is used. For instance, when a migration is in progress, a transaction is created in the database while the git repository is being copied over. If the backup happens in the middle of the migration, the git repository may be incomplete although the database claims otherwise because it was dumped afterwards. The only way to avoid such race conditions is by stopping the Gitea instance during the backups.
+RIA Hub consists of a database, files and git repositories, all of which change when it is used. For instance, when a migration is in progress, a transaction is created in the database while the git repository is being copied over. If the backup happens in the middle of the migration, the git repository may be incomplete although the database claims otherwise because it was dumped afterwards. The only way to avoid such race conditions is by stopping the RIA Hub instance during the backups.
 
 ## Backup Command (`dump`)
 
-Switch to the user running Gitea: `su git`. Run `./gitea dump -c /path/to/app.ini` in the Gitea installation
+Switch to the user running RIA Hub: `su git`. Run `./gitea dump -c /path/to/app.ini` in the RIA Hub installation
 directory. There should be some output similar to the following:
 
 ```none
@@ -54,7 +54,7 @@ Intermediate backup files are created in a temporary directory specified either 
 
 ## Backup the database
 
-The SQL dump created by `gitea dump` uses XORM and Gitea admins may prefer to use the native the MySQL and PostgreSQL dump tools instead. There are still open issues when using XORM for dumping the database that may cause problems when attempting to restore it.
+The SQL dump created by `gitea dump` uses XORM and RIA Hub admins may prefer to use the native the MySQL and PostgreSQL dump tools instead. There are still open issues when using XORM for dumping the database that may cause problems when attempting to restore it.
 
 ```sh
 # mysql
@@ -75,7 +75,7 @@ Example:
 docker exec -u <OS_USERNAME> -it -w <--tempdir> $(docker ps -qf 'name=^<NAME_OF_DOCKER_CONTAINER>$') bash -c '/usr/local/bin/gitea dump -c </path/to/app.ini>'
 ```
 
-\*Note: `--tempdir` refers to the temporary directory of the docker environment used by Gitea; if you have not specified a custom `--tempdir`, then Gitea uses `/tmp` or the `TMPDIR` environment variable of the docker container. For `--tempdir` adjust your `docker exec` command options accordingly.
+\*Note: `--tempdir` refers to the temporary directory of the docker environment used by RIA Hub; if you have not specified a custom `--tempdir`, then RIA Hub uses `/tmp` or the `TMPDIR` environment variable of the docker container. For `--tempdir` adjust your `docker exec` command options accordingly.
 
 The result should be a file, stored in the `--tempdir` specified, along the lines of: `gitea-dump-1482906742.zip`
 
@@ -105,9 +105,9 @@ psql -U $USER -d $DATABASE < gitea-db.sql
 service gitea restart
 ```
 
-Repository Git Hooks should be regenerated if installation method is changed (eg. binary -> Docker), or if Gitea is installed to a different directory than the previous installation.
+Repository Git Hooks should be regenerated if installation method is changed (eg. binary -> Docker), or if RIA Hub is installed to a different directory than the previous installation.
 
-With Gitea running, and from the directory Gitea's binary is located, execute: `./gitea admin regenerate hooks`
+With RIA Hub running, and from the directory RIA Hub's binary is located, execute: `./gitea admin regenerate hooks`
 
 This ensures that application and configuration file paths in repository Git Hooks are consistent and applicable to the current installation. If these paths are not updated, repository `push` actions will fail.
 

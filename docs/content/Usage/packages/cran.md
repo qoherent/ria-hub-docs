@@ -25,14 +25,14 @@ To work with the CRAN package registry, you need to install [R](https://cran.r-p
 To register the package registry you need to add it to `Rprofile.site`, either on the system-level, user-level (`~/.Rprofile`) or project-level:
 
 ```
-options("repos" = c(getOption("repos"), c(gitea="https://gitea.example.com/api/packages/{owner}/cran")))
+options("repos" = c(getOption("repos"), c(gitea="https://riahub.example.com/api/packages/{owner}/cran")))
 ```
 
 | Parameter | Description |
 | --------- | ----------- |
 | `owner`   | The owner of the package. |
 
-If you need to provide credentials, you may embed them as part of the url (`https://user:password@gitea.example.com/...`).
+If you need to provide credentials, you may embed them as part of the url (`https://user:password@riahub.example.com/...`).
 
 ## Publish a package
 
@@ -41,7 +41,7 @@ To publish a R package, perform a HTTP `PUT` operation with the package content 
 Source packages:
 
 ```
-PUT https://gitea.example.com/api/packages/{owner}/cran/src
+PUT https://riahub.example.com/api/packages/{owner}/cran/src
 ```
 
 | Parameter | Description |
@@ -51,7 +51,7 @@ PUT https://gitea.example.com/api/packages/{owner}/cran/src
 Binary packages:
 
 ```
-PUT https://gitea.example.com/api/packages/{owner}/cran/bin?platform={platform}&rversion={rversion}
+PUT https://riahub.example.com/api/packages/{owner}/cran/bin?platform={platform}&rversion={rversion}
 ```
 
 | Parameter  | Description |
@@ -65,7 +65,7 @@ For example:
 ```shell
 curl --user your_username:your_password_or_token \
      --upload-file path/to/package.zip \
-     https://gitea.example.com/api/packages/testuser/cran/bin?platform=windows&rversion=4.2
+     https://riahub.example.com/api/packages/testuser/cran/bin?platform=windows&rversion=4.2
 ```
 
 If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password.

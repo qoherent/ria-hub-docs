@@ -28,7 +28,7 @@ The following examples use dart.
 To register the package registry and provide credentials, execute:
 
 ```shell
-dart pub token add https://gitea.example.com/api/packages/{owner}/pub
+dart pub token add https://riahub.example.com/api/packages/{owner}/pub
 ```
 
 | Placeholder  | Description |
@@ -42,7 +42,7 @@ You need to provide your [personal access token](development/api-usage.md#authen
 To publish a package, edit the `pubspec.yaml` and add the following line:
 
 ```yaml
-publish_to: https://gitea.example.com/api/packages/{owner}/pub
+publish_to: https://riahub.example.com/api/packages/{owner}/pub
 ```
 
 | Placeholder  | Description |
@@ -62,7 +62,7 @@ You cannot publish a package if a package of the same name and version already e
 To install a Pub package from the package registry, execute the following command:
 
 ```shell
-dart pub add {package_name} --hosted-url=https://gitea.example.com/api/packages/{owner}/pub/
+dart pub add {package_name} --hosted-url=https://riahub.example.com/api/packages/{owner}/pub/
 ```
 
 | Parameter         | Description |
@@ -74,7 +74,7 @@ For example:
 
 ```shell
 # use latest version
-dart pub add mypackage --hosted-url=https://gitea.example.com/api/packages/testuser/pub/
+dart pub add mypackage --hosted-url=https://riahub.example.com/api/packages/testuser/pub/
 # specify version
-dart pub add mypackage:1.0.8 --hosted-url=https://gitea.example.com/api/packages/testuser/pub/
+dart pub add mypackage:1.0.8 --hosted-url=https://riahub.example.com/api/packages/testuser/pub/
 ```

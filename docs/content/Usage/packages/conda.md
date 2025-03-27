@@ -26,11 +26,11 @@ To work with the Conda package registry, you need to use [conda](https://docs.co
 To register the package registry and provide credentials, edit your `.condarc` file:
 
 ```yaml
-channel_alias: https://gitea.example.com/api/packages/{owner}/conda
+channel_alias: https://riahub.example.com/api/packages/{owner}/conda
 channels:
-  - https://gitea.example.com/api/packages/{owner}/conda
+  - https://riahub.example.com/api/packages/{owner}/conda
 default_channels:
-  - https://gitea.example.com/api/packages/{owner}/conda
+  - https://riahub.example.com/api/packages/{owner}/conda
 ```
 
 | Placeholder  | Description |
@@ -39,14 +39,14 @@ default_channels:
 
 See the [official documentation](https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html) for explanations of the individual settings.
 
-If you need to provide credentials, you may embed them as part of the channel url (`https://user:password@gitea.example.com/...`).
+If you need to provide credentials, you may embed them as part of the channel url (`https://user:password@riahub.example.com/...`).
 
 ## Publish a package
 
 To publish a package, perform a HTTP PUT operation with the package content in the request body.
 
 ```
-PUT https://gitea.example.com/api/packages/{owner}/conda/{channel}/{filename}
+PUT https://riahub.example.com/api/packages/{owner}/conda/{channel}/{filename}
 ```
 
 | Placeholder  | Description |
@@ -60,7 +60,7 @@ Example request using HTTP Basic authentication:
 ```shell
 curl --user your_username:your_password_or_token \
      --upload-file path/to/package-1.0.conda \
-     https://gitea.example.com/api/packages/testuser/conda/package-1.0.conda
+     https://riahub.example.com/api/packages/testuser/conda/package-1.0.conda
 ```
 
 If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password.

@@ -28,20 +28,20 @@ The following examples use the `dotnet nuget` tool.
 To register the package registry you need to configure a new NuGet feed source:
 
 ```shell
-dotnet nuget add source --name {source_name} --username {username} --password {password} https://gitea.example.com/api/packages/{owner}/nuget/index.json
+dotnet nuget add source --name {source_name} --username {username} --password {password} https://riahub.example.com/api/packages/{owner}/nuget/index.json
 ```
 
 | Parameter     | Description |
 | ------------- | ----------- |
 | `source_name` | The desired source name. |
-| `username`    | Your Gitea username. |
-| `password`    | Your Gitea password. If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password. |
+| `username`    | Your RIA Hub username. |
+| `password`    | Your RIA Hub password. If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password. |
 | `owner`       | The owner of the package. |
 
 For example:
 
 ```shell
-dotnet nuget add source --name gitea --username testuser --password password123 https://gitea.example.com/api/packages/testuser/nuget/index.json
+dotnet nuget add source --name riahub --username testuser --password password123 https://riahub.example.com/api/packages/testuser/nuget/index.json
 ```
 
 You can add the source without credentials and use the [`--api-key`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-nuget-push) parameter when publishing packages. In this case you need to provide a [personal access token](development/api-usage.md#authentication).
@@ -62,7 +62,7 @@ dotnet nuget push --source {source_name} {package_file}
 For example:
 
 ```shell
-dotnet nuget push --source gitea test_package.1.0.0.nupkg
+dotnet nuget push --source riahub test_package.1.0.0.nupkg
 ```
 
 You cannot publish a package if a package of the same name and version already exists. You must delete the existing package first.
@@ -73,7 +73,7 @@ The NuGet package registry has build support for a symbol server. The PDB files 
 To do so, register the NuGet package registry as symbol source:
 
 ```
-https://gitea.example.com/api/packages/{owner}/nuget/symbols
+https://riahub.example.com/api/packages/{owner}/nuget/symbols
 ```
 
 | Parameter | Description |
@@ -83,7 +83,7 @@ https://gitea.example.com/api/packages/{owner}/nuget/symbols
 For example:
 
 ```
-https://gitea.example.com/api/packages/testuser/nuget/symbols
+https://riahub.example.com/api/packages/testuser/nuget/symbols
 ```
 
 ## Install a package
@@ -103,7 +103,7 @@ dotnet add package --source {source_name} --version {package_version} {package_n
 For example:
 
 ```shell
-dotnet add package --source gitea --version 1.0.0 test_package
+dotnet add package --source riahub --version 1.0.0 test_package
 ```
 
 ## Supported commands

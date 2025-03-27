@@ -15,7 +15,7 @@ menu:
     identifier: "https-setup"
 ---
 
-# HTTPS setup to encrypt connections to Gitea
+# HTTPS setup to encrypt connections to RIA Hub
 
 ## Using the built-in server
 
@@ -24,7 +24,7 @@ You could use self-generated certificates for evaluation and testing. Please run
 
 If you are using Apache or nginx on the server, it's recommended to check the [reverse proxy guide](administration/reverse-proxies.md).
 
-To use Gitea's built-in HTTPS support, you must change your `app.ini` file:
+To use RIA Hub's built-in HTTPS support, you must change your `app.ini` file:
 
 ```ini
 [server]
@@ -42,7 +42,7 @@ For the `CERT_FILE` or `KEY_FILE` field, the file path is relative to the `GITEA
 
 ### Setting up HTTP redirection
 
-The Gitea server is only able to listen to one port; to redirect HTTP requests to the HTTPS port, you will need to enable the HTTP redirection service:
+The RIA Hub server is only able to listen to one port; to redirect HTTP requests to the HTTPS port, you will need to enable the HTTP redirection service:
 
 ```ini
 [server]
@@ -97,4 +97,4 @@ After that, enable HTTPS by following one of these guides:
 - [apache2/httpd](https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html)
 - [caddy](https://caddyserver.com/docs/tls)
 
-Note: Enabling HTTPS only at the proxy level is referred as [TLS Termination Proxy](https://en.wikipedia.org/wiki/TLS_termination_proxy). The proxy server accepts incoming TLS connections, decrypts the contents, and passes the now unencrypted contents to Gitea. This is normally fine as long as both the proxy and Gitea instances are either on the same machine, or on different machines within private network (with the proxy is exposed to outside network). If your Gitea instance is separated from your proxy over a public network, or if you want full end-to-end encryption, you can also [enable HTTPS support directly in Gitea using built-in server](#using-the-built-in-server) and forward the connections over HTTPS instead.
+Note: Enabling HTTPS only at the proxy level is referred as [TLS Termination Proxy](https://en.wikipedia.org/wiki/TLS_termination_proxy). The proxy server accepts incoming TLS connections, decrypts the contents, and passes the now unencrypted contents to RIA Hub. This is normally fine as long as both the proxy and RIA Hub instances are either on the same machine, or on different machines within private network (with the proxy is exposed to outside network). If your RIA Hub instance is separated from your proxy over a public network, or if you want full end-to-end encryption, you can also [enable HTTPS support directly in RIA Hub using built-in server](#using-the-built-in-server) and forward the connections over HTTPS instead.

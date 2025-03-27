@@ -17,7 +17,7 @@ menu:
 
 # OAuth2 provider
 
-Gitea supports acting as an OAuth2 provider to allow third party applications to access its resources with the user's consent. This feature is available since release 1.8.0.
+RIA Hub supports acting as an OAuth2 provider to allow third party applications to access its resources with the user's consent. This feature is available since release 1.8.0.
 
 ## Endpoints
 
@@ -31,7 +31,7 @@ Gitea supports acting as an OAuth2 provider to allow third party applications to
 
 ## Supported OAuth2 Grants
 
-At the moment Gitea only supports the [**Authorization Code Grant**](https://tools.ietf.org/html/rfc6749#section-1.3.1) standard with additional support of the following extensions:
+At the moment RIA Hub only supports the [**Authorization Code Grant**](https://tools.ietf.org/html/rfc6749#section-1.3.1) standard with additional support of the following extensions:
 
 - [Proof Key for Code Exchange (PKCE)](https://tools.ietf.org/html/rfc7636)
 - [OpenID Connect (OIDC)](https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth)
@@ -40,12 +40,12 @@ To use the Authorization Code Grant as a third party application it is required 
 
 ## Scopes
 
-Gitea supports scoped access tokens, which allow users the ability to restrict tokens to operate only on selected url routes. Scopes are grouped by high-level API routes, and further refined to the following:
+RIA Hub supports scoped access tokens, which allow users the ability to restrict tokens to operate only on selected url routes. Scopes are grouped by high-level API routes, and further refined to the following:
 
 - `read`: `GET` routes
 - `write`: `POST`, `PUT`, `PATCH`, and `DELETE` routes (in addition to `GET`)
 
-Gitea token scopes are as follows:
+RIA Hub token scopes are as follows:
 
 | Name | Description                                                                                                                                          |
 | ---- |------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -80,7 +80,7 @@ Gitea token scopes are as follows:
 
 ## Pre-configured Applications
 
-Gitea creates OAuth applications for the following services by default on startup, as we assume that these are universally useful.
+RIA Hub creates OAuth applications for the following services by default on startup, as we assume that these are universally useful.
 
 |Application|Description|Client ID|
 |-----------|-----------|---------|
@@ -92,7 +92,7 @@ To prevent unexpected behavior, they are being displayed as locked in the UI and
 
 ## Client types
 
-Gitea supports both confidential and public client types, [as defined by RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749#section-2.1).
+RIA Hub supports both confidential and public client types, [as defined by RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749#section-2.1).
 
 For public clients, a redirect URI of a loopback IP address such as `http://127.0.0.1/` allows any port. Avoid using `localhost`, [as recommended by RFC 8252](https://datatracker.ietf.org/doc/html/rfc8252#section-8.3).
 
@@ -145,7 +145,7 @@ For public clients, a redirect URI of a loopback IP address such as `http://127.
    }
    ```
 
-   The `CLIENT_SECRET` is the unique secret code generated for this application. Please note that the secret will only be visible after you created/registered the application with Gitea and cannot be recovered. If you lose the secret, you must regenerate the secret via the application's settings.
+   The `CLIENT_SECRET` is the unique secret code generated for this application. Please note that the secret will only be visible after you created/registered the application with RIA Hub and cannot be recovered. If you lose the secret, you must regenerate the secret via the application's settings.
 
    The `REDIRECT_URI` in the `access_token` request must match the `REDIRECT_URI` in the `authorize` request.
 

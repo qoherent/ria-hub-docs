@@ -29,13 +29,13 @@ version is @minNodeVersion@ and the latest LTS version is recommended.
 
 **Note**: Go version @minGoVersion@ or higher is required. However, it is recommended to
 obtain the same version as our continuous integration, see the advice given in
-[Hacking on Gitea](development/hacking-on-gitea.md)
+[Hacking on RIA Hub](development/hacking-on-gitea.md)
 
 ## Download
 
 First, we must retrieve the source code. Since, the advent of go modules, the
 simplest way of doing this is to use Git directly as we no longer have to have
-Gitea built from within the GOPATH.
+RIA Hub built from within the GOPATH.
 
 ```bash
 git clone https://github.com/go-gitea/gitea
@@ -44,7 +44,7 @@ git clone https://github.com/go-gitea/gitea
 (Previous versions of this document recommended using `go get`. This is
 no longer necessary.)
 
-Decide which version of Gitea to build and install. Currently, there are
+Decide which version of RIA Hub to build and install. Currently, there are
 multiple options to choose from. The `main` branch represents the current
 development version. To build with main, skip to the [build section](#build).
 
@@ -62,7 +62,7 @@ for example `2663` for [#2663](https://github.com/go-gitea/gitea/pull/2663)):
 git fetch origin pull/xyz/head:pr-xyz
 ```
 
-To build Gitea from source at a specific tagged release (like v@version@), list the
+To build RIA Hub from source at a specific tagged release (like v@version@), list the
 available tags and check out the specific tag.
 
 List available tags with the following.
@@ -95,7 +95,7 @@ Depending on requirements, the following build tags can be included.
 - `gogit`: (EXPERIMENTAL) Use go-git variants of Git commands.
 
 Bundling all assets (JS/CSS/templates, etc) into the binary. Using the `bindata` build tag is required for
-production deployments. You could exclude `bindata` when you are developing/testing Gitea or able to separate the assets correctly.
+production deployments. You could exclude `bindata` when you are developing/testing RIA Hub or able to separate the assets correctly.
 
 To include all assets, use the `bindata` tag:
 
@@ -125,7 +125,7 @@ TAGS="bindata" make backend
 ## Test
 
 After following the steps above, a `gitea` binary will be available in the working directory.
-It can be tested from this directory or moved to a directory with test data. When Gitea is
+It can be tested from this directory or moved to a directory with test data. When RIA Hub is
 launched manually from command line, it can be killed by pressing `Ctrl + C`.
 
 ```bash
@@ -134,8 +134,8 @@ launched manually from command line, it can be killed by pressing `Ctrl + C`.
 
 ## Changing default paths
 
-Gitea will search for a number of things from the _`CustomPath`_. By default this is
-the `custom/` directory in the current working directory when running Gitea. It will also
+RIA Hub will search for a number of things from the _`CustomPath`_. By default this is
+the `custom/` directory in the current working directory when running RIA Hub. It will also
 look for its configuration file _`CustomConf`_ in `$(CustomPath)/conf/app.ini`, and will use the
 current working directory as the relative base path _`AppWorkPath`_ for a number configurable
 values. Finally the static files will be served from _`StaticRootPath`_ which defaults to the _`AppWorkPath`_.
@@ -143,7 +143,7 @@ values. Finally the static files will be served from _`StaticRootPath`_ which de
 These values, although useful when developing, may conflict with downstream users preferences.
 
 One option is to use a script file to shadow the `gitea` binary and create an appropriate
-environment before running Gitea. However, when building you can change these defaults
+environment before running RIA Hub. However, when building you can change these defaults
 using the `LDFLAGS` environment variable for `make`. The appropriate settings are as follows
 
 - To set the _`CustomPath`_ use `LDFLAGS="-X \"code.gitea.io/gitea/modules/setting.CustomPath=custom-path\""`
@@ -159,17 +159,17 @@ Running `gitea help` will allow you to review what the computed settings will be
 
 ## Cross Build
 
-The `go` compiler toolchain supports cross-compiling to different architecture targets that are supported by the toolchain. See [`GOOS` and `GOARCH` environment variable](https://go.dev/doc/install/source#environment) for the list of supported targets. Cross compilation is helpful if you want to build Gitea for less-powerful systems (such as Raspberry Pi).
+The `go` compiler toolchain supports cross-compiling to different architecture targets that are supported by the toolchain. See [`GOOS` and `GOARCH` environment variable](https://go.dev/doc/install/source#environment) for the list of supported targets. Cross compilation is helpful if you want to build RIA Hub for less-powerful systems (such as Raspberry Pi).
 
-To cross build Gitea with build tags (`TAGS`), you also need a C cross compiler which targets the same architecture as selected by the `GOOS` and `GOARCH` variables. For example, to cross build for Linux ARM64 (`GOOS=linux` and `GOARCH=arm64`), you need the `aarch64-unknown-linux-gnu-gcc` cross compiler. This is required because Gitea build tags uses `cgo`'s foreign-function interface (FFI).
+To cross build RIA Hub with build tags (`TAGS`), you also need a C cross compiler which targets the same architecture as selected by the `GOOS` and `GOARCH` variables. For example, to cross build for Linux ARM64 (`GOOS=linux` and `GOARCH=arm64`), you need the `aarch64-unknown-linux-gnu-gcc` cross compiler. This is required because RIA Hub build tags uses `cgo`'s foreign-function interface (FFI).
 
-Cross-build Gitea for Linux ARM64, without any tags:
+Cross-build RIA Hub for Linux ARM64, without any tags:
 
 ```
 GOOS=linux GOARCH=arm64 make build
 ```
 
-Cross-build Gitea for Linux ARM64, with recommended build tags:
+Cross-build RIA Hub for Linux ARM64, with recommended build tags:
 
 ```
 CC=aarch64-unknown-linux-gnu-gcc GOOS=linux GOARCH=arm64 TAGS="bindata sqlite sqlite_unlock_notify" make build

@@ -17,11 +17,11 @@ menu:
 
 # Mail templates
 
-To craft the e-mail subject and contents for certain operations, Gitea can be customized by using templates. The templates
+To craft the e-mail subject and contents for certain operations, RIA Hub can be customized by using templates. The templates
 for these functions are located under the [`custom` directory](administration/customizing-gitea.md).
-Gitea has an internal template that serves as default in case there's no custom alternative.
+RIA Hub has an internal template that serves as default in case there's no custom alternative.
 
-Custom templates are loaded when Gitea starts. Changes made to them are not recognized until Gitea is restarted again.
+Custom templates are loaded when RIA Hub starts. Changes made to them are not recognized until RIA Hub is restarted again.
 
 ## Mail notifications supporting templates
 
@@ -63,7 +63,7 @@ template on this list is used:
 - The template for the desired **action type**, action name `default`.
 - The template for action type `issue`, action name `default`.
 
-The only mandatory template is action type `issue`, action name `default`, which is already embedded in Gitea
+The only mandatory template is action type `issue`, action name `default`, which is already embedded in RIA Hub
 unless it's overridden by the user in the `custom` directory.
 
 ## Template syntax
@@ -123,7 +123,7 @@ The _subject_ is built using the following steps:
 - The string is truncated to its first 256 runes (characters).
 
 If the end result is an empty string, **or** no subject template was available (i.e. the selected template
-did not include a subject part), Gitea's **internal default** will be used.
+did not include a subject part), RIA Hub's **internal default** will be used.
 
 The internal default (fallback) subject is the equivalent of:
 
@@ -133,7 +133,7 @@ The internal default (fallback) subject is the equivalent of:
 
 For example: `Re: [mike/stuff] New color palette (#38)`
 
-Gitea's default subject can also be found in the template _metadata_ as `.FallbackSubject` from any of
+RIA Hub's default subject can also be found in the template _metadata_ as `.FallbackSubject` from any of
 the two templates, even if a valid subject template is present.
 
 ### The _mail body_ part of the template
@@ -165,7 +165,7 @@ If the template fails to render, it will be noticed only at the moment the mail 
 A default subject is used if the subject template fails, and whatever was rendered successfully
 from the _mail body_ is used, disregarding the rest.
 
-Please check [Gitea's logs](administration/logging-config.md) for error messages in case of trouble.
+Please check [RIA Hub's logs](administration/logging-config.md) for error messages in case of trouble.
 
 ## Example
 
@@ -229,7 +229,7 @@ Please check [Gitea's logs](administration/logging-config.md) for error messages
     </p>
     <hr>
     <p>
-        <a href="{{.Link}}">View it on Gitea</a>.
+        <a href="{{.Link}}">View it on RIA Hub</a>.
     </p>
 </body>
 </html>
@@ -252,7 +252,7 @@ This template produces something along these lines:
 > Mike, I think we should tone down the blues a little.
 > \_********************************\_********************************
 >
-> [View it on Gitea](#).
+> [View it on RIA Hub](#).
 
 ## Advanced
 
@@ -261,9 +261,9 @@ the messages. Here's a list of some of them:
 
 | Name             | Parameters  | Available | Usage                                                               |
 | ---------------- | ----------- | --------- | ------------------------------------------------------------------- |
-| `AppUrl`         | -           | Any       | Gitea's URL                                                         |
-| `AppName`        | -           | Any       | Set from `app.ini`, usually "Gitea"                                 |
-| `AppDomain`      | -           | Any       | Gitea's host name                                                   |
+| `AppUrl`         | -           | Any       | RIA Hub's URL                                                         |
+| `AppName`        | -           | Any       | Set from `app.ini`, usually "RIA Hub"                                 |
+| `AppDomain`      | -           | Any       | RIA Hub's host name                                                   |
 | `EllipsisString` | string, int | Any       | Truncates a string to the specified length; adds ellipsis as needed |
 | `SanitizeHTML`   | string      | Body only | Sanitizes text by removing any dangerous HTML tags from it          |
 | `SafeHTML`       | string      | Body only | Takes the input as HTML, can be used for outputing raw HTML content |

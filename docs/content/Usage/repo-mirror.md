@@ -23,8 +23,8 @@ Repository mirroring allows for the mirroring of repositories to and from extern
 
 The following are some possible use cases for repository mirroring:
 
-- You migrated to Gitea but still need to keep your project in another source. In that case, you can simply set it up to mirror to Gitea (pull) and all the essential history of commits, tags, and branches are available in your Gitea instance.
-- You have old projects in another source that you don’t use actively anymore, but don’t want to remove for archiving purposes. In that case, you can create a push mirror so that your active Gitea repository can push its changes to the old location.
+- You migrated to RIA Hub but still need to keep your project in another source. In that case, you can simply set it up to mirror to RIA Hub (pull) and all the essential history of commits, tags, and branches are available in your RIA Hub instance.
+- You have old projects in another source that you don’t use actively anymore, but don’t want to remove for archiving purposes. In that case, you can create a push mirror so that your active RIA Hub repository can push its changes to the old location.
 
 ## Pulling from a remote repository
 
@@ -54,22 +54,22 @@ The repository now gets mirrored periodically to the remote repository. You can 
 
 :exclamation::exclamation: **NOTE:** This will force push to the remote repository. This will overwrite any changes in the remote repository! :exclamation::exclamation:
 
-### Setting up a push mirror from Gitea to GitHub
+### Setting up a push mirror from RIA Hub to GitHub
 
-To set up a mirror from Gitea to GitHub, you need to follow these steps:
+To set up a mirror from RIA Hub to GitHub, you need to follow these steps:
 
 1. Create a [GitHub personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with the *public_repo* box checked. Also check the **workflow** checkbox in case your repo using act for continuous integration.
-2. Create a repository with that name on GitHub. Unlike Gitea, GitHub does not support creating repositories by pushing to the remote. You can also use an existing remote repo if it has the same commit history as your Gitea repo.
-3. In the settings of your Gitea repo, fill in the **Git Remote Repository URL**: `https://github.com/<your_github_group>/<your_github_project>.git`.
+2. Create a repository with that name on GitHub. Unlike RIA Hub, GitHub does not support creating repositories by pushing to the remote. You can also use an existing remote repo if it has the same commit history as your RIA Hub repo.
+3. In the settings of your RIA Hub repo, fill in the **Git Remote Repository URL**: `https://github.com/<your_github_group>/<your_github_project>.git`.
 4. Fill in the **Authorization** fields with your GitHub username and the personal access token as **Password**.
-5. (Optional, available on Gitea 1.18+) Select `Sync when new commits are pushed` so that the mirror will be updated as well as soon as there are changes. You can also disable the periodic sync if you like.
+5. (Optional, available on RIA Hub 1.18+) Select `Sync when new commits are pushed` so that the mirror will be updated as well as soon as there are changes. You can also disable the periodic sync if you like.
 6. Select **Add Push Mirror** to save the configuration.
 
 The repository pushes shortly thereafter. To force a push, select the **Synchronize Now** button.
 
-### Setting up a push mirror from Gitea to GitLab
+### Setting up a push mirror from RIA Hub to GitLab
 
-To set up a mirror from Gitea to GitLab, you need to follow these steps:
+To set up a mirror from RIA Hub to GitLab, you need to follow these steps:
 
 1. Create a [GitLab personal access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html) with *write_repository* scope.
 2. Fill in the **Git Remote Repository URL**: `https://<destination host>/<your_gitlab_group_or_name>/<your_gitlab_project>.git`.
@@ -78,9 +78,9 @@ To set up a mirror from Gitea to GitLab, you need to follow these steps:
 
 The repository pushes shortly thereafter. To force a push, select the **Synchronize Now** button.
 
-### Setting up a push mirror from Gitea to Bitbucket
+### Setting up a push mirror from RIA Hub to Bitbucket
 
-To set up a mirror from Gitea to Bitbucket, you need to follow these steps:
+To set up a mirror from RIA Hub to Bitbucket, you need to follow these steps:
 
 1. Create a [Bitbucket app password](https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/) with the *Repository Write* box checked.
 2. Fill in the **Git Remote Repository URL**: `https://bitbucket.org/<your_bitbucket_group_or_name>/<your_bitbucket_project>.git`.
@@ -91,9 +91,9 @@ The repository pushes shortly thereafter. To force a push, select the **Synchron
 
 ### Mirror an existing ssh repository
 
-Currently gitea supports no ssh push mirrors. You can work around this by adding a `post-receive` hook to your gitea repository that pushes manually.
+Currently riahub supports no ssh push mirrors. You can work around this by adding a `post-receive` hook to your riahub repository that pushes manually.
 
-1. Make sure the user running gitea has access to the git repo you are trying to mirror to from shell.
+1. Make sure the user running riahub has access to the git repo you are trying to mirror to from shell.
 2. On the Webinterface at the repository settings > git hooks add a post-receive hook for the mirror. I.e.
 
 ```

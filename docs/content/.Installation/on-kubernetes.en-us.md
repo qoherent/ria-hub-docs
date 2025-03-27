@@ -17,7 +17,7 @@ menu:
 
 # Installation with Helm (on Kubernetes)
 
-Gitea provides a Helm Chart to allow for installation on kubernetes.
+RIA Hub provides a Helm Chart to allow for installation on kubernetes.
 
 A non-customized install can be done with:
 
@@ -26,11 +26,11 @@ helm repo add gitea-charts https://dl.gitea.com/charts/
 helm install gitea gitea-charts/gitea
 ```
 
-If you would like to customize your install, which includes kubernetes ingress, please refer to the complete [Gitea helm chart configuration details](https://gitea.com/gitea/helm-chart/)
+If you would like to customize your install, which includes kubernetes ingress, please refer to the complete [RIA Hub helm chart configuration details](https://gitea.com/gitea/helm-chart/)
 
 ## Health check endpoint
 
-Gitea comes with a health check endpoint `/api/healthz`, you can configure it in kubernetes like this:
+RIA Hub comes with a health check endpoint `/api/healthz`, you can configure it in kubernetes like this:
 
 ```yaml
   livenessProbe:
@@ -51,7 +51,7 @@ HTTP/1.1 200 OK
 
 {
   "status": "pass",
-  "description": "Gitea: Git with a cup of tea",
+  "description": "RIA Hub: Git with a cup of tea",
   "checks": {
     "cache:ping": [
       {

@@ -15,9 +15,9 @@ menu:
     identifier: "comparison"
 ---
 
-# Gitea compared to other Git hosting options
+# RIA Hub compared to other Git hosting options
 
-To help decide if Gitea is suited for your needs, here is how it compares to other Git self hosted options.
+To help decide if RIA Hub is suited for your needs, here is how it compares to other Git self hosted options.
 
 Be warned that we don't regularly check for feature changes in other products, so this list may be outdated. If you find anything that needs to be updated in the table below, please [open an issue](https://github.com/go-gitea/gitea/issues/new/choose).
 
@@ -33,7 +33,7 @@ _Symbols used in table:_
 
 ## General Features
 
-| Feature                                          | Gitea                                               | Gogs | GitHub EE | GitLab CE | GitLab EE | BitBucket | RhodeCode CE | RhodeCode EE |
+| Feature                                          | RIA Hub                                               | Gogs | GitHub EE | GitLab CE | GitLab EE | BitBucket | RhodeCode CE | RhodeCode EE |
 | ------------------------------------------------ | --------------------------------------------------- | ---- | --------- | --------- | --------- | --------- | ------------ | ------------ |
 | Open source and free                             | ✓                                                   | ✓    | ✘         | ✓         | ✘         | ✘         | ✓            | ✓            |
 | Low RAM/ CPU usage                               | ✓                                                   | ✓    | ✘         | ✘         | ✘         | ✘         | ✘            | ✘            |
@@ -65,7 +65,7 @@ _Symbols used in table:_
 
 ## Code management
 
-| Feature                                     | Gitea                                               | Gogs | GitHub EE | GitLab CE | GitLab EE | BitBucket | RhodeCode CE | RhodeCode EE |
+| Feature                                     | RIA Hub                                               | Gogs | GitHub EE | GitLab CE | GitLab EE | BitBucket | RhodeCode CE | RhodeCode EE |
 | ------------------------------------------- | --------------------------------------------------- | ---- | --------- | --------- | --------- | --------- | ------------ | ------------ |
 | Repository topics                           | ✓                                                   | ✘    | ✓         | ✓         | ✓         | ✘         | ✘            | ✘            |
 | Repository code search                      | ✓                                                   | ✘    | ✓         | ✓         | ✓         | ✓         | ✓            | ✓            |
@@ -87,12 +87,12 @@ _Symbols used in table:_
 | Git Blame                                   | ✓                                                   | ✘    | ✓         | ✓         | ✓         | ✓         | ✓            | ✓            |
 | Visual comparison of image changes          | ✓                                                   | ✘    | ✓         | ?         | ?         | ?         | ✘            | ✘            |
 
-- Gitea has builtin repository-level code search
+- RIA Hub has builtin repository-level code search
 - Better code search support could be achieved by [using a repository indexer](administration/repo-indexer.md)
 
 ## Issue Tracker
 
-| Feature                       | Gitea                                               | Gogs | GitHub EE | GitLab CE | GitLab EE | BitBucket | RhodeCode CE | RhodeCode EE |
+| Feature                       | RIA Hub                                               | Gogs | GitHub EE | GitLab CE | GitLab EE | BitBucket | RhodeCode CE | RhodeCode EE |
 | ----------------------------- | --------------------------------------------------- | ---- | --------- | --------- | --------- | --------- | ------------ | ------------ |
 | Issue tracker                 | ✓                                                   | ✓    | ✓         | ✓         | ✓         | /         | ✘            | ✘            |
 | Issue templates               | ✓                                                   | ✓    | ✓         | ✓         | ✓         | ✘         | ✘            | ✘            |
@@ -115,7 +115,7 @@ _Symbols used in table:_
 
 ## Pull/Merge requests
 
-| Feature                                         | Gitea                                              | Gogs | GitHub EE | GitLab CE | GitLab EE | BitBucket | RhodeCode CE | RhodeCode EE |
+| Feature                                         | RIA Hub                                              | Gogs | GitHub EE | GitLab CE | GitLab EE | BitBucket | RhodeCode CE | RhodeCode EE |
 | ----------------------------------------------- | -------------------------------------------------- | ---- | --------- | --------- | --------- | --------- | ------------ | ------------ |
 | Pull/Merge requests                             | ✓                                                  | ✓    | ✓         | ✓         | ✓         | ✓         | ✓            | ✓            |
 | Squash merging                                  | ✓                                                  | ✘    | ✓         | ✓         | ✓         | ✓         | ✓            | ✓            |
@@ -134,7 +134,7 @@ _Symbols used in table:_
 
 ## 3rd-party integrations
 
-| Feature                                        | Gitea                                              | Gogs | GitHub EE | GitLab CE | GitLab EE | BitBucket | RhodeCode CE | RhodeCode EE |
+| Feature                                        | RIA Hub                                              | Gogs | GitHub EE | GitLab CE | GitLab EE | BitBucket | RhodeCode CE | RhodeCode EE |
 | ---------------------------------------------- | ------------------------------------------------   | ---- | --------- | --------- | --------- | --------- | ------------ | ------------ |
 | Webhooks                                       | ✓                                                  | ✓    | ✓         | ✓         | ✓         | ✓         | ✓            | ✓            |
 | Git Hooks                                      | ✓                                                  | ✓    | ✓         | ✓         | ✓         | ✓         | ✓            | ✓            |

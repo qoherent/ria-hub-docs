@@ -50,17 +50,17 @@ Afterwards add the following sections to your project `pom.xml` file:
 <repositories>
   <repository>
     <id>gitea</id>
-    <url>https://gitea.example.com/api/packages/{owner}/maven</url>
+    <url>https://riahub.example.com/api/packages/{owner}/maven</url>
   </repository>
 </repositories>
 <distributionManagement>
   <repository>
     <id>gitea</id>
-    <url>https://gitea.example.com/api/packages/{owner}/maven</url>
+    <url>https://riahub.example.com/api/packages/{owner}/maven</url>
   </repository>
   <snapshotRepository>
     <id>gitea</id>
-    <url>https://gitea.example.com/api/packages/{owner}/maven</url>
+    <url>https://riahub.example.com/api/packages/{owner}/maven</url>
   </snapshotRepository>
 </distributionManagement>
 ```
@@ -72,12 +72,12 @@ Afterwards add the following sections to your project `pom.xml` file:
 
 ### Gradle variant
 
-When you plan to add some packages from Gitea instance in your project, you should add it in repositories section:
+When you plan to add some packages from RIA Hub instance in your project, you should add it in repositories section:
 
 ```groovy
 repositories {
     // other repositories
-    maven { url "https://gitea.example.com/api/packages/{owner}/maven" }
+    maven { url "https://riahub.example.com/api/packages/{owner}/maven" }
 }
 ```
 
@@ -88,8 +88,8 @@ publishing {
     // other settings of publication
     repositories {
         maven {
-            name = "Gitea"
-            url = uri("https://gitea.example.com/api/packages/{owner}/maven")
+            name = "RIA Hub"
+            url = uri("https://riahub.example.com/api/packages/{owner}/maven")
 
             credentials(HttpHeaderCredentials) {
                 name = "Authorization"
@@ -112,16 +112,16 @@ To publish a package simply run:
 mvn deploy
 ```
 
-Or call `gradle` with task `publishAllPublicationsToGiteaRepository` in case you are using gradle:
+Or call `gradle` with task `publishAllPublicationsToRIA HubRepository` in case you are using gradle:
 
 ```groovy
-./gradlew publishAllPublicationsToGiteaRepository
+./gradlew publishAllPublicationsToRIA HubRepository
 ```
 
 If you want to publish a prebuild package to the registry, you can use [`mvn deploy:deploy-file`](https://maven.apache.org/plugins/maven-deploy-plugin/deploy-file-mojo.html):
 
 ```shell
-mvn deploy:deploy-file -Durl=https://gitea.example.com/api/packages/{owner}/maven -DrepositoryId=gitea -Dfile=/path/to/package.jar
+mvn deploy:deploy-file -Durl=https://riahub.example.com/api/packages/{owner}/maven -DrepositoryId=gitea -Dfile=/path/to/package.jar
 ```
 
 | Parameter      | Description |

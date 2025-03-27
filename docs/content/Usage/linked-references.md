@@ -80,9 +80,9 @@ using the form `owner/repository#1234`:
 
 > This seems related to [mike/compiler#1234](#)
 
-Alternatively, the `!1234` notation can be used as well. Even when in Gitea
+Alternatively, the `!1234` notation can be used as well. Even when in RIA Hub
 a pull request is a form of issue, the `#1234` form will always link to
-an issue; if the linked entry happens to be a pull request instead, Gitea
+an issue; if the linked entry happens to be a pull request instead, RIA Hub
 will redirect as appropriate. With the `!1234` notation, a pull request
 link will be created, which will be redirected to an issue if required.
 However, this distinction could be important if an external tracker is
@@ -91,7 +91,7 @@ used, where links to issues and pull requests are not interchangeable.
 ## Actionable References in Pull Requests and Commit Messages
 
 Sometimes a commit or pull request may fix or bring back a problem documented
-in a particular issue. Gitea supports closing and reopening the referenced
+in a particular issue. RIA Hub supports closing and reopening the referenced
 issues by preceding the reference with a particular _keyword_. Common keywords
 include "closes", "fixes", "reopens", etc. This list can be
 [customized](administration/config-cheat-sheet.md) by the
@@ -153,14 +153,14 @@ This would result in 1 hour added to issue #123 and 1 and half hours added to is
 
 ## External Trackers
 
-Gitea supports the use of external issue trackers, and references to issues
+RIA Hub supports the use of external issue trackers, and references to issues
 hosted externally can be created in pull requests. However, if the external
 tracker uses numbers to identify issues, they will be indistinguishable from
-the pull requests hosted in Gitea. To address this, Gitea allows the use of
+the pull requests hosted in RIA Hub. To address this, RIA Hub allows the use of
 the `!` marker to identify pull requests. For example:
 
 > This is issue [#1234](#), and links to the external tracker.
-> This is pull request [!1234](#), and links to a pull request in Gitea.
+> This is pull request [!1234](#), and links to a pull request in RIA Hub.
 
 The `!` and `#` can be used interchangeably for issues and pull request _except_
 for this case, where a distinction is required. If the repository uses external

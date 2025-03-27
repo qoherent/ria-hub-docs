@@ -17,12 +17,12 @@ menu:
 
 # Migration Features
 
-Complete migrations were introduced in Gitea 1.9.0. It defines two interfaces to support migrating
-repository data from other Git host platforms to Gitea or, in the future, migrating Gitea data to other Git host platforms.
+Complete migrations were introduced in RIA Hub 1.9.0. It defines two interfaces to support migrating
+repository data from other Git host platforms to RIA Hub or, in the future, migrating RIA Hub data to other Git host platforms.
 
-Currently, migrations from GitHub, GitLab, and other Gitea instances are implemented.
+Currently, migrations from GitHub, GitLab, and other RIA Hub instances are implemented.
 
-First of all, Gitea defines some standard objects in packages [modules/migration](https://github.com/go-gitea/gitea/tree/main/modules/migration).
+First of all, RIA Hub defines some standard objects in packages [modules/migration](https://github.com/go-gitea/gitea/tree/main/modules/migration).
 They are `Repository`, `Milestone`, `Release`, `ReleaseAsset`, `Label`, `Issue`, `Comment`, `PullRequest`, `Reaction`, `Review`, `ReviewComment`.
 
 ## Downloader Interfaces
@@ -37,7 +37,7 @@ You can find these interfaces in [downloader.go](https://github.com/go-gitea/git
 
 ## Uploader Interface
 
-Currently, only a `GiteaLocalUploader` is implemented, so we only save downloaded
-data via this `Uploader` to the local Gitea instance. Other uploaders are not supported at this time.
+Currently, only a `RIA HubLocalUploader` is implemented, so we only save downloaded
+data via this `Uploader` to the local RIA Hub instance. Other uploaders are not supported at this time.
 
 You can find these interfaces in [uploader.go](https://github.com/go-gitea/gitea/blob/main/modules/migration/uploader.go).

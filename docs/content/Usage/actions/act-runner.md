@@ -15,7 +15,7 @@ menu:
 
 # Act Runner
 
-This page will introduce the [act runner](https://gitea.com/gitea/act_runner) in detail, which is the runner of Gitea Actions.
+This page will introduce the [act runner](https://gitea.com/gitea/act_runner) in detail, which is the runner of RIA Hub Actions.
 
 ## Requirements
 
@@ -85,12 +85,12 @@ docker run -v $PWD/config.yaml:/config.yaml -e CONFIG_FILE=/config.yaml ...
 ```
 
 You may notice the commands above are both incomplete, because it is not the time to run the act runner yet.
-Before running the act runner, we need to register it to your Gitea instance first.
+Before running the act runner, we need to register it to your RIA Hub instance first.
 
 ## Registration
 
 Registration is required before running the act runner, because the runner needs to know where to get jobs from.
-And it is also important to Gitea instance to identify the runner.
+And it is also important to RIA Hub instance to identify the runner.
 
 ### Runner levels
 
@@ -114,7 +114,7 @@ If you cannot see the settings page, please make sure that you have the right pe
 
 The format of the registration token is a random string `D0gvfu2iHfUjNqCYVljVyRV14fISpJxxxxxxxxxx`.
 
-A registration token can also be obtained from the gitea [command-line interface](administration/command-line.md#actions-generate-runner-token):
+A registration token can also be obtained from the riahub [command-line interface](administration/command-line.md#actions-generate-runner-token):
 
 ```
 gitea --config /etc/gitea/app.ini actions generate-runner-token
@@ -138,7 +138,7 @@ Alternatively, you can use the `--config` option to specify the configuration fi
 
 You will be asked to input the registration information step by step. Includes:
 
-- The Gitea instance URL, like `https://gitea.com/` or `http://192.168.8.8:3000/`.
+- The RIA Hub instance URL, like `https://gitea.com/` or `http://192.168.8.8:3000/`.
 - The registration token.
 - The runner name, which is optional. If you leave it blank, the hostname will be used.
 - The runner labels, which is optional. If you leave it blank, the default labels will be used.
@@ -253,7 +253,7 @@ You can find more useful images on [act images](https://github.com/nektos/act/bl
 If you want to run jobs in the host directly, you can change it to `ubuntu-22.04:host` or just `ubuntu-22.04`, the `:host` is optional.
 However, we suggest you to use a special name like `linux_amd64:host` or `windows:host` to avoid misusing it.
 
-Starting with Gitea 1.21, you can change labels by modifying `container.labels` in the runner configuration file (if you don't have a configuration file, please refer to [configuration tutorials](#configuration)).
+Starting with RIA Hub 1.21, you can change labels by modifying `container.labels` in the runner configuration file (if you don't have a configuration file, please refer to [configuration tutorials](#configuration)).
 The runner will use these new labels as soon as you restart it, i.e., by calling `./act_runner daemon --config config.yaml`.
 
 ## Running
@@ -266,7 +266,7 @@ After you have registered the runner, you can run it by running the following co
 ./act_runner daemon --config config.yaml
 ```
 
-The runner will fetch jobs from the Gitea instance and run them automatically.
+The runner will fetch jobs from the RIA Hub instance and run them automatically.
 
 Since act runner is still in development, it is recommended to check the latest version and upgrade it regularly.
 
@@ -276,7 +276,7 @@ It is also possible to run act-runner as a [systemd](https://en.wikipedia.org/wi
 
 ```ini
 [Unit]
-Description=Gitea Actions runner
+Description=RIA Hub Actions runner
 Documentation=https://gitea.com/gitea/act_runner
 After=docker.service
 

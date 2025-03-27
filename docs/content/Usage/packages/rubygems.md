@@ -27,7 +27,7 @@ To register the package registry edit the `~/.gem/credentials` file and add:
 
 ```ini
 ---
-https://gitea.example.com/api/packages/{owner}/rubygems: Bearer {token}
+https://riahub.example.com/api/packages/{owner}/rubygems: Bearer {token}
 ```
 
 | Parameter     | Description |
@@ -39,7 +39,7 @@ For example:
 
 ```
 ---
-https://gitea.example.com/api/packages/testuser/rubygems: Bearer 3bd626f84b01cd26b873931eace1e430a5773cc4
+https://riahub.example.com/api/packages/testuser/rubygems: Bearer 3bd626f84b01cd26b873931eace1e430a5773cc4
 ```
 
 ## Publish a package
@@ -58,7 +58,7 @@ gem push --host {host} {package_file}
 For example:
 
 ```shell
-gem push --host https://gitea.example.com/api/packages/testuser/rubygems test_package-1.0.0.gem
+gem push --host https://riahub.example.com/api/packages/testuser/rubygems test_package-1.0.0.gem
 ```
 
 You cannot publish a package if a package of the same name and version already exists. You must delete the existing package first.
@@ -72,7 +72,7 @@ To install a package from the package registry you can use [Bundler](https://bun
 Add a new `source` block to your `Gemfile`:
 
 ```
-source "https://gitea.example.com/api/packages/{owner}/rubygems" do
+source "https://riahub.example.com/api/packages/{owner}/rubygems" do
   gem "{package_name}"
 end
 ```
@@ -85,7 +85,7 @@ end
 For example:
 
 ```
-source "https://gitea.example.com/api/packages/testuser/rubygems" do
+source "https://riahub.example.com/api/packages/testuser/rubygems" do
   gem "test_package"
 end
 ```
@@ -101,7 +101,7 @@ bundle install
 Execute the following command:
 
 ```shell
-gem install --host https://gitea.example.com/api/packages/{owner}/rubygems {package_name}
+gem install --host https://riahub.example.com/api/packages/{owner}/rubygems {package_name}
 ```
 
 | Parameter         | Description |
@@ -112,7 +112,7 @@ gem install --host https://gitea.example.com/api/packages/{owner}/rubygems {pack
 For example:
 
 ```shell
-gem install --host https://gitea.example.com/api/packages/testuser/rubygems test_package
+gem install --host https://riahub.example.com/api/packages/testuser/rubygems test_package
 ```
 
 ## Supported commands

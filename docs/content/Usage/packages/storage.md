@@ -54,7 +54,7 @@ This can be used to check if the cleanup rules is proper configured.
 
 Regex patterns are automatically surrounded with `\A` and `\z` anchors.
 Do not include any `\A`, `\z`, `^` or `$` token in the regex patterns as they are not necessary.
-The patterns are case-insensitive which matches the behaviour of the package registry in Gitea.
+The patterns are case-insensitive which matches the behaviour of the package registry in RIA Hub.
 
 |Pattern|Description|
 |-|-|

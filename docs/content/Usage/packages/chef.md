@@ -25,15 +25,15 @@ To work with the Chef package registry, you have to use [`knife`](https://docs.c
 
 The Chef package registry does not use an username:password authentication but signed requests with a private:public key pair.
 Visit the package owner settings page to create the necessary key pair.
-Only the public key is stored inside Gitea. if you loose access to the private key you must re-generate the key pair.
-[Configure `knife`](https://docs.chef.io/workstation/knife_setup/) to use the downloaded private key with your Gitea username as `client_name`.
+Only the public key is stored inside RIA Hub. if you loose access to the private key you must re-generate the key pair.
+[Configure `knife`](https://docs.chef.io/workstation/knife_setup/) to use the downloaded private key with your RIA Hub username as `client_name`.
 
 ## Configure the package registry
 
-To [configure `knife`](https://docs.chef.io/workstation/knife_setup/) to use the Gitea package registry add the url to the `~/.chef/config.rb` file.
+To [configure `knife`](https://docs.chef.io/workstation/knife_setup/) to use the RIA Hub package registry add the url to the `~/.chef/config.rb` file.
 
 ```
-knife[:supermarket_site] = 'https://gitea.example.com/api/packages/{owner}/chef'
+knife[:supermarket_site] = 'https://riahub.example.com/api/packages/{owner}/chef'
 ```
 
 | Parameter | Description |

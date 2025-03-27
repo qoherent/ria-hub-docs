@@ -17,10 +17,10 @@ menu:
 
 # Configuration Cheat Sheet
 
-This is a cheat sheet for the Gitea configuration file. It contains most of the settings
+This is a cheat sheet for the RIA Hub configuration file. It contains most of the settings
 that can be configured as well as their default values.
 
-Any changes to the Gitea configuration file should be made in `custom/conf/app.ini`
+Any changes to the RIA Hub configuration file should be made in `custom/conf/app.ini`
 or any corresponding location. When installing from a distribution, this will
 typically be found at `/etc/gitea/conf/app.ini`.
 
@@ -33,7 +33,7 @@ In the default values below, a value in the form `$XYZ` refers to an environment
 
 Values containing `#` or `;` must be quoted using `` ` `` or `"""`.
 
-**Note:** A full restart is required for Gitea configuration changes to take effect.
+**Note:** A full restart is required for RIA Hub configuration changes to take effect.
 
 ## Default Configuration (non-`app.ini` configuration)
 
@@ -66,11 +66,11 @@ In addition, there is _`StaticRootPath`_ which can be set as a built-in at build
 
 ## Overall (`DEFAULT`)
 
-- `APP_NAME`: **Gitea: Git with a cup of tea**: Application name, used in the page title.
-- `RUN_USER`: **_current OS username_/`$USER`/`$USERNAME` e.g. git**: The user Gitea will run as.
-   This should be a dedicated system (non-user) account. Setting this incorrectly will cause Gitea
+- `APP_NAME`: **RIA Hub: Git with a cup of tea**: Application name, used in the page title.
+- `RUN_USER`: **_current OS username_/`$USER`/`$USERNAME` e.g. git**: The user RIA Hub will run as.
+   This should be a dedicated system (non-user) account. Setting this incorrectly will cause RIA Hub
    to not start.
-- `RUN_MODE`: **prod**: Application run mode, affects performance and debugging: `dev` or `prod`, default is `prod`. Mode `dev` makes Gitea easier to develop and debug, values other than `dev` are treated as `prod` which is for production use.
+- `RUN_MODE`: **prod**: Application run mode, affects performance and debugging: `dev` or `prod`, default is `prod`. Mode `dev` makes RIA Hub easier to develop and debug, values other than `dev` are treated as `prod` which is for production use.
 - `WORK_PATH`: **_the-work-path_**: The working directory, see the comment of AppWorkPath above.
 
 ## Repository (`repository`)
@@ -99,8 +99,8 @@ In addition, there is _`StaticRootPath`_ which can be set as a built-in at build
    default is not to present. **WARNING**: This maybe harmful to you website if you do not
    give it a right value.
 - `DEFAULT_CLOSE_ISSUES_VIA_COMMITS_IN_ANY_BRANCH`:  **false**: Close an issue if a commit on a non default branch marks it as closed.
-- `ENABLE_PUSH_CREATE_USER`:  **false**: Allow users to push local repositories to Gitea and have them automatically created for a user.
-- `ENABLE_PUSH_CREATE_ORG`:  **false**: Allow users to push local repositories to Gitea and have them automatically created for an org.
+- `ENABLE_PUSH_CREATE_USER`:  **false**: Allow users to push local repositories to RIA Hub and have them automatically created for a user.
+- `ENABLE_PUSH_CREATE_ORG`:  **false**: Allow users to push local repositories to RIA Hub and have them automatically created for an org.
 - `DISABLED_REPO_UNITS`: **_empty_**: Comma separated list of globally disabled repo units. Allowed values: \[repo.issues, repo.ext_issues, repo.pulls, repo.wiki, repo.ext_wiki, repo.projects, repo.packages, repo.actions\]
 - `DEFAULT_REPO_UNITS`: **repo.code,repo.releases,repo.issues,repo.pulls,repo.wiki,repo.projects,repo.packages,repo.actions**: Comma separated list of default new repo units. Allowed values: \[repo.code, repo.releases, repo.issues, repo.pulls, repo.wiki, repo.projects, repo.packages, repo.actions\]. Note: Code and Releases can currently not be deactivated. If you specify default repo units you should still list them for future compatibility. External wiki and issue tracker can't be enabled by default as it requires additional settings. Disabled repo units will not be added to new repositories regardless if it is in the default list.
 - `DEFAULT_FORK_REPO_UNITS`: **repo.code,repo.pulls**: Comma separated list of default forked repo units. The set of allowed values and rules is the same as `DEFAULT_REPO_UNITS`.
@@ -145,7 +145,7 @@ In addition, there is _`StaticRootPath`_ which can be set as a built-in at build
 ### Repository - Upload (`repository.upload`)
 
 - `ENABLED`: **true**: Whether repository file uploads are enabled
-- `TEMP_PATH`: **data/tmp/uploads**: Path for uploads (content gets deleted on Gitea restart)
+- `TEMP_PATH`: **data/tmp/uploads**: Path for uploads (content gets deleted on RIA Hub restart)
 - `ALLOWED_TYPES`: **_empty_**: Comma-separated list of allowed file extensions (`.zip`), mime types (`text/plain`) or wildcard type (`image/*`, `audio/*`, `video/*`). Empty value or `*/*` allows all types.
 - `FILE_MAX_SIZE`: **50**: Max size of each file in megabytes.
 - `MAX_FILES`: **5**: Max number of files per upload
@@ -168,7 +168,7 @@ In addition, there is _`StaticRootPath`_ which can be set as a built-in at build
   - Options other than `never` and `always` can be combined as a comma separated list.
 - `DEFAULT_TRUST_MODEL`: **collaborator**: \[collaborator, committer, collaboratorcommitter\]: The default trust model used for verifying commits.
   - `collaborator`: Trust signatures signed by keys of collaborators.
-  - `committer`: Trust signatures that match committers (This matches GitHub and will force Gitea signed commits to have Gitea as the committer).
+  - `committer`: Trust signatures that match committers (This matches GitHub and will force RIA Hub signed commits to have RIA Hub as the committer).
   - `collaboratorcommitter`: Trust signatures signed by keys of collaborators which match the committer.
 - `WIKI`: **never**: \[never, pubkey, twofa, always, parentsigned\]: Sign commits to wiki.
 - `CRUD_ACTIONS`: **pubkey, twofa, parentsigned**: \[never, pubkey, twofa, parentsigned, always\]: Sign CRUD actions.
@@ -182,7 +182,7 @@ In addition, there is _`StaticRootPath`_ which can be set as a built-in at build
 
 ## Repository - Local (`repository.local`)
 
-- `LOCAL_COPY_PATH`: **tmp/local-repo**: Path for temporary local repository copies. Defaults to `tmp/local-repo` (content gets deleted on Gitea restart)
+- `LOCAL_COPY_PATH`: **tmp/local-repo**: Path for temporary local repository copies. Defaults to `tmp/local-repo` (content gets deleted on RIA Hub restart)
 
 ## Repository -  MIME type mapping (`repository.mimetype_mapping`)
 
@@ -214,7 +214,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `SITEMAP_PAGING_NUM`: **20**: Number of items that are displayed in a single subsitemap.
 - `GRAPH_MAX_COMMIT_NUM`: **100**: Number of maximum commits shown in the commit graph.
 - `CODE_COMMENT_LINES`: **4**: Number of line of codes shown for a code comment.
-- `DEFAULT_THEME`: **gitea-auto**: \[gitea-auto, gitea-light, gitea-dark\]: Set the default theme for the Gitea installation.
+- `DEFAULT_THEME`: **gitea-auto**: \[gitea-auto, gitea-light, gitea-dark\]: Set the default theme for the RIA Hub installation.
 - `SHOW_USER_EMAIL`: **true**: Whether the email of the user should be shown in the Explore Users page.
 - `THEMES`:  **gitea-auto,gitea-light,gitea-dark**: All available themes. Allow users select personalized themes.
   regardless of the value of `DEFAULT_THEME`.
@@ -225,7 +225,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
     For custom reactions, add a tightly cropped square image to public/assets/img/emoji/reaction_name.png
 - `REACTION_MAX_USER_NUM`: **10**: Change the number of users that are displayed in reactions tooltip (triggered by mouse hover).
 - `CUSTOM_EMOJIS`: **gitea, codeberg, gitlab, git, github, gogs**: Additional Emojis not defined in the utf8 standard.
-    By default, we support Gitea (:gitea:), to add more copy them to public/assets/img/emoji/emoji_name.png and
+    By default, we support RIA Hub (:gitea:), to add more copy them to public/assets/img/emoji/emoji_name.png and
     add it to this config.
 - `DEFAULT_SHOW_FULL_NAME`: **false**: Whether the full name of the users should be shown where possible. If the full name isn't set, the username will be used.
 - `SEARCH_REPO_DESCRIPTION`: **true**: Whether to search within description at repository search on explore page.
@@ -247,8 +247,8 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 
 ### UI - Metadata (`ui.meta`)
 
-- `AUTHOR`: **Gitea - Git with a cup of tea**: Author meta tag of the homepage.
-- `DESCRIPTION`: **Gitea (Git with a cup of tea) is a painless self-hosted Git service written in Go**: Description meta tag of the homepage.
+- `AUTHOR`: **RIA Hub - Git with a cup of tea**: Author meta tag of the homepage.
+- `DESCRIPTION`: **RIA Hub (Git with a cup of tea) is a painless self-hosted Git service written in Go**: Description meta tag of the homepage.
 - `KEYWORDS`: **go,git,self-hosted,gitea**: Keywords meta tag of the homepage.
 
 ### UI - Notification (`ui.notification`)
@@ -296,25 +296,25 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `STATIC_URL_PREFIX`: **_empty_**:
    Overwrite this option to request static resources from a different URL.
    This includes CSS files, images, JS files and web fonts.
-   Avatar images are dynamic resources and still served by Gitea.
+   Avatar images are dynamic resources and still served by RIA Hub.
    The option can be just a different path, as in `/static`, or another domain, as in `https://cdn.example.com`.
    Requests are then made as `%(ROOT_URL)s/static/assets/css/index.css` or `https://cdn.example.com/assets/css/index.css` respectively.
-   The static files are located in the `public/` directory of the Gitea source repository.
-   You can proxy the STATIC_URL_PREFIX requests to Gitea server to serve the static
-   assets, or copy the manually built Gitea assets from `$GITEA_BUILD/public` to
+   The static files are located in the `public/` directory of the RIA Hub source repository.
+   You can proxy the STATIC_URL_PREFIX requests to RIA Hub server to serve the static
+   assets, or copy the manually built RIA Hub assets from `$GITEA_BUILD/public` to
    the assets location, eg: `/var/www/assets`, make sure `$STATIC_URL_PREFIX/assets/css/index.css`
    points to `/var/www/assets/css/index.css`.
 
 - `HTTP_ADDR`: **0.0.0.0**: HTTP listen address.
-  - If `PROTOCOL` is set to `fcgi`, Gitea will listen for FastCGI requests on TCP socket
+  - If `PROTOCOL` is set to `fcgi`, RIA Hub will listen for FastCGI requests on TCP socket
      defined by `HTTP_ADDR` and `HTTP_PORT` configuration settings.
   - If `PROTOCOL` is set to `http+unix` or `fcgi+unix`, this should be the name of the Unix socket file to use. Relative paths will be made absolute against the _`AppWorkPath`_.
 - `HTTP_PORT`: **3000**: HTTP listen port.
-  - If `PROTOCOL` is set to `fcgi`, Gitea will listen for FastCGI requests on TCP socket
+  - If `PROTOCOL` is set to `fcgi`, RIA Hub will listen for FastCGI requests on TCP socket
      defined by `HTTP_ADDR` and `HTTP_PORT` configuration settings.
 - `UNIX_SOCKET_PERMISSION`: **666**: Permissions for the Unix socket.
 - `LOCAL_ROOT_URL`: **%(PROTOCOL)s://%(HTTP_ADDR)s:%(HTTP_PORT)s/**: Local
-   (DMZ) URL for Gitea workers (such as SSH update) accessing web service. In
+   (DMZ) URL for RIA Hub workers (such as SSH update) accessing web service. In
    most cases you do not need to change the default value. Alter it only if
    your SSH server node is not the same as HTTP node. For different protocol, the default
    values are different. If `PROTOCOL` is `http+unix`, the default value is `http://unix/`.
@@ -337,12 +337,12 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `SSH_LISTEN_HOST`: **0.0.0.0**: Listen address for the built-in SSH server.
 - `SSH_LISTEN_PORT`: **%(SSH\_PORT)s**: Port for the built-in SSH server.
 - `SSH_ROOT_PATH`: **~/.ssh**: Root path of SSH directory.
-- `SSH_CREATE_AUTHORIZED_KEYS_FILE`: **true**: Gitea will create a authorized_keys file by default when it is not using the internal ssh server. If you intend to use the AuthorizedKeysCommand functionality then you should turn this off.
+- `SSH_CREATE_AUTHORIZED_KEYS_FILE`: **true**: RIA Hub will create a authorized_keys file by default when it is not using the internal ssh server. If you intend to use the AuthorizedKeysCommand functionality then you should turn this off.
 - `SSH_AUTHORIZED_KEYS_BACKUP`: **false**: Enable SSH Authorized Key Backup when rewriting all keys, default is false.
 - `SSH_TRUSTED_USER_CA_KEYS`: **_empty_**: Specifies the public keys of certificate authorities that are trusted to sign user certificates for authentication. Multiple keys should be comma separated. E.g.`ssh-<algorithm> <key>` or `ssh-<algorithm> <key1>, ssh-<algorithm> <key2>`. For more information see `TrustedUserCAKeys` in the sshd config man pages. When empty no file will be created and `SSH_AUTHORIZED_PRINCIPALS_ALLOW` will default to `off`.
-- `SSH_TRUSTED_USER_CA_KEYS_FILENAME`: **`RUN_USER`/.ssh/gitea-trusted-user-ca-keys.pem**: Absolute path of the `TrustedUserCaKeys` file Gitea will manage. If you're running your own ssh server and you want to use the Gitea managed file you'll also need to modify your sshd_config to point to this file. The official docker image will automatically work without further configuration.
+- `SSH_TRUSTED_USER_CA_KEYS_FILENAME`: **`RUN_USER`/.ssh/gitea-trusted-user-ca-keys.pem**: Absolute path of the `TrustedUserCaKeys` file RIA Hub will manage. If you're running your own ssh server and you want to use the RIA Hub managed file you'll also need to modify your sshd_config to point to this file. The official docker image will automatically work without further configuration.
 - `SSH_AUTHORIZED_PRINCIPALS_ALLOW`: **off** or **username, email**: \[off, username, email, anything\]: Specify the principals values that users are allowed to use as principal. When set to `anything` no checks are done on the principal string. When set to `off` authorized principal are not allowed to be set.
-- `SSH_CREATE_AUTHORIZED_PRINCIPALS_FILE`: **false/true**: Gitea will create a authorized_principals file by default when it is not using the internal ssh server and `SSH_AUTHORIZED_PRINCIPALS_ALLOW` is not `off`.
+- `SSH_CREATE_AUTHORIZED_PRINCIPALS_FILE`: **false/true**: RIA Hub will create a authorized_principals file by default when it is not using the internal ssh server and `SSH_AUTHORIZED_PRINCIPALS_ALLOW` is not `off`.
 - `SSH_AUTHORIZED_PRINCIPALS_BACKUP`: **false/true**: Enable SSH Authorized Principals Backup when rewriting all keys, default is true if `SSH_AUTHORIZED_PRINCIPALS_ALLOW` is not `off`.
 - `SSH_AUTHORIZED_KEYS_COMMAND_TEMPLATE`: **`{{.AppPath}} --config={{.CustomConf}} serv key-{{.Key.ID}}`**: Set the template for the command to passed on authorized keys. Possible keys are: AppPath, AppWorkPath, CustomConf, CustomPath, Key - where Key is a `models/asymkey.PublicKey` and the others are strings which are shellquoted.
 - `SSH_SERVER_CIPHERS`: **chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com**: For the built-in SSH server, choose the ciphers to support for SSH connections, for system SSH this setting has no effect.
@@ -350,7 +350,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `SSH_SERVER_MACS`: **hmac-sha2-256-etm@openssh.com, hmac-sha2-256, hmac-sha1**: For the built-in SSH server, choose the MACs to support for SSH connections, for system SSH this setting has no effect
 - `SSH_SERVER_HOST_KEYS`: **ssh/gitea.rsa, ssh/gogs.rsa**: For the built-in SSH server, choose the keypairs to offer as the host key. The private key should be at `SSH_SERVER_HOST_KEY` and the public `SSH_SERVER_HOST_KEY.pub`. Relative paths are made absolute relative to the `APP_DATA_PATH`. If no key exists a 4096 bit RSA key will be created for you.
 - `SSH_KEY_TEST_PATH`: **/tmp**: Directory to create temporary files in when testing public keys using ssh-keygen, default is the system temporary directory.
-- `SSH_KEYGEN_PATH`: **_empty_**: Use `ssh-keygen` to parse public SSH keys. The value is passed to the shell. By default, Gitea does the parsing itself.
+- `SSH_KEYGEN_PATH`: **_empty_**: Use `ssh-keygen` to parse public SSH keys. The value is passed to the shell. By default, RIA Hub does the parsing itself.
 - `SSH_EXPOSE_ANONYMOUS`: **false**: Enable exposure of SSH clone URL to anonymous visitors, default is false.
 - `SSH_PER_WRITE_TIMEOUT`: **30s**: Timeout for any write to the SSH connections. (Set to
   -1 to disable all timeouts.)
@@ -365,17 +365,17 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `STATIC_CACHE_TIME`: **6h**: Web browser cache time for static resources on `custom/`, `public/` and all uploaded avatars. Note that this cache is disabled when `RUN_MODE` is "dev".
 - `ENABLE_GZIP`: **false**: Enable gzip compression for runtime-generated content, static resources excluded.
 - `ENABLE_PPROF`: **false**: Application profiling (memory and cpu). For "web" command it listens on `localhost:6060`. For "serv" command it dumps to disk at `PPROF_DATA_PATH` as `(cpuprofile|memprofile)_<username>_<temporary id>`
-- `PPROF_DATA_PATH`: **_`AppWorkPath`_/data/tmp/pprof**: `PPROF_DATA_PATH`, use an absolute path when you start Gitea as service
+- `PPROF_DATA_PATH`: **_`AppWorkPath`_/data/tmp/pprof**: `PPROF_DATA_PATH`, use an absolute path when you start RIA Hub as service
 - `LANDING_PAGE`: **home**: Landing page for unauthenticated users \[home, explore, organizations, login, **custom**\]. Where custom would instead be any URL such as "/org/repo" or even `https://anotherwebsite.com`
 - `LFS_START_SERVER`: **false**: Enables Git LFS support.
 - `LFS_CONTENT_PATH`: **%(APP_DATA_PATH)s/lfs**: Default LFS content path. (if it is on local storage.) **DEPRECATED** use settings in `[lfs]`.
 - `LFS_JWT_SECRET`: **_empty_**: LFS authentication secret, change this a unique string.
-- `LFS_JWT_SECRET_URI`: **_empty_**: Instead of defining LFS_JWT_SECRET in the configuration, this configuration option can be used to give Gitea a path to a file that contains the secret (example value: `file:/etc/gitea/lfs_jwt_secret`)
+- `LFS_JWT_SECRET_URI`: **_empty_**: Instead of defining LFS_JWT_SECRET in the configuration, this configuration option can be used to give RIA Hub a path to a file that contains the secret (example value: `file:/etc/gitea/lfs_jwt_secret`)
 - `LFS_HTTP_AUTH_EXPIRY`: **24h**: LFS authentication validity period in time.Duration, pushes taking longer than this may fail.
 - `LFS_MAX_FILE_SIZE`: **0**: Maximum allowed LFS file size in bytes (Set to 0 for no limit).
 - `LFS_LOCKS_PAGING_NUM`: **50**: Maximum number of LFS Locks returned per page.
 
-- `REDIRECT_OTHER_PORT`: **false**: If true and `PROTOCOL` is https, allows redirecting http requests on `PORT_TO_REDIRECT` to the https port Gitea listens on.
+- `REDIRECT_OTHER_PORT`: **false**: If true and `PROTOCOL` is https, allows redirecting http requests on `PORT_TO_REDIRECT` to the https port RIA Hub listens on.
 - `REDIRECTOR_USE_PROXY_PROTOCOL`: **%(USE_PROXY_PROTOCOL)s**: expect PROXY protocol header on connections to https redirector.
 - `PORT_TO_REDIRECT`: **80**: Port for the http redirection service to listen on. Used when `REDIRECT_OTHER_PORT` is true.
 - `SSL_MIN_VERSION`: **TLSv1.2**: Set the minimum version of ssl support.
@@ -431,13 +431,13 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `NAME`: **gitea**: Database name.
 - `USER`: **root**: Database username.
 - `PASSWD`: **_empty_**: Database user password. Use \`your password\` or """your password""" for quoting if you use special characters in the password.
-- `CHARSET_COLLATION`: **_empty_**: (MySQL/MSSQL only) Gitea expects to use a case-sensitive collation for database. Leave it empty to use the default collation decided by the Gitea. Don't change it unless you clearly know what you need.
+- `CHARSET_COLLATION`: **_empty_**: (MySQL/MSSQL only) RIA Hub expects to use a case-sensitive collation for database. Leave it empty to use the default collation decided by the RIA Hub. Don't change it unless you clearly know what you need.
 - `SCHEMA`: **_empty_**: For PostgreSQL only, schema to use if different from "public". The schema must exist beforehand,
   the user must have creation privileges on it, and the user search path must be set to the look into the schema first
   (e.g. `ALTER USER user SET SEARCH_PATH = schema_name,"$user",public;`).
 - `SSL_MODE`: **disable**: SSL/TLS encryption mode for connecting to the database. This option is only applied for PostgreSQL and MySQL.
   - Valid values for MySQL:
-    - `true`: Enable TLS with verification of the database server certificate against its root certificate. When selecting this option make sure that the root certificate required to validate the database server certificate (e.g. the CA certificate) is on the system certificate store of both the database and Gitea servers. See your system documentation for instructions on how to add a CA certificate to the certificate store.
+    - `true`: Enable TLS with verification of the database server certificate against its root certificate. When selecting this option make sure that the root certificate required to validate the database server certificate (e.g. the CA certificate) is on the system certificate store of both the database and RIA Hub servers. See your system documentation for instructions on how to add a CA certificate to the certificate store.
     - `false`: Disable TLS.
     - `disable`: Alias for `false`, for compatibility with PostgreSQL.
     - `skip-verify`: Enable TLS without database server certificate verification. Use this option if you have self-signed or invalid certificate on the database server.
@@ -498,7 +498,7 @@ Configuration at `[queue]` will set defaults for queues with overrides for indiv
 - `SET_NAME`: **_unique**: The suffix that will be added to the default redis and disk queue `set` name for unique queues. Individual queues will default to **`name`**`QUEUE_NAME`_`SET_NAME`_ but can be overridden in the specific `queue.name` section.
 - `MAX_WORKERS`: **(dynamic)**: Maximum number of worker go-routines for the queue. Default value is "CpuNum/2" clipped to between 1 and 10.
 
-Gitea creates the following non-unique queues:
+RIA Hub creates the following non-unique queues:
 
 - `code_indexer`
 - `issue_indexer`
@@ -546,17 +546,17 @@ And the following unique queues:
 - `REVERSE_PROXY_TRUSTED_PROXIES`: **127.0.0.0/8,::1/128**: List of IP addresses and networks separated by comma of trusted proxy servers. Use `*` to trust all.
 - `DISABLE_GIT_HOOKS`: **true**: Set to `false` to enable users with Git Hook privilege to create custom Git Hooks.
    WARNING: Custom Git Hooks can be used to perform arbitrary code execution on the host operating system.
-   This enables the users to access and modify this config file and the Gitea database and interrupt the Gitea service.
-   By modifying the Gitea database, users can gain Gitea administrator privileges.
+   This enables the users to access and modify this config file and the RIA Hub database and interrupt the RIA Hub service.
+   By modifying the RIA Hub database, users can gain RIA Hub administrator privileges.
    It also enables them to access other resources available to the user on the operating system that is running the
-   Gitea instance and perform arbitrary actions in the name of the Gitea OS user.
+   RIA Hub instance and perform arbitrary actions in the name of the RIA Hub OS user.
    This maybe harmful to you website or your operating system.
    Setting this to true does not change existing hooks in git repos; adjust it before if necessary.
 - `DISABLE_WEBHOOKS`: **false**: Set to `true` to disable webhooks feature.
-- `ONLY_ALLOW_PUSH_IF_GITEA_ENVIRONMENT_SET`: **true**: Set to `false` to allow local users to push to gitea-repositories without setting up the Gitea environment. This is not recommended and if you want local users to push to Gitea repositories you should set the environment appropriately.
+- `ONLY_ALLOW_PUSH_IF_GITEA_ENVIRONMENT_SET`: **true**: Set to `false` to allow local users to push to gitea-repositories without setting up the RIA Hub environment. This is not recommended and if you want local users to push to RIA Hub repositories you should set the environment appropriately.
 - `IMPORT_LOCAL_PATHS`: **false**: Set to `false` to prevent all users (including admin) from importing local path on server.
-- `INTERNAL_TOKEN`: **\<random at every install if no uri set\>**: Secret used to validate communication within Gitea binary.
-- `INTERNAL_TOKEN_URI`: **_empty_**: Instead of defining INTERNAL_TOKEN in the configuration, this configuration option can be used to give Gitea a path to a file that contains the internal token (example value: `file:/etc/gitea/internal_token`)
+- `INTERNAL_TOKEN`: **\<random at every install if no uri set\>**: Secret used to validate communication within RIA Hub binary.
+- `INTERNAL_TOKEN_URI`: **_empty_**: Instead of defining INTERNAL_TOKEN in the configuration, this configuration option can be used to give RIA Hub a path to a file that contains the internal token (example value: `file:/etc/gitea/internal_token`)
 - `PASSWORD_HASH_ALGO`: **pbkdf2**: The hash algorithm to use \[argon2, pbkdf2, pbkdf2_v1, pbkdf2_hi, scrypt, bcrypt\], argon2 and scrypt will spend significant amounts of memory.
   - Note: The default parameters for `pbkdf2` hashing have changed - the previous settings are available as `pbkdf2_v1` but are not recommended.
   - The hash functions may be tuned by using `$` after the algorithm:
@@ -583,7 +583,7 @@ And the following unique queues:
   - off - do not check password complexity
 - `PASSWORD_CHECK_PWN`: **false**: Check [HaveIBeenPwned](https://haveibeenpwned.com/Passwords) to see if a password has been exposed.
 - `SUCCESSFUL_TOKENS_CACHE_SIZE`: **20**: Cache successful token hashes. API tokens are stored in the DB as pbkdf2 hashes however, this means that there is a potentially significant hashing load when there are multiple API operations. This cache will store the successfully hashed tokens in a LRU cache as a balance between performance and security.
-- `DISABLE_QUERY_AUTH_TOKEN`: **false**: Reject API tokens sent in URL query string (Accept Header-based API tokens only). This setting will default to `true` in Gitea 1.23 and be deprecated in Gitea 1.24.
+- `DISABLE_QUERY_AUTH_TOKEN`: **false**: Reject API tokens sent in URL query string (Accept Header-based API tokens only). This setting will default to `true` in RIA Hub 1.23 and be deprecated in RIA Hub 1.24.
 
 ## Camo (`camo`)
 
@@ -685,7 +685,7 @@ And the following unique queues:
 - `ALLOWED_USER_VISIBILITY_MODES`: **public,limited,private**: Set which visibility modes a user can have
 - `DEFAULT_ORG_VISIBILITY`: **public**: Set default visibility mode for organisations, either "public", "limited" or "private".
 - `DEFAULT_ORG_MEMBER_VISIBLE`: **false** True will make the membership of the users visible when added to the organisation.
-- `ALLOW_ONLY_INTERNAL_REGISTRATION`: **false** Set to true to force registration only via Gitea.
+- `ALLOW_ONLY_INTERNAL_REGISTRATION`: **false** Set to true to force registration only via RIA Hub.
 - `ALLOW_ONLY_EXTERNAL_REGISTRATION`: **false** Set to true to force registration only using third-party services.
 - `NO_REPLY_ADDRESS`: **noreply.DOMAIN** Value for the domain part of the user's email address in the Git log if user has set KeepEmailPrivate to true. DOMAIN resolves to the value in server.DOMAIN.
   The user's email will be replaced with a concatenation of the user name in lower case, "@" and NO_REPLY_ADDRESS.
@@ -725,11 +725,11 @@ Define allowed algorithms and their minimum key length (use -1 to disable a type
 
 ## Mailer (`mailer`)
 
-⚠️ This section is for Gitea 1.18 and later. If you are using Gitea 1.17 or older,
+⚠️ This section is for RIA Hub 1.18 and later. If you are using RIA Hub 1.17 or older,
 please refer to
-[Gitea 1.17 app.ini example](https://github.com/go-gitea/gitea/blob/release/v1.17/custom/conf/app.example.ini)
+[RIA Hub 1.17 app.ini example](https://github.com/go-gitea/gitea/blob/release/v1.17/custom/conf/app.example.ini)
 and
-[Gitea 1.17 configuration document](https://github.com/go-gitea/gitea/blob/release/v1.17/docs/content/doc/advanced/config-cheat-sheet.en-us.md)
+[RIA Hub 1.17 configuration document](https://github.com/go-gitea/gitea/blob/release/v1.17/docs/content/doc/advanced/config-cheat-sheet.en-us.md)
 
 - `ENABLED`: **false**: Enable to use a mail service.
 - `PROTOCOL`: **_empty_**: Mail server protocol. One of "smtp", "smtps", "smtp+starttls", "smtp+unix", "sendmail", "dummy". _Before 1.18, this was inferred from a combination of `MAILER_TYPE` and `IS_TLS_ENABLED`._
@@ -821,7 +821,7 @@ and
 
 - `REPOSITORY_AVATAR_STORAGE_TYPE`: **default**: Storage type defined in `[storage.xxx]`. Default is `default` which will read `[storage]` if no section `[storage]` will be a type `local`.
 - `REPOSITORY_AVATAR_UPLOAD_PATH`: **data/repo-avatars**: Path to store repository avatar image files.
-- `REPOSITORY_AVATAR_FALLBACK`: **none**: How Gitea deals with missing repository avatars
+- `REPOSITORY_AVATAR_FALLBACK`: **none**: How RIA Hub deals with missing repository avatars
   - none = no avatar will be displayed
   - random = random avatar will be generated
   - image = default image will be used (which is set in `REPOSITORY_AVATAR_FALLBACK_IMAGE`)
@@ -992,7 +992,7 @@ Default templates for project boards:
 - `NOTICE_ON_SUCCESS`: **false**: Set to true to switch on success notices.
 - `ARGS`: **_empty_**: Arguments for command `git gc`, e.g. `--aggressive --auto`. The default value is same with [git] -> GC_ARGS
 
-#### Cron - Update the '.ssh/authorized_keys' file with Gitea SSH keys (`cron.resync_all_sshkeys`)
+#### Cron - Update the '.ssh/authorized_keys' file with RIA Hub SSH keys (`cron.resync_all_sshkeys`)
 
 - `ENABLED`: **false**: Enable service.
 - `RUN_AT_START`: **false**: Run tasks at start up time (if ENABLED).
@@ -1035,13 +1035,13 @@ Default templates for project boards:
 - `SCHEDULE`: **@every 168h**: Cron syntax to set how often to check.
 - `OLDER_THAN`: **8760h**: any action older than this expression will be deleted from database, suggest using `8760h` (1 year) because that's the max length of heatmap.
 
-#### Cron -  Check for new Gitea versions (`cron.update_checker`)
+#### Cron -  Check for new RIA Hub versions (`cron.update_checker`)
 
 - `ENABLED`: **true**: Enable service.
 - `RUN_AT_START`: **false**: Run tasks at start up time (if ENABLED).
 - `ENABLE_SUCCESS_NOTICE`: **true**: Set to false to switch off success notices.
 - `SCHEDULE`: **@every 168h**: Cron syntax for scheduling a work, e.g. `@every 168h`.
-- `HTTP_ENDPOINT`: **https://dl.gitea.com/gitea/version.json**: the endpoint that Gitea will check for newer versions
+- `HTTP_ENDPOINT`: **https://dl.gitea.com/gitea/version.json**: the endpoint that RIA Hub will check for newer versions
 
 #### Cron -  Delete all old system notices from database (`cron.delete_old_system_notices`)
 
@@ -1063,9 +1063,9 @@ Default templates for project boards:
 
 ## Git (`git`)
 
-- `PATH`: **""**: The path of Git executable. If empty, Gitea searches through the PATH environment.
+- `PATH`: **""**: The path of Git executable. If empty, RIA Hub searches through the PATH environment.
 - `HOME_PATH`: **%(APP_DATA_PATH)s/home**: The HOME directory for Git.
-   This directory will be used to contain the `.gitconfig` and possible `.gnupg` directories that Gitea's git calls will use. If you can confirm Gitea is the only application running in this environment, you can set it to the normal home directory for Gitea user.
+   This directory will be used to contain the `.gitconfig` and possible `.gnupg` directories that RIA Hub's git calls will use. If you can confirm RIA Hub is the only application running in this environment, you can set it to the normal home directory for RIA Hub user.
 - `DISABLE_DIFF_HIGHLIGHT`: **false**: Disables highlight of added and removed changes.
 - `MAX_GIT_DIFF_LINES`: **1000**: Max number of lines allowed of a single file in diff view.
 - `MAX_GIT_DIFF_LINE_CHARACTERS`: **5000**: Max character count per line highlighted in diff view.
@@ -1123,7 +1123,7 @@ This section only does "set" config, a removed config key from this section won'
 - `INVALIDATE_REFRESH_TOKENS`: **false**: Check if refresh token has already been used
 - `JWT_SIGNING_ALGORITHM`: **RS256**: Algorithm used to sign OAuth2 tokens. Valid values: \[`HS256`, `HS384`, `HS512`, `RS256`, `RS384`, `RS512`, `ES256`, `ES384`, `ES512`\]
 - `JWT_SECRET`: **_empty_**: OAuth2 authentication secret for access and refresh tokens, change this to a unique string. This setting is only needed if `JWT_SIGNING_ALGORITHM` is set to `HS256`, `HS384` or `HS512`.
-- `JWT_SECRET_URI`: **_empty_**: Instead of defining JWT_SECRET in the configuration, this configuration option can be used to give Gitea a path to a file that contains the secret (example value: `file:/etc/gitea/oauth2_jwt_secret`)
+- `JWT_SECRET_URI`: **_empty_**: Instead of defining JWT_SECRET in the configuration, this configuration option can be used to give RIA Hub a path to a file that contains the secret (example value: `file:/etc/gitea/oauth2_jwt_secret`)
 - `JWT_SIGNING_PRIVATE_KEY_FILE`: **jwt/private.pem**: Private key file path used to sign OAuth2 tokens. The path is relative to `APP_DATA_PATH`. This setting is only needed if `JWT_SIGNING_ALGORITHM` is set to `RS256`, `RS384`, `RS512`, `ES256`, `ES384` or `ES512`. The file must contain a RSA or ECDSA private key in the PKCS8 format. If no key exists a 4096 bit key will be created for you.
 - `MAX_TOKEN_LENGTH`: **32767**: Maximum length of token/cookie to accept from OAuth2 provider
 - `DEFAULT_APPLICATIONS`: **git-credential-oauth, git-credential-manager, tea**: Pre-register OAuth applications for some services on startup. See the [OAuth2 documentation](/development/oauth2-provider.md) for the list of available options.
@@ -1138,7 +1138,7 @@ This section only does "set" config, a removed config key from this section won'
 
 - `MERMAID_MAX_SOURCE_CHARACTERS`: **5000**: Set the maximum size of a Mermaid source. (Set to -1 to disable)
 
-Gitea can support Markup using external tools. The example below will add a markup named `asciidoc`.
+RIA Hub can support Markup using external tools. The example below will add a markup named `asciidoc`.
 
 ```ini
 [markup.asciidoc]
@@ -1165,7 +1165,7 @@ Two special environment variables are passed to the render command:
 - `GITEA_PREFIX_SRC`, which contains the current URL prefix in the `src` path tree. To be used as prefix for links.
 - `GITEA_PREFIX_RAW`, which contains the current URL prefix in the `raw` path tree. To be used as prefix for image paths.
 
-If `RENDER_CONTENT_MODE` is `sanitized`, Gitea supports customizing the sanitization policy for rendered HTML. The example below will support KaTeX output from pandoc.
+If `RENDER_CONTENT_MODE` is `sanitized`, RIA Hub supports customizing the sanitization policy for rendered HTML. The example below will support KaTeX output from pandoc.
 
 ```ini
 [markup.sanitizer.TeX]
@@ -1190,7 +1190,7 @@ If the rule is defined above the renderer ini section or the name does not match
 
 - `file_extension e.g. .toml`: **language e.g. ini**. File extension to language mapping overrides.
 
-- Gitea will highlight files using the `linguist-language` or `gitlab-language` attribute from the `.gitattributes` file
+- RIA Hub will highlight files using the `linguist-language` or `gitlab-language` attribute from the `.gitattributes` file
 if available. If this is not set or the language is unavailable, the file extension will be looked up
 in this mapping or the filetype using heuristics.
 
@@ -1396,7 +1396,7 @@ PROXY_HOSTS = *.github.com
 ## Actions (`actions`)
 
 - `ENABLED`: **true**: Enable/Disable actions capabilities
-- `DEFAULT_ACTIONS_URL`: **github**: Default platform to get action plugins, `github` for `https://github.com`, `self` for the current Gitea instance.
+- `DEFAULT_ACTIONS_URL`: **github**: Default platform to get action plugins, `github` for `https://github.com`, `self` for the current RIA Hub instance.
 - `STORAGE_TYPE`: **local**: Storage type for actions logs, `local` for local disk or `minio` for s3 compatible object storage service, default is `local` or other name defined with `[storage.xxx]`
 - `MINIO_BASE_PATH`: **actions_log/**: Minio base path on the bucket only available when STORAGE_TYPE is `minio`
 - `ARTIFACT_RETENTION_DAYS`: **90**: Default number of days to keep artifacts. Artifacts could have their own retention periods by setting the `retention-days` option in `actions/upload-artifact` step.
@@ -1405,22 +1405,22 @@ PROXY_HOSTS = *.github.com
 - `ABANDONED_JOB_TIMEOUT`: **24h**: Timeout to cancel the jobs which have waiting status, but haven't been picked by a runner for a long time
 - `SKIP_WORKFLOW_STRINGS`: **[skip ci],[ci skip],[no ci],[skip actions],[actions skip]**: Strings committers can place inside a commit message or PR title to skip executing the corresponding actions workflow
 
-`DEFAULT_ACTIONS_URL` indicates where the Gitea Actions runners should find the actions with relative path.
+`DEFAULT_ACTIONS_URL` indicates where the RIA Hub Actions runners should find the actions with relative path.
 For example, `uses: actions/checkout@v4` means `https://github.com/actions/checkout@v4` since the value of `DEFAULT_ACTIONS_URL` is `github`.
 And it can be changed to `self` to make it `root_url_of_your_gitea/actions/checkout@v4`.
 
 Please note that using `self` is not recommended for most cases, as it could make names globally ambiguous.
-Additionally, it requires you to mirror all the actions you need to your Gitea instance, which may not be worth it.
+Additionally, it requires you to mirror all the actions you need to your RIA Hub instance, which may not be worth it.
 Therefore, please use `self` only if you understand what you are doing.
 
 In earlier versions (`<= 1.19`), `DEFAULT_ACTIONS_URL` could be set to any custom URLs like `https://gitea.com` or `http://your-git-server,https://gitea.com`, and the default value was `https://gitea.com`.
 However, later updates removed those options, and now the only options are `github` and `self`, with the default value being `github`.
-However, if you want to use actions from other git server, you can use a complete URL in `uses` field, it's supported by Gitea (but not GitHub).
+However, if you want to use actions from other git server, you can use a complete URL in `uses` field, it's supported by RIA Hub (but not GitHub).
 Like `uses: https://gitea.com/actions/checkout@v4` or `uses: http://your-git-server/actions/checkout@v4`.
 
 ## Other (`other`)
 
-- `SHOW_FOOTER_VERSION`: **true**: Show Gitea and Go version information in the footer.
+- `SHOW_FOOTER_VERSION`: **true**: Show RIA Hub and Go version information in the footer.
 - `SHOW_FOOTER_TEMPLATE_LOAD_TIME`: **true**: Show time of template execution in the footer.
 - `SHOW_FOOTER_POWERED_BY`: **true**: Show the "powered by" text in the footer.
 - `ENABLE_SITEMAP`: **true**: Generate sitemap.

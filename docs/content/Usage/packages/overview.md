@@ -15,7 +15,7 @@ menu:
 
 # Package Registry
 
-Starting with Gitea **1.17**, the Package Registry can be used as a public or private registry for common package managers.
+Starting with RIA Hub **1.17**, the Package Registry can be used as a public or private registry for common package managers.
 
 ## Supported package managers
 

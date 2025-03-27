@@ -26,22 +26,22 @@ To work with the Conan package registry, you need to use the [conan](https://con
 To register the package registry you need to configure a new Conan remote:
 
 ```shell
-conan remote add {remote} https://gitea.example.com/api/packages/{owner}/conan
+conan remote add {remote} https://riahub.example.com/api/packages/{owner}/conan
 conan user --remote {remote} --password {password} {username}
 ```
 
 | Parameter  | Description |
 | -----------| ----------- |
 | `remote`   | The remote name. |
-| `username` | Your Gitea username. |
-| `password` | Your Gitea password. If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password. |
+| `username` | Your RIA Hub username. |
+| `password` | Your RIA Hub password. If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password. |
 | `owner`    | The owner of the package. |
 
 For example:
 
 ```shell
-conan remote add gitea https://gitea.example.com/api/packages/testuser/conan
-conan user --remote gitea --password password123 testuser
+conan remote add riahub https://riahub.example.com/api/packages/testuser/conan
+conan user --remote riahub --password password123 testuser
 ```
 
 ## Publish a package
@@ -65,7 +65,7 @@ conan upload --remote=gitea ConanPackage/1.2@gitea/final
 
 You cannot publish a file with the same name twice to a package. You must delete the existing package or file first.
 
-The Gitea Conan package registry has full [revision](https://docs.conan.io/en/latest/versioning/revisions.html) support.
+The RIA Hub Conan package registry has full [revision](https://docs.conan.io/en/latest/versioning/revisions.html) support.
 
 ## Install a package
 

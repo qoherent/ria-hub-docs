@@ -1,6 +1,6 @@
 ---
 date: "2017-01-01T16:00:00+02:00"
-title: "Gitea Command Line"
+title: "RIA Hub Command Line"
 slug: "command-line"
 sidebar_position: 1
 toc: false
@@ -26,10 +26,10 @@ menu:
 All global options can be placed at the command level.
 
 - `--help`, `-h`: Show help text and exit. Optional.
-- `--version`, `-v`: Show version and exit. Optional. (example: `Gitea version 1.1.0+218-g7b907ed built with: bindata, sqlite`).
-- `--work-path path`, `-w path`: Gitea's work path. Optional. (default: the binary's path or `$GITEA_WORK_DIR`)
-- `--custom-path path`, `-C path`: Gitea's custom folder path. Optional. (default: `WorkPath`/custom or `$GITEA_CUSTOM`).
-- `--config path`, `-c path`: Gitea configuration file path. Optional. (default: `CustomPath`/conf/app.ini).
+- `--version`, `-v`: Show version and exit. Optional. (example: `RIA Hub version 1.1.0+218-g7b907ed built with: bindata, sqlite`).
+- `--work-path path`, `-w path`: RIA Hub's work path. Optional. (default: the binary's path or `$GITEA_WORK_DIR`)
+- `--custom-path path`, `-C path`: RIA Hub's custom folder path. Optional. (default: `WorkPath`/custom or `$GITEA_CUSTOM`).
+- `--config path`, `-c path`: RIA Hub configuration file path. Optional. (default: `CustomPath`/conf/app.ini).
 
 NB: The defaults custom-path, config and work-path can also be
 changed at build time (if preferred).
@@ -51,9 +51,9 @@ Starts the server:
   - `gitea web --port 80`
   - `gitea web --config /etc/gitea.ini --pid /some/custom/gitea.pid`
 - Notes:
-  - Gitea should not be run as root. To bind to a port below 1024, you can use setcap on
+  - RIA Hub should not be run as root. To bind to a port below 1024, you can use setcap on
     Linux: `sudo setcap 'cap_net_bind_service=+ep' /path/to/gitea`. This will need to be
-    redone every time you update Gitea.
+    redone every time you update RIA Hub.
 
 ### admin
 
@@ -77,8 +77,8 @@ Admin operations:
         - `gitea admin user delete --id 1`
     - `create`:
       - Options:
-        - `--name value`: Username. Required. As of Gitea 1.9.0, use the `--username` flag instead.
-        - `--username value`: Username. Required. New in Gitea 1.9.0.
+        - `--name value`: Username. Required. As of RIA Hub 1.9.0, use the `--username` flag instead.
+        - `--username value`: Username. Required. New in RIA Hub 1.9.0.
         - `--password value`: Password. Required.
         - `--email value`: Email. Required.
         - `--admin`: If provided, this makes the user an admin. Optional.
@@ -364,7 +364,7 @@ Provides an SSHD AuthorizedKeysCommand. Needs to be configured in the sshd confi
 ```ini
 ...
 # The value of -e and the AuthorizedKeysCommandUser should match the
-# username running Gitea
+# username running RIA Hub
 AuthorizedKeysCommandUser git
 AuthorizedKeysCommand /path/to/gitea keys -e git -u %u -t %t -k %k
 ```
@@ -374,10 +374,10 @@ provided key. You should also set the value
 `SSH_CREATE_AUTHORIZED_KEYS_FILE=false` in the `[server]` section of
 `app.ini`.
 
-NB: opensshd requires the Gitea program to be owned by root and not
+NB: opensshd requires the RIA Hub program to be owned by root and not
 writable by group or others. The program must be specified by an absolute
 path.
-NB: Gitea must be running for this command to succeed.
+NB: RIA Hub must be running for this command to succeed.
 
 ### migrate
 
@@ -386,7 +386,7 @@ This command is idempotent.
 
 ### doctor check
 
-Diagnose and potentially fix problems with the current Gitea instance.
+Diagnose and potentially fix problems with the current RIA Hub instance.
 Several checks are run by default, but additional ones can be run:
 
 - `gitea doctor check --list` - will list all the available checks
@@ -406,20 +406,20 @@ unchanged in the database schema. This may lead to warning such as:
 2020/08/02 11:32:29 ...rm/session_schema.go:360:Sync() [W] Table user Column keep_activity_private db default is , struct default is 0
 ```
 
-You can cause Gitea to recreate these tables and copy the old data into the new table
+You can cause RIA Hub to recreate these tables and copy the old data into the new table
 with the defaults set appropriately by using:
 
 ```
 gitea doctor recreate-table user
 ```
 
-You can ask Gitea to recreate multiple tables using:
+You can ask RIA Hub to recreate multiple tables using:
 
 ```
 gitea doctor recreate-table table1 table2 ...
 ```
 
-And if you would like Gitea to recreate all tables simply call:
+And if you would like RIA Hub to recreate all tables simply call:
 
 ```
 gitea doctor recreate-table
@@ -447,9 +447,9 @@ Manage running server operations:
       - `pause`: Pause logging
         - Notes:
           - The logging level will be raised to INFO temporarily if it is below this level.
-          - Gitea will buffer logs up to a certain point and will drop them after that point.
+          - RIA Hub will buffer logs up to a certain point and will drop them after that point.
       - `resume`: Resume logging
-      - `release-and-reopen`: Cause Gitea to release and re-open files and connections used for logging (Equivalent to sending SIGUSR1 to Gitea.)
+      - `release-and-reopen`: Cause RIA Hub to release and re-open files and connections used for logging (Equivalent to sending SIGUSR1 to RIA Hub.)
       - `remove name`: Remove the named logger
         - Options:
           - `--group group`, `-g group`: Set the group to remove the sublogger from. (defaults to `default`)
@@ -512,7 +512,7 @@ Manage running server operations:
               - `--host value`, `-H value`: Mail server host (defaults to: 127.0.0.1:25)
               - `--send-to value`, `-s value`: Email address(es) to send to
               - `--subject value`, `-S value`: Subject header of sent emails
-  - `processes`: Display Gitea processes and goroutine information
+  - `processes`: Display RIA Hub processes and goroutine information
     - Options:
       - `--flat`: Show processes as flat table rather than as tree
       - `--no-system`: Do not show system processes
@@ -522,7 +522,7 @@ Manage running server operations:
 
 ### dump-repo
 
-Dump-repo dumps repository data from Git/GitHub/Gitea/GitLab:
+Dump-repo dumps repository data from Git/GitHub/RIA Hub/GitLab:
 
 - Options:
   - `--git_service service` : Git service, it could be `git`, `github`, `gitea`, `gitlab`, If clone_addr could be recognized, this could be ignored.

@@ -27,7 +27,7 @@ To publish a generic package perform a HTTP PUT operation with the package conte
 You cannot publish a file with the same name twice to a package. You must delete the existing package version first.
 
 ```
-PUT https://gitea.example.com/api/packages/{owner}/generic/{package_name}/{package_version}/{file_name}
+PUT https://riahub.example.com/api/packages/{owner}/generic/{package_name}/{package_version}/{file_name}
 ```
 
 | Parameter         | Description |
@@ -42,7 +42,7 @@ Example request using HTTP Basic authentication:
 ```shell
 curl --user your_username:your_password_or_token \
      --upload-file path/to/file.bin \
-     https://gitea.example.com/api/packages/testuser/generic/test_package/1.0.0/file.bin
+     https://riahub.example.com/api/packages/testuser/generic/test_package/1.0.0/file.bin
 ```
 
 If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password.
@@ -60,7 +60,7 @@ The server responds with the following HTTP Status codes.
 To download a generic package perform a HTTP GET operation.
 
 ```
-GET https://gitea.example.com/api/packages/{owner}/generic/{package_name}/{package_version}/{file_name}
+GET https://riahub.example.com/api/packages/{owner}/generic/{package_name}/{package_version}/{file_name}
 ```
 
 | Parameter         | Description |
@@ -76,7 +76,7 @@ Example request using HTTP Basic authentication:
 
 ```shell
 curl --user your_username:your_token_or_password \
-     https://gitea.example.com/api/packages/testuser/generic/test_package/1.0.0/file.bin
+     https://riahub.example.com/api/packages/testuser/generic/test_package/1.0.0/file.bin
 ```
 
 The server responds with the following HTTP Status codes.
@@ -91,7 +91,7 @@ The server responds with the following HTTP Status codes.
 To delete a generic package perform a HTTP DELETE operation. This will delete all files of this version.
 
 ```
-DELETE https://gitea.example.com/api/packages/{owner}/generic/{package_name}/{package_version}
+DELETE https://riahub.example.com/api/packages/{owner}/generic/{package_name}/{package_version}
 ```
 
 | Parameter         | Description |
@@ -104,7 +104,7 @@ Example request using HTTP Basic authentication:
 
 ```shell
 curl --user your_username:your_token_or_password -X DELETE \
-     https://gitea.example.com/api/packages/testuser/generic/test_package/1.0.0
+     https://riahub.example.com/api/packages/testuser/generic/test_package/1.0.0
 ```
 
 The server responds with the following HTTP Status codes.
@@ -119,7 +119,7 @@ The server responds with the following HTTP Status codes.
 To delete a file of a generic package perform a HTTP DELETE operation. This will delete the package version too if there is no file left.
 
 ```
-DELETE https://gitea.example.com/api/packages/{owner}/generic/{package_name}/{package_version}/{filename}
+DELETE https://riahub.example.com/api/packages/{owner}/generic/{package_name}/{package_version}/{filename}
 ```
 
 | Parameter         | Description |
@@ -133,7 +133,7 @@ Example request using HTTP Basic authentication:
 
 ```shell
 curl --user your_username:your_token_or_password -X DELETE \
-     https://gitea.example.com/api/packages/testuser/generic/test_package/1.0.0/file.bin
+     https://riahub.example.com/api/packages/testuser/generic/test_package/1.0.0/file.bin
 ```
 
 The server responds with the following HTTP Status codes.

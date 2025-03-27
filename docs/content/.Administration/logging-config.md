@@ -17,7 +17,7 @@ menu:
 
 # Logging Configuration
 
-The logging configuration of Gitea mainly consists of 3 types of components:
+The logging configuration of RIA Hub mainly consists of 3 types of components:
 
 - The `[log]` section for general configuration
 - `[log.<mode-name>]` sections for the configuration of different log writers to output logs, aka: "writer mode", the mode name is also used as "writer name".
@@ -31,7 +31,7 @@ To collect logs for help and issue report, see [Support Options](help/support.md
 
 ## The `[log]` section
 
-Configuration of logging facilities in Gitea happen in the `[log]` section and its subsections.
+Configuration of logging facilities in RIA Hub happen in the `[log]` section and its subsections.
 
 In the top level `[log]` section the following configurations can be placed:
 
@@ -113,7 +113,7 @@ FILE_NAME = file-error.log
 
 ## Log outputs (mode and writer)
 
-Gitea provides the following log output writers:
+RIA Hub provides the following log output writers:
 
 - `console` - Log to `stdout` (or `stderr` if it is set in the config)
 - `file` - Log to a file
@@ -163,7 +163,7 @@ Possible values are:
 ### Console mode
 
 In this mode the logger will forward log messages to the stdout and
-stderr streams attached to the Gitea process.
+stderr streams attached to the RIA Hub process.
 
 For loggers in console mode, `COLORIZE` will default to `true` if not
 on windows, or the Windows terminal can be set into ANSI mode or is a
@@ -207,7 +207,7 @@ Settings:
 
 ### The "Router" logger
 
-The Router logger logs the following message types when Gitea's route handlers work:
+The Router logger logs the following message types when RIA Hub's route handlers work:
 
 - `started` messages will be logged at TRACE level
 - `polling`/`completed` routers will be logged at INFO. Exception: "/assets" static resource requests are also logged at TRACE.
@@ -220,10 +220,10 @@ To make XORM outputs SQL logs, the `LOG_SQL` in `[database]` section should also
 
 ### The "Access" logger
 
-The Access logger is a new logger since Gitea 1.9. It provides a NCSA
+The Access logger is a new logger since RIA Hub 1.9. It provides a NCSA
 Common Log compliant log format. It's highly configurable but caution
 should be taken when changing its template. The main benefit of this
-logger is that Gitea can now log accesses in a standard log format so
+logger is that RIA Hub can now log accesses in a standard log format so
 standard tools may be used.
 
 You can enable this logger using `logger.access.MODE = ...`.
@@ -256,39 +256,39 @@ as it runs for every request.
 ## Releasing-and-Reopening, Pausing and Resuming logging
 
 If you are running on Unix you may wish to release-and-reopen logs in order to use `logrotate` or other tools.
-It is possible force Gitea to release and reopen it's logging files and connections by sending `SIGUSR1` to the
+It is possible force RIA Hub to release and reopen it's logging files and connections by sending `SIGUSR1` to the
 running process, or running `gitea manager logging release-and-reopen`.
 
 Alternatively, you may wish to pause and resume logging - this can be accomplished through the use of the
 `gitea manager logging pause` and `gitea manager logging resume` commands. Please note that whilst logging
 is paused log events below INFO level will not be stored and only a limited number of events will be stored.
-Logging may block, albeit temporarily, slowing Gitea considerably whilst paused - therefore it is
+Logging may block, albeit temporarily, slowing RIA Hub considerably whilst paused - therefore it is
 recommended that pausing only done for a very short period of time.
 
-## Adding and removing logging whilst Gitea is running
+## Adding and removing logging whilst RIA Hub is running
 
-It is possible to add and remove logging whilst Gitea is running using the `gitea manager logging add` and `remove` subcommands.
+It is possible to add and remove logging whilst RIA Hub is running using the `gitea manager logging add` and `remove` subcommands.
 This functionality can only adjust running log systems and cannot be used to start the access or router loggers if they
 were not already initialized. If you wish to start these systems you are advised to adjust the app.ini and (gracefully) restart
-the Gitea service.
+the RIA Hub service.
 
 The main intention of these commands is to easily add a temporary logger to investigate problems on running systems where a restart
 may cause the issue to disappear.
 
 ## Using `logrotate` instead of built-in log rotation
 
-Gitea includes built-in log rotation, which should be enough for most deployments. However, if you instead want to use the `logrotate` utility:
+RIA Hub includes built-in log rotation, which should be enough for most deployments. However, if you instead want to use the `logrotate` utility:
 
 - Disable built-in log rotation by setting `LOG_ROTATE` to `false` in your `app.ini`.
 - Install `logrotate`.
 - Configure `logrotate` to match your deployment requirements, see `man 8 logrotate` for configuration syntax details.
-  In the `postrotate/endscript` block send Gitea a `USR1` signal via `kill -USR1` or `kill -10` to the `gitea` process itself,
+  In the `postrotate/endscript` block send RIA Hub a `USR1` signal via `kill -USR1` or `kill -10` to the `gitea` process itself,
   or run `gitea manager logging release-and-reopen` (with the appropriate environment).
-  Ensure that your configurations apply to all files emitted by Gitea loggers as described in the above sections.
+  Ensure that your configurations apply to all files emitted by RIA Hub loggers as described in the above sections.
 - Always do `logrotate /etc/logrotate.conf --debug` to test your configurations.
 - If you are using docker and are running from outside the container you can use
   `docker exec -u $OS_USER $CONTAINER_NAME sh -c 'gitea manager logging release-and-reopen'`
-  or `docker exec $CONTAINER_NAME sh -c '/bin/s6-svc -1 /etc/s6/gitea/'` or send `USR1` directly to the Gitea process itself.
+  or `docker exec $CONTAINER_NAME sh -c '/bin/s6-svc -1 /etc/s6/gitea/'` or send `USR1` directly to the RIA Hub process itself.
 
 The next `logrotate` jobs will include your configurations, so no restart is needed.
 You can also immediately reload `logrotate` with `logrotate /etc/logrotate.conf --force`.

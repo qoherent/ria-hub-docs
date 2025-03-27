@@ -17,8 +17,8 @@ menu:
 
 # GPG Commit Signatures
 
-Gitea will verify GPG commit signatures in the provided tree by
-checking if the commits are signed by a key within the Gitea database,
+RIA Hub will verify GPG commit signatures in the provided tree by
+checking if the commits are signed by a key within the RIA Hub database,
 or if the commit matches the default key for Git.
 
 Keys are not checked to determine if they have expired or revoked.
@@ -36,20 +36,20 @@ this requires Git >= 2.0.0.
 
 ## Automatic Signing
 
-There are a number of places where Gitea will generate commits itself:
+There are a number of places where RIA Hub will generate commits itself:
 
 - Repository Initialisation
 - Wiki Changes
 - CRUD actions using the editor or the API
 - Merges from Pull Requests
 
-Depending on configuration and server trust you may want Gitea to
+Depending on configuration and server trust you may want RIA Hub to
 sign these commits.
 
-## Installing and generating a GPG key for Gitea
+## Installing and generating a GPG key for RIA Hub
 
 It is up to a server administrator to determine how best to install
-a signing key. Gitea generates all its commits using the server `git`
+a signing key. RIA Hub generates all its commits using the server `git`
 command at present - and therefore the server `gpg` will be used for
 signing (if configured.) Administrators should review best-practices
 for GPG - in particular it is probably advisable to only install a
@@ -58,7 +58,7 @@ key.
 
 ## General Configuration
 
-Gitea's configuration for signing can be found with the
+RIA Hub's configuration for signing can be found with the
 `[repository.signing]` section of `app.ini`:
 
 ```ini
@@ -80,9 +80,9 @@ MERGES = pubkey, twofa, basesigned, commitssigned
 The first option to discuss is the `SIGNING_KEY`. There are three main
 options:
 
-- `none` - this prevents Gitea from signing any commits
-- `default` - Gitea will default to the key configured within `git config`
-- `KEYID` - Gitea will sign commits with the gpg key with the ID
+- `none` - this prevents RIA Hub from signing any commits
+- `default` - RIA Hub will default to the key configured within `git config`
+- `KEYID` - RIA Hub will sign commits with the gpg key with the ID
   `KEYID`. In this case you should provide a `SIGNING_NAME` and
   `SIGNING_EMAIL` to be displayed for this key.
 
@@ -90,21 +90,21 @@ The `default` option will interrogate `git config` for
 `commit.gpgsign` option - if this is set, then it will use the results
 of the `user.signingkey`, `user.name` and `user.email` as appropriate.
 
-Please note: by adjusting Git's `config` file within Gitea's
+Please note: by adjusting Git's `config` file within RIA Hub's
 repositories, `SIGNING_KEY=default` could be used to provide different
 signing keys on a per-repository basis. However, this is clearly not an
 ideal UI and therefore subject to change.
 
-**Since 1.17**, Gitea runs git in its own home directory `[git].HOME_PATH` (default to `%(APP_DATA_PATH)/home`)
+**Since 1.17**, RIA Hub runs git in its own home directory `[git].HOME_PATH` (default to `%(APP_DATA_PATH)/home`)
 and uses its own config `{[git].HOME_PATH}/.gitconfig`.
-If you have your own customized git config for Gitea, you should set these configs in system git config (aka `/etc/gitconfig`)
-or the Gitea internal git config `{[git].HOME_PATH}/.gitconfig`.
-Related home files for git command (like `.gnupg`) should also be put in Gitea's git home directory `[git].HOME_PATH`.
+If you have your own customized git config for RIA Hub, you should set these configs in system git config (aka `/etc/gitconfig`)
+or the RIA Hub internal git config `{[git].HOME_PATH}/.gitconfig`.
+Related home files for git command (like `.gnupg`) should also be put in RIA Hub's git home directory `[git].HOME_PATH`.
 If you like to keep the `.gnupg` directory outside of `{[git].HOME_PATH}/`, consider setting the `$GNUPGHOME` environment variable to your preferred location.
 
 ### `INITIAL_COMMIT`
 
-This option determines whether Gitea should sign the initial commit
+This option determines whether RIA Hub should sign the initial commit
 when creating a repository. The possible values are:
 
 - `never`: Never sign
@@ -117,7 +117,7 @@ separated list. The commit will be signed if all selected options are true.
 
 ### `WIKI`
 
-This options determines if Gitea should sign commits to the Wiki.
+This options determines if RIA Hub should sign commits to the Wiki.
 The possible values are:
 
 - `never`: Never sign
@@ -131,7 +131,7 @@ separated list. The commit will be signed if all selected options are true.
 
 ### `CRUD_ACTIONS`
 
-This option determines if Gitea should sign commits from the web
+This option determines if RIA Hub should sign commits from the web
 editor or API CRUD actions. The possible values are:
 
 - `never`: Never sign
@@ -145,7 +145,7 @@ separated list. The change will be signed if all selected options are true.
 
 ### `MERGES`
 
-This option determines if Gitea should sign merge commits from PRs.
+This option determines if RIA Hub should sign merge commits from PRs.
 The possible options are:
 
 - `never`: Never sign
@@ -162,7 +162,7 @@ separated list. The merge will be signed if all selected options are true.
 
 ## Obtaining the Public Key of the Signing Key
 
-The public key used to sign Gitea's commits can be obtained from the API at:
+The public key used to sign RIA Hub's commits can be obtained from the API at:
 
 ```sh
 /api/v1/signing-key.gpg

@@ -15,13 +15,13 @@ menu:
 
 # Quick Start
 
-This page will guide you through the process of using Gitea Actions.
+This page will guide you through the process of using RIA Hub Actions.
 
-## Set up Gitea
+## Set up RIA Hub
 
-First of all, you need a Gitea instance.
+First of all, you need a RIA Hub instance.
 You can follow the [documentation](installation/from-package.md) to set up a new instance or upgrade your existing one.
-It doesn't matter how you install or run Gitea, as long as its version is 1.19.0 or higher.
+It doesn't matter how you install or run RIA Hub, as long as its version is 1.19.0 or higher.
 
 Since 1.21.0, Actions are enabled by default. If you are using versions before 1.21.0, you need to add the following to the configuration file to enable it:
 
@@ -34,8 +34,8 @@ If you want to learn more or encounter any problems while configuring it, please
 
 ### Set up runner
 
-Gitea Actions requires [act runner](https://gitea.com/gitea/act_runner) to run the jobs.
-In order to avoid consuming too many resources and affecting the Gitea instance, it is recommended to start runners on separate machines from the Gitea instance.
+RIA Hub Actions requires [act runner](https://gitea.com/gitea/act_runner) to run the jobs.
+In order to avoid consuming too many resources and affecting the RIA Hub instance, it is recommended to start runners on separate machines from the RIA Hub instance.
 
 You can use the [pre-built binaries](http://dl.gitea.com/act_runner) or the [docker images](https://hub.docker.com/r/gitea/act_runner/tags) to set up the runner.
 
@@ -46,7 +46,7 @@ The runner can run the jobs in isolated Docker containers, so you need to make s
 While it is not strictly necessary, because the runner can also run the jobs directly on the host, it depends on how you configure it.
 However, it is recommended to use Docker to run the jobs, because it is more secure and easier to manage.
 
-Before running a runner, you should first register it to your Gitea instance using the following command:
+Before running a runner, you should first register it to your RIA Hub instance using the following command:
 
 ```bash
 ./act_runner register --no-interactive --instance <instance> --token <token>
@@ -54,9 +54,9 @@ Before running a runner, you should first register it to your Gitea instance usi
 
 There are two arguments required, `instance` and `token`.
 
-`instance` refers to the address of your Gitea instance, like `http://192.168.8.8:3000` or `https://gitea.com`.
+`instance` refers to the address of your RIA Hub instance, like `http://192.168.8.8:3000` or `https://gitea.com`.
 The runner and job containers (which are started by the runner to execute jobs) will connect to this address.
-This means that it could be different from the `ROOT_URL` of your Gitea instance, which is configured for web access.
+This means that it could be different from the `ROOT_URL` of your RIA Hub instance, which is configured for web access.
 It is always a bad idea to use a loopback address such as `127.0.0.1` or `localhost`.
 If you are unsure which address to use, the LAN address is usually the right choice.
 
@@ -89,7 +89,7 @@ You can find more information by visiting [Act runner](usage/actions/act-runner.
 
 ### Use Actions
 
-Even if Actions is enabled for the Gitea instance, repositories still disable Actions by default.
+Even if Actions is enabled for the RIA Hub instance, repositories still disable Actions by default.
 
 To enable it, go to the settings page of your repository like `your_gitea.com/<owner>/repo/settings` and enable `Enable Repository Actions`.
 
@@ -101,16 +101,16 @@ You will need to study [the workflow syntax](https://docs.github.com/en/actions/
 However, we can just start from a simple demo:
 
 ```yaml
-name: Gitea Actions Demo
-run-name: ${{ gitea.actor }} is testing out Gitea Actions 🚀
+name: RIA Hub Actions Demo
+run-name: ${{ gitea.actor }} is testing out RIA Hub Actions 🚀
 on: [push]
 
 jobs:
-  Explore-Gitea-Actions:
+  Explore-RIA Hub-Actions:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ gitea.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by Gitea!"
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by RIA Hub!"
       - run: echo "🔎 The name of your branch is ${{ gitea.ref }} and your repository is ${{ gitea.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -124,7 +124,7 @@ jobs:
 
 You can upload it as a file with the extension `.yaml` in the directory `.riahub/workflows/` of the repository, for example `.riahub/workflows/demo.yaml`.
 You might notice that this is fairly similar from the [Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart).
-That is because  Gitea Actions is designed to be compatible with GitHub Actions wherever possible.
+That is because  RIA Hub Actions is designed to be compatible with GitHub Actions wherever possible.
 
 Be careful, the demo file contains some emojis.
 Please make sure your database supports them, especially when using MySQL.

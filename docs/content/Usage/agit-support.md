@@ -17,7 +17,7 @@ menu:
 
 # Agit Setup
 
-In Gitea `1.13`, support for [agit](https://git-repo.info/en/2020/03/agit-flow-and-git-repo/) was added.
+In RIA Hub, support for [agit](https://git-repo.info/en/2020/03/agit-flow-and-git-repo/) was added.
 **Note**: git version 2.29 or higher is required on the server side for this to work.
 
 ## Creating PRs with Agit

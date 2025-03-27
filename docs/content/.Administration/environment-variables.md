@@ -17,9 +17,9 @@ menu:
 
 # Environment variables
 
-This is an inventory of Gitea environment variables. They change Gitea behaviour.
+This is an inventory of RIA Hub environment variables. They change RIA Hub behaviour.
 
-Initialize them before Gitea command to be effective, for example:
+Initialize them before RIA Hub command to be effective, for example:
 
 ```sh
 GITEA_CUSTOM=/home/gitea/custom ./gitea web
@@ -27,7 +27,7 @@ GITEA_CUSTOM=/home/gitea/custom ./gitea web
 
 ## From Go language
 
-As Gitea is written in Go, it uses some variables that influence the behaviour of Go's runtime, such as:
+As RIA Hub is written in Go, it uses some variables that influence the behaviour of Go's runtime, such as:
 
 - `GOMEMLIMIT`
 - `GOGC`
@@ -37,15 +37,15 @@ As Gitea is written in Go, it uses some variables that influence the behaviour o
 For documentation about each of the variables available, refer to the
 [official Go documentation on runtime environment variables](https://pkg.go.dev/runtime#hdr-Environment_Variables).
 
-## Gitea files
+## RIA Hub files
 
 - `GITEA_WORK_DIR`: Absolute path of working directory.
-- `GITEA_CUSTOM`: Gitea uses `WorkPath`/custom folder by default. Use this variable to change _custom_ directory.
+- `GITEA_CUSTOM`: RIA Hub uses `WorkPath`/custom folder by default. Use this variable to change _custom_ directory.
 
 ## Operating system specifics
 
-- `USER`: System user that Gitea will run as. Used for some repository access strings.
-- `USERNAME`: if no `USER` found, Gitea will use `USERNAME`
+- `USER`: System user that RIA Hub will run as. Used for some repository access strings.
+- `USERNAME`: if no `USER` found, RIA Hub will use `USERNAME`
 - `HOME`: User home directory path. The `USERPROFILE` environment variable is used in Windows.
 
 ### Only on Windows

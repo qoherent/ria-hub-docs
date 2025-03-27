@@ -17,7 +17,7 @@ menu:
 
 # Blame File View
 
-Gitea supports viewing the line-by-line revision history for a file also known as blame view.
+RIA Hub supports viewing the line-by-line revision history for a file also known as blame view.
 You can also use [`git blame`](https://git-scm.com/docs/git-blame) on the command line to view the revision history of lines within a file.
 
 1. Navigate to and open the file whose line history you want to view.

@@ -26,7 +26,7 @@ To work with the Vagrant package registry, you need [Vagrant](https://www.vagran
 Publish a Vagrant box by performing a HTTP PUT request to the registry:
 
 ```
-PUT https://gitea.example.com/api/packages/{owner}/vagrant/{package_name}/{package_version}/{provider}.box
+PUT https://riahub.example.com/api/packages/{owner}/vagrant/{package_name}/{package_version}/{provider}.box
 ```
 
 | Parameter         | Description |
@@ -41,7 +41,7 @@ Example for uploading a Hyper-V box:
 ```shell
 curl --user your_username:your_password_or_token \
      --upload-file path/to/your/vagrant.box \
-     https://gitea.example.com/api/packages/testuser/vagrant/test_system/1.0.0/hyperv.box
+     https://riahub.example.com/api/packages/testuser/vagrant/test_system/1.0.0/hyperv.box
 ```
 
 If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password.
@@ -61,7 +61,7 @@ The server responds with the following HTTP Status codes.
 To install a box from the package registry, execute the following command:
 
 ```shell
-vagrant box add "https://gitea.example.com/api/packages/{owner}/vagrant/{package_name}"
+vagrant box add "https://riahub.example.com/api/packages/{owner}/vagrant/{package_name}"
 ```
 
 | Parameter      | Description |
@@ -72,7 +72,7 @@ vagrant box add "https://gitea.example.com/api/packages/{owner}/vagrant/{package
 For example:
 
 ```shell
-vagrant box add "https://gitea.example.com/api/packages/testuser/vagrant/test_system"
+vagrant box add "https://riahub.example.com/api/packages/testuser/vagrant/test_system"
 ```
 
 This will install the latest version of the package. To add a specific version, use the `--box-version` parameter.

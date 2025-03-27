@@ -17,11 +17,11 @@ menu:
 
 # Code Owners
 
-Gitea maintains code owner files. It looks for it in the following locations in this order:
+RIA Hub maintains code owner files. It looks for it in the following locations in this order:
 
 - `./CODEOWNERS`
 - `./docs/CODEOWNERS`
-- `./.gitea/CODEOWNERS`
+- `./.riahub/CODEOWNERS`
 
 And stops at the first found file.
 

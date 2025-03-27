@@ -17,7 +17,7 @@ menu:
 
 # Installation with Docker
 
-Gitea provides automatically updated Docker images within its Docker Hub organization. It is
+RIA Hub provides automatically updated Docker images within its Docker Hub organization. It is
 possible to always use the latest stable tag or to use another service that handles updating
 Docker images.
 
@@ -32,7 +32,7 @@ image as a service. Since there is no database available, one can be initialized
 Create a directory like `gitea` and paste the following content into a file named `docker-compose.yml`.
 Note that the volume should be owned by the user/group with the UID/GID specified in the config file.
 If you don't give the volume correct permissions, the container may not start.
-For a stable release you can use `:latest`, `:1` or specify a certain release like `:@version@`, but if you'd like to use the latest development version of Gitea then you could use the `:nightly` tag. If you'd like to run the latest commit from a release branch you can use the `:1.x-nightly` tag, where x is the minor version of Gitea. (e.g. `:1.16-nightly`)
+For a stable release you can use `:latest`, `:1` or specify a certain release like `:@version@`, but if you'd like to use the latest development version of RIA Hub then you could use the `:nightly` tag. If you'd like to run the latest commit from a release branch you can use the `:1.x-nightly` tag, where x is the minor version of RIA Hub. (e.g. `:1.16-nightly`)
 
 ```yaml
 version: "3"
@@ -98,7 +98,7 @@ services:
 
 ### MySQL database
 
-To start Gitea in combination with a MySQL database, apply these changes to the
+To start RIA Hub in combination with a MySQL database, apply these changes to the
 `docker-compose.yml` file created above.
 
 ```diff
@@ -149,7 +149,7 @@ services:
 
 ### PostgreSQL database
 
-To start Gitea in combination with a PostgreSQL database, apply these changes to
+To start RIA Hub in combination with a PostgreSQL database, apply these changes to
 the `docker-compose.yml` file created above.
 
 ```diff
@@ -237,7 +237,7 @@ MySQL or PostgreSQL containers will need to be created separately.
 ## Startup
 
 To start this setup based on `docker-compose`, execute `docker-compose up -d`,
-to launch Gitea in the background. Using `docker-compose ps` will show if Gitea
+to launch RIA Hub in the background. Using `docker-compose ps` will show if RIA Hub
 started properly. Logs can be viewed with `docker-compose logs`.
 
 To shut down the setup, execute `docker-compose down`. This will stop
@@ -248,16 +248,16 @@ Notice: if using a non-3000 port on http, change app.ini to match
 
 ## Installation
 
-After starting the Docker setup via `docker-compose`, Gitea should be available using a
+After starting the Docker setup via `docker-compose`, RIA Hub should be available using a
 favorite browser to finalize the installation. Visit http://server-ip:3000 and follow the
 installation wizard. If the database was started with the `docker-compose` setup as
 documented above, please note that `db` must be used as the database hostname.
 
-## Configure the user inside Gitea using environment variables
+## Configure the user inside RIA Hub using environment variables
 
-- `USER`: **git**: The username of the user that runs Gitea within the container.
-- `USER_UID`: **1000**: The UID (Unix user ID) of the user that runs Gitea within the container. Match this to the UID of the owner of the `/data` volume if using host volumes (this is not necessary with named volumes).
-- `USER_GID`: **1000**: The GID (Unix group ID) of the user that runs Gitea within the container. Match this to the GID of the owner of the `/data` volume if using host volumes (this is not necessary with named volumes).
+- `USER`: **git**: The username of the user that runs RIA Hub within the container.
+- `USER_UID`: **1000**: The UID (Unix user ID) of the user that runs RIA Hub within the container. Match this to the UID of the owner of the `/data` volume if using host volumes (this is not necessary with named volumes).
+- `USER_GID`: **1000**: The GID (Unix group ID) of the user that runs RIA Hub within the container. Match this to the GID of the owner of the `/data` volume if using host volumes (this is not necessary with named volumes).
 
 ## Customization
 
@@ -285,7 +285,7 @@ docker-compose up -d
 
 In addition to the environment variables above, any settings in `app.ini` can be set
 or overridden with an environment variable of the form: `GITEA__SECTION_NAME__KEY_NAME`.
-These settings are applied each time the docker container starts, and won't be passed into Gitea's sub-processes.
+These settings are applied each time the docker container starts, and won't be passed into RIA Hub's sub-processes.
 Full information [here](https://github.com/go-gitea/gitea/tree/master/contrib/environment-to-ini).
 
 These environment variables can be passed to the docker container in `docker-compose.yml`.
@@ -310,7 +310,7 @@ services:
       - GITEA__mailer__PASSWD="""${GITEA__mailer__PASSWD:?GITEA__mailer__PASSWD not set}"""
 ```
 
-Gitea will generate new secrets/tokens for every new installation automatically and write them into the app.ini. If you want to set the secrets/tokens manually, you can use the following docker commands to use of Gitea's built-in [generate utility functions](administration/command-line.md#generate). Do not lose/change your SECRET_KEY after the installation, otherwise the encrypted data can not be decrypted anymore.
+RIA Hub will generate new secrets/tokens for every new installation automatically and write them into the app.ini. If you want to set the secrets/tokens manually, you can use the following docker commands to use of RIA Hub's built-in [generate utility functions](administration/command-line.md#generate). Do not lose/change your SECRET_KEY after the installation, otherwise the encrypted data can not be decrypted anymore.
 
 The following commands will output a new `SECRET_KEY` and `INTERNAL_TOKEN` to `stdout`, which you can then place in your environment variables.
 
@@ -330,19 +330,19 @@ services:
 
 ## SSH Container Passthrough
 
-Since SSH is running inside the container, SSH needs to be passed through from the host to the container if SSH support is desired. One option would be to run the container SSH on a non-standard port (or moving the host port to a non-standard port). Another option which might be more straightforward is for Gitea users to ssh to a Gitea user on the host which will then relay those connections to the docker.
+Since SSH is running inside the container, SSH needs to be passed through from the host to the container if SSH support is desired. One option would be to run the container SSH on a non-standard port (or moving the host port to a non-standard port). Another option which might be more straightforward is for RIA Hub users to ssh to a RIA Hub user on the host which will then relay those connections to the docker.
 
-### Understanding SSH access to Gitea (without passthrough)
+### Understanding SSH access to RIA Hub (without passthrough)
 
 To understand what needs to happen, you first need to understand what happens without passthrough. So we will try to explain this:
 
-1. The client adds their SSH public key to Gitea using the webpage.
-2. Gitea will add an entry for this key to the `.ssh/authorized_keys` file of its running user, `git`.
-3. This entry has the public key, but also has a `command=` option. It is this command that Gitea uses to match this key to the client user and manages authentication.
+1. The client adds their SSH public key to RIA Hub using the webpage.
+2. RIA Hub will add an entry for this key to the `.ssh/authorized_keys` file of its running user, `git`.
+3. This entry has the public key, but also has a `command=` option. It is this command that RIA Hub uses to match this key to the client user and manages authentication.
 4. The client then makes an SSH request to the SSH server using the `git` user, e.g. `git clone git@domain:user/repo.git`.
 5. The client will attempt to authenticate with the server, passing one or more public keys one at a time to the server.
 6. For each key the client provides, the SSH server will first check its configuration for an `AuthorizedKeysCommand` to see if the public key matches, and then the `git` user's `authorized_keys` file.
-7. The first entry that matches will be selected, and assuming this is a Gitea entry, the `command=` will now be executed.
+7. The first entry that matches will be selected, and assuming this is a RIA Hub entry, the `command=` will now be executed.
 8. The SSH server creates a user session for the `git` user, and using the shell for the `git` user runs the `command=`
 9. This runs `gitea serv` which takes over control of the rest of the SSH session and manages gitea authentication & authorization of the git commands.
 
@@ -378,33 +378,33 @@ In this option, the idea is that the host simply uses the `authorized_keys` that
 - Now a SSH key pair needs to be created on the host. This key pair will be used to authenticate the `git` user on the host to the container. As an administrative user on the host run: (by administrative user we mean a user that can sudo to root)
 
   ```bash
-  sudo -u git ssh-keygen -t rsa -b 4096 -C "Gitea Host Key"
+  sudo -u git ssh-keygen -t rsa -b 4096 -C "RIA Hub Host Key"
   ```
 
 - Please note depending on the local version of ssh you may want to consider using `-t ecdsa` here.
 
-- `/home/git/.ssh/authorized_keys` on the host now needs to be modified. It needs to act in the same way as `authorized_keys` within the Gitea container. Therefore add the public key of the key you created above ("Gitea Host Key") to `~/git/.ssh/authorized_keys`. As an administrative user on the host run:
+- `/home/git/.ssh/authorized_keys` on the host now needs to be modified. It needs to act in the same way as `authorized_keys` within the RIA Hub container. Therefore add the public key of the key you created above ("RIA Hub Host Key") to `~/git/.ssh/authorized_keys`. As an administrative user on the host run:
 
   ```bash
   sudo -u git cat /home/git/.ssh/id_rsa.pub | sudo -u git tee -a /home/git/.ssh/authorized_keys
   sudo -u git chmod 600 /home/git/.ssh/authorized_keys
   ```
 
-  Important: The pubkey from the `git` user needs to be added "as is" while all other pubkeys added via the Gitea web interface will be prefixed with `command="/usr [...]`.
+  Important: The pubkey from the `git` user needs to be added "as is" while all other pubkeys added via the RIA Hub web interface will be prefixed with `command="/usr [...]`.
 
   `/home/git/.ssh/authorized_keys` should then look somewhat like
 
   ```bash
   # SSH pubkey from git user
-  ssh-rsa <Gitea Host Key>
+  ssh-rsa <RIA Hub Host Key>
 
   # other keys from users
   command="/usr/local/bin/gitea --config=/data/gitea/conf/app.ini serv key-1",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty <user pubkey>
   ```
 
-- The next step is to create the fake host `gitea` command that will forward commands from the host to the container. The name of this file depends on your version of Gitea:
+- The next step is to create the fake host `gitea` command that will forward commands from the host to the container. The name of this file depends on your version of RIA Hub:
 
-  - For Gitea v1.16.0+. As an administrative user on the host run:
+  - For RIA Hub v1.16.0+. As an administrative user on the host run:
 
     ```bash
     cat <<"EOF" | sudo tee /usr/local/bin/gitea
@@ -416,16 +416,16 @@ In this option, the idea is that the host simply uses the `authorized_keys` that
 
 Here is a detailed explanation what is happening when a SSH request is made:
 
-1. The client adds their SSH public key to Gitea using the webpage.
-2. Gitea in the container will add an entry for this key to the `.ssh/authorized_keys` file of its running user, `git`.
+1. The client adds their SSH public key to RIA Hub using the webpage.
+2. RIA Hub in the container will add an entry for this key to the `.ssh/authorized_keys` file of its running user, `git`.
     - However, because `/home/git/.ssh/` on the host is mounted as `/data/git/.ssh` this means that the key has been added to the host `git` user's `authorized_keys` file too.
 3. This entry has the public key, but also has a `command=` option.
-    - This command matches the location of the Gitea binary on the container, but also the location of the shim on the host.
+    - This command matches the location of the RIA Hub binary on the container, but also the location of the shim on the host.
 4. The client then makes an SSH request to the host SSH server using the `git` user, e.g. `git clone git@domain:user/repo.git`.
 5. The client will attempt to authenticate with the server, passing one or more public keys in turn to the host.
 6. For each key the client provides, the host SSH server will first check its configuration for an `AuthorizedKeysCommand` to see if the public key matches, and then the host `git` user's `authorized_keys` file.
-    - Because `/home/git/.ssh/` on the host is mounted as `/data/git/.ssh` this means that the key they added to the Gitea web will be found
-7. The first entry that matches will be selected, and assuming this is a Gitea entry, the `command=` will now be executed.
+    - Because `/home/git/.ssh/` on the host is mounted as `/data/git/.ssh` this means that the key they added to the RIA Hub web will be found
+7. The first entry that matches will be selected, and assuming this is a RIA Hub entry, the `command=` will now be executed.
 8. The host SSH server creates a user session for the `git` user, and using the shell for the host `git` user runs the `command=`
 9. This means that the host runs the host `/usr/local/bin/gitea` shim that opens an SSH from the host to container passing the rest of the command arguments directly to `/usr/local/bin/gitea` on the container.
 10. Meaning that the container `gitea serv` is run, taking over control of the rest of the SSH session and managing gitea authentication & authorization of the git commands.
@@ -440,7 +440,7 @@ SSH container passthrough using `authorized_keys` will work only if
 
 If you try to run `gitea` on the host, you will attempt to ssh to the container and thence run the `gitea` command there.
 
-Never add the `Gitea Host Key` as a SSH key to a user on the Gitea interface.
+Never add the `RIA Hub Host Key` as a SSH key to a user on the RIA Hub interface.
 
 ### SSHing Shell (with authorized_keys)
 
@@ -463,16 +463,16 @@ we create a new shell for the git user. As an administrative user on the host ru
 
 Here is a detailed explanation what is happening when a SSH request is made:
 
-1. The client adds their SSH public key to Gitea using the webpage.
-2. Gitea in the container will add an entry for this key to the `.ssh/authorized_keys` file of its running user, `git`.
+1. The client adds their SSH public key to RIA Hub using the webpage.
+2. RIA Hub in the container will add an entry for this key to the `.ssh/authorized_keys` file of its running user, `git`.
     - However, because `/home/git/.ssh/` on the host is mounted as `/data/git/.ssh` this means that the key has been added to the host `git` user's `authorized_keys` file too.
 3. This entry has the public key, but also has a `command=` option.
-    - This command matches the location of the Gitea binary on the container.
+    - This command matches the location of the RIA Hub binary on the container.
 4. The client then makes an SSH request to the host SSH server using the `git` user, e.g. `git clone git@domain:user/repo.git`.
 5. The client will attempt to authenticate with the server, passing one or more public keys in turn to the host.
 6. For each key the client provides, the host SSH server will first check its configuration for an `AuthorizedKeysCommand` to see if the public key matches, and then the host `git` user's `authorized_keys` file.
-    - Because `/home/git/.ssh/` on the host is mounted as `/data/git/.ssh` this means that the key they added to the Gitea web will be found
-7. The first entry that matches will be selected, and assuming this is a Gitea entry, the `command=` will now be executed.
+    - Because `/home/git/.ssh/` on the host is mounted as `/data/git/.ssh` this means that the key they added to the RIA Hub web will be found
+7. The first entry that matches will be selected, and assuming this is a RIA Hub entry, the `command=` will now be executed.
 8. The host SSH server creates a user session for the `git` user, and using the shell for the host `git` user runs the `command=`
 9. The shell of the host `git` user is now our `ssh-shell` which opens an SSH connection from the host to container, (which opens a shell on the container for the container `git`).
 10. The container shell now runs the `command=` option meaning that the container `gitea serv` is run, taking over control of the rest of the SSH session and managing gitea authentication & authorization of the git commands.
@@ -487,7 +487,7 @@ SSH container passthrough using `authorized_keys` will work only if
 
 If you try to login as the `git` user on the host in future you will ssh directly to the docker.
 
-Never add the `Gitea Host Key` as a SSH key to a user on the Gitea interface.
+Never add the `RIA Hub Host Key` as a SSH key to a user on the RIA Hub interface.
 
 ### Docker Shell (with authorized_keys)
 
@@ -504,16 +504,16 @@ sudo usermod -s /home/git/docker-shell git
 
 Here is a detailed explanation what is happening when a SSH request is made:
 
-1. The client adds their SSH public key to Gitea using the webpage.
-2. Gitea in the container will add an entry for this key to the `.ssh/authorized_keys` file of its running user, `git`.
+1. The client adds their SSH public key to RIA Hub using the webpage.
+2. RIA Hub in the container will add an entry for this key to the `.ssh/authorized_keys` file of its running user, `git`.
     - However, because `/home/git/.ssh/` on the host is mounted as `/data/git/.ssh` this means that the key has been added to the host `git` user's `authorized_keys` file too.
 3. This entry has the public key, but also has a `command=` option.
-    - This command matches the location of the Gitea binary on the container.
+    - This command matches the location of the RIA Hub binary on the container.
 4. The client then makes an SSH request to the host SSH server using the `git` user, e.g. `git clone git@domain:user/repo.git`.
 5. The client will attempt to authenticate with the server, passing one or more public keys in turn to the host.
 6. For each key the client provides, the host SSH server will first check its configuration for an `AuthorizedKeysCommand` to see if the public key matches, and then the host `git` user's `authorized_keys` file.
-    - Because `/home/git/.ssh/` on the host is mounted as `/data/git/.ssh` this means that the key they added to the Gitea web will be found
-7. The first entry that matches will be selected, and assuming this is a Gitea entry, the `command=` will now be executed.
+    - Because `/home/git/.ssh/` on the host is mounted as `/data/git/.ssh` this means that the key they added to the RIA Hub web will be found
+7. The first entry that matches will be selected, and assuming this is a RIA Hub entry, the `command=` will now be executed.
 8. The host SSH server creates a user session for the `git` user, and using the shell for the host `git` user runs the `command=`
 9. The shell of the host `git` user is now our `docker-shell` which uses `docker exec` to open a shell for the `git` user on the container.
 10. The container shell now runs the `command=` option meaning that the container `gitea serv` is run, taking over control of the rest of the SSH session and managing gitea authentication & authorization of the git commands.
@@ -540,7 +540,7 @@ The AuthorizedKeysCommand route provides another option that does not require ma
 In this option, the idea is that the host SSH uses an `AuthorizedKeysCommand` instead of relying on sharing the `authorized_keys` file that gitea creates. We continue to use a special shell at step 8 above to exec into the docker and then run the shell there. This means that the `gitea` that is then run is the real docker `gitea`.
 
 - On the host create a `git` user with permission to run `docker exec`.
-- We will again assume that the Gitea container is called `gitea`.
+- We will again assume that the RIA Hub container is called `gitea`.
 - Modify the `git` user's shell to forward commands to the `sh` executable inside the container using `docker exec`.  As an administrative user on the host run:
 
   ```bash
@@ -554,7 +554,7 @@ In this option, the idea is that the host SSH uses an `AuthorizedKeysCommand` in
 
 Now all attempts to login as the `git` user on the host will be forwarded to the docker - including the `SSH_ORIGINAL_COMMAND`. We now need to set-up SSH authentication on the host.
 
-We will do this by leveraging the [SSH AuthorizedKeysCommand](administration/command-line.md#keys) to match the keys against those accepted by Gitea.
+We will do this by leveraging the [SSH AuthorizedKeysCommand](administration/command-line.md#keys) to match the keys against those accepted by RIA Hub.
 
 Add the following block to `/etc/ssh/sshd_config`, on the host:
 
@@ -574,14 +574,14 @@ sudo systemctl restart sshd
 
 Here is a detailed explanation what is happening when a SSH request is made:
 
-1. The client adds their SSH public key to Gitea using the webpage.
-2. Gitea in the container will add an entry for this key to its database.
+1. The client adds their SSH public key to RIA Hub using the webpage.
+2. RIA Hub in the container will add an entry for this key to its database.
 3. The client then makes an SSH request to the host SSH server using the `git` user, e.g. `git clone git@domain:user/repo.git`.
 4. The client will attempt to authenticate with the server, passing one or more public keys in turn to the host.
 5. For each key the client provides, the host SSH server will checks its configuration for an `AuthorizedKeysCommand`.
 6. The host runs the above `AuthorizedKeysCommand`, which execs in to the docker and then runs the `gitea keys` command.
-7. Gitea on the docker will look in it's database to see if the public key matches and will return an entry like that of an `authorized_keys` command.
-8. This entry has the public key, but also has a `command=` option which matches the location of the Gitea binary on the container.
+7. RIA Hub on the docker will look in it's database to see if the public key matches and will return an entry like that of an `authorized_keys` command.
+8. This entry has the public key, but also has a `command=` option which matches the location of the RIA Hub binary on the container.
 9. The host SSH server creates a user session for the `git` user, and using the shell for the host `git` user runs the `command=`.
 10. The shell of the host `git` user is now our `docker-shell` which uses `docker exec` to open a shell for the `git` user on the container.
 11. The container shell now runs the `command=` option meaning that the container `gitea serv` is run, taking over control of the rest of the SSH session and managing gitea authentication & authorization of the git commands.
@@ -618,14 +618,14 @@ sudo systemctl restart sshd
 
 Here is a detailed explanation what is happening when a SSH request is made:
 
-1. The client adds their SSH public key to Gitea using the webpage.
-2. Gitea in the container will add an entry for this key to its database.
+1. The client adds their SSH public key to RIA Hub using the webpage.
+2. RIA Hub in the container will add an entry for this key to its database.
 3. The client then makes an SSH request to the host SSH server using the `git` user, e.g. `git clone git@domain:user/repo.git`.
 4. The client will attempt to authenticate with the server, passing one or more public keys in turn to the host.
 5. For each key the client provides, the host SSH server will checks its configuration for an `AuthorizedKeysCommand`.
 6. The host runs the above `AuthorizedKeysCommand`, which will SSH in to the docker and then run the `gitea keys` command.
-7. Gitea on the docker will look in it's database to see if the public key matches and will return an entry like that of an `authorized_keys` command.
-8. This entry has the public key, but also has a `command=` option which matches the location of the Gitea binary on the container.
+7. RIA Hub on the docker will look in it's database to see if the public key matches and will return an entry like that of an `authorized_keys` command.
+8. This entry has the public key, but also has a `command=` option which matches the location of the RIA Hub binary on the container.
 9. The host SSH server creates a user session for the `git` user, and using the shell for the host `git` user runs the `command=`.
 10. The shell of the host `git` user is now our `git-shell` which uses SSH to open a shell for the `git` user on the container.
 11. The container shell now runs the `command=` option meaning that the container `gitea serv` is run, taking over control of the rest of the SSH session and managing gitea authentication & authorization of the git commands.
@@ -638,6 +638,6 @@ SSH container passthrough using `AuthorizedKeysCommand` will work only if
 
 If you try to login as the `git` user on the host in future you will `ssh` directly to the docker.
 
-Never add the `Gitea Host Key` as a SSH key to a user on the Gitea interface.
+Never add the `RIA Hub Host Key` as a SSH key to a user on the RIA Hub interface.
 
 SSHing shims could be created similarly to above.

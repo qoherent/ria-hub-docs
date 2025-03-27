@@ -29,7 +29,7 @@ The package content must be the zipped PHP project with the `composer.json` file
 You cannot publish a package if a package of the same name and version already exists. You must delete the existing package first.
 
 ```
-PUT https://gitea.example.com/api/packages/{owner}/composer
+PUT https://riahub.example.com/api/packages/{owner}/composer
 ```
 
 | Parameter  | Description |
@@ -39,7 +39,7 @@ PUT https://gitea.example.com/api/packages/{owner}/composer
 If the `composer.json` file does not contain a `version` property, you must provide it as a query parameter:
 
 ```
-PUT https://gitea.example.com/api/packages/{owner}/composer?version={x.y.z}
+PUT https://riahub.example.com/api/packages/{owner}/composer?version={x.y.z}
 ```
 
 Example request using HTTP Basic authentication:
@@ -47,7 +47,7 @@ Example request using HTTP Basic authentication:
 ```shell
 curl --user your_username:your_password_or_token \
      --upload-file path/to/project.zip \
-     https://gitea.example.com/api/packages/testuser/composer
+     https://riahub.example.com/api/packages/testuser/composer
 ```
 
 Or specify the package version as query parameter:
@@ -55,7 +55,7 @@ Or specify the package version as query parameter:
 ```shell
 curl --user your_username:your_password_or_token \
      --upload-file path/to/project.zip \
-     https://gitea.example.com/api/packages/testuser/composer?version=1.0.3
+     https://riahub.example.com/api/packages/testuser/composer?version=1.0.3
 ```
 
 If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password.
@@ -76,7 +76,7 @@ To register the package registry you need to add it to the Composer `config.json
 {
   "repositories": [{
       "type": "composer",
-      "url": "https://gitea.example.com/api/packages/{owner}/composer"
+      "url": "https://riahub.example.com/api/packages/{owner}/composer"
    }
   ]
 }
@@ -87,7 +87,7 @@ To access the package registry using credentials, you must specify them in the `
 ```json
 {
   "http-basic": {
-    "gitea.example.com": {
+    "riahub.example.com": {
       "username": "{username}",
       "password": "{password}"
     }
@@ -98,8 +98,8 @@ To access the package registry using credentials, you must specify them in the `
 | Parameter  | Description |
 | ---------- | ----------- |
 | `owner`    | The owner of the package. |
-| `username` | Your Gitea username. |
-| `password` | Your Gitea password or a personal access token. |
+| `username` | Your RIA Hub username. |
+| `password` | Your RIA Hub password or a personal access token. |
 
 ## Install a package
 

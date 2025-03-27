@@ -17,7 +17,7 @@ menu:
 
 # Blocking a user
 
-Gitea supports blocking of users to restrict how they can interact with you and your content.
+RIA Hub supports blocking of users to restrict how they can interact with you and your content.
 
 You can block a user in your account settings, from the user's profile or from comments created by the user.
 The user is not directly notified about the block, but they can notice they are blocked when they attempt to interact with you.

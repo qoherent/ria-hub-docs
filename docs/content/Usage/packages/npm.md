@@ -30,8 +30,8 @@ The following examples use the `npm` tool with the scope `@test`.
 To register the package registry you need to configure a new package source.
 
 ```shell
-npm config set {scope}:registry https://gitea.example.com/api/packages/{owner}/npm/
-npm config set -- '//gitea.example.com/api/packages/{owner}/npm/:_authToken' "{token}"
+npm config set {scope}:registry https://riahub.example.com/api/packages/{owner}/npm/
+npm config set -- '//riahub.example.com/api/packages/{owner}/npm/:_authToken' "{token}"
 ```
 
 | Parameter    | Description |
@@ -43,15 +43,15 @@ npm config set -- '//gitea.example.com/api/packages/{owner}/npm/:_authToken' "{t
 For example:
 
 ```shell
-npm config set @test:registry https://gitea.example.com/api/packages/testuser/npm/
-npm config set -- '//gitea.example.com/api/packages/testuser/npm/:_authToken' "personal_access_token"
+npm config set @test:registry https://riahub.example.com/api/packages/testuser/npm/
+npm config set -- '//riahub.example.com/api/packages/testuser/npm/:_authToken' "personal_access_token"
 ```
 
 or without scope:
 
 ```shell
-npm config set registry https://gitea.example.com/api/packages/testuser/npm/
-npm config set -- '//gitea.example.com/api/packages/testuser/npm/:_authToken' "personal_access_token"
+npm config set registry https://riahub.example.com/api/packages/testuser/npm/
+npm config set -- '//riahub.example.com/api/packages/testuser/npm/:_authToken' "personal_access_token"
 ```
 
 ## Publish a package

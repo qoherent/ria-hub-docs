@@ -16,7 +16,7 @@ menu:
     identifier: "push"
 ---
 
-There are some additional features when pushing commits to Gitea server.
+There are some additional features when pushing commits to RIA Hub server.
 
 # Open PR through Push
 
@@ -24,11 +24,11 @@ When you push commits to a non-default branch for the first time,
 you will receive a link you can click on to visit the compare page of your branch compared to your main branch.
 From there, it's easy to create a pull request, even if you want to target another branch.
 
-![Gitea Push Hint](/gitea-push-hint.png)
+![RIA Hub Push Hint](/gitea-push-hint.png)
 
 # Push Options
 
-In Gitea `1.13`, support for some [push options](https://git-scm.com/docs/git-push#Documentation/git-push.txt--oltoptiongt)
+In RIA Hub `1.13`, support for some [push options](https://git-scm.com/docs/git-push#Documentation/git-push.txt--oltoptiongt)
 were added.
 
 ## Supported Options
@@ -47,15 +47,15 @@ git push -o repo.private=false -u origin main
 
 # Push To Create
 
-Push to create is a feature that allows you to push to a repository that does not exist yet in Gitea. This is useful for automation and for allowing users to create repositories without having to go through the web interface. This feature is disabled by default.
+Push to create is a feature that allows you to push to a repository that does not exist yet in RIA Hub. This is useful for automation and for allowing users to create repositories without having to go through the web interface. This feature is disabled by default.
 
 ## Enabling Push To Create
 
-In the `app.ini` file, set `ENABLE_PUSH_CREATE_USER` to `true` and `ENABLE_PUSH_CREATE_ORG` to `true` if you want to allow users to create repositories in their own user account and in organizations they are a member of respectively. Restart Gitea for the changes to take effect. You can read more about these two options in the [Configuration Cheat Sheet](administration/config-cheat-sheet.md#repository-repository).
+In the `app.ini` file, set `ENABLE_PUSH_CREATE_USER` to `true` and `ENABLE_PUSH_CREATE_ORG` to `true` if you want to allow users to create repositories in their own user account and in organizations they are a member of respectively. Restart RIA Hub for the changes to take effect. You can read more about these two options in the [Configuration Cheat Sheet](administration/config-cheat-sheet.md#repository-repository).
 
 ## Using Push To Create
 
-Assuming you have a git repository in the current directory, you can push to a repository that does not exist yet in Gitea by running the following command:
+Assuming you have a git repository in the current directory, you can push to a repository that does not exist yet in RIA Hub by running the following command:
 
 ```shell
 # Add the remote you want to push to

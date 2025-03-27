@@ -17,14 +17,14 @@ menu:
 
 # Custom files rendering configuration
 
-Gitea supports custom file renderings (i.e., Jupyter notebooks, asciidoc, etc.) through external binaries,
+RIA Hub supports custom file renderings (i.e., Jupyter notebooks, asciidoc, etc.) through external binaries,
 it is just a matter of:
 
 - installing external binaries
 - add some configuration to your `app.ini` file
-- restart your Gitea instance
+- restart your RIA Hub instance
 
-This supports rendering of whole files. If you want to render code blocks in markdown you would need to do something with javascript. See some examples on the [Customizing Gitea](administration/customizing-gitea.md) page.
+This supports rendering of whole files. If you want to render code blocks in markdown you would need to do something with javascript. See some examples on the [Customizing RIA Hub](administration/customizing-gitea.md) page.
 
 ## Installing external binaries
 
@@ -72,7 +72,7 @@ RENDER_COMMAND = "timeout 30s pandoc +RTS -M512M -RTS -f rst"
 IS_INPUT_FILE = false
 ```
 
-If your external markup relies on additional classes and attributes on the generated HTML elements, you might need to enable custom sanitizer policies. Gitea uses the [`bluemonday`](https://godoc.org/github.com/microcosm-cc/bluemonday) package as our HTML sanitizer. The example below could be used to support server-side [KaTeX](https://katex.org/) rendering output from [`pandoc`](https://pandoc.org/).
+If your external markup relies on additional classes and attributes on the generated HTML elements, you might need to enable custom sanitizer policies. RIA Hub uses the [`bluemonday`](https://godoc.org/github.com/microcosm-cc/bluemonday) package as our HTML sanitizer. The example below could be used to support server-side [KaTeX](https://katex.org/) rendering output from [`pandoc`](https://pandoc.org/).
 
 ```ini
 [markup.sanitizer.TeX]
@@ -97,9 +97,9 @@ To apply a sanitisation rules only for a specify external renderer they must use
 
 **Note**: If the rule is defined above the renderer ini section or the name does not match a renderer it is applied to every renderer.
 
-Once your configuration changes have been made, restart Gitea to have changes take effect.
+Once your configuration changes have been made, restart RIA Hub to have changes take effect.
 
-**Note**: Prior to Gitea 1.12 there was a single `markup.sanitiser` section with keys that were redefined for multiple rules, however,
+**Note**: Prior to RIA Hub 1.12 there was a single `markup.sanitiser` section with keys that were redefined for multiple rules, however,
 there were significant problems with this method of configuration necessitating configuration through multiple sections.
 
 ### Example: HTML

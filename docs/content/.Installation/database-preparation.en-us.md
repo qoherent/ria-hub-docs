@@ -17,13 +17,13 @@ menu:
 
 # Database Preparation
 
-You need a database to use Gitea. Gitea supports PostgreSQL (>= 12), MySQL (>= 8.0), MariaDB (>= 10.4), SQLite (builtin), and MSSQL (>= 2012 SP4). This page will guide into preparing database. Only PostgreSQL and MySQL will be covered here since those database engines are widely-used in production. If you plan to use SQLite, you can ignore this chapter.
+You need a database to use RIA Hub. RIA Hub supports PostgreSQL (>= 12), MySQL (>= 8.0), MariaDB (>= 10.4), SQLite (builtin), and MSSQL (>= 2012 SP4). This page will guide into preparing database. Only PostgreSQL and MySQL will be covered here since those database engines are widely-used in production. If you plan to use SQLite, you can ignore this chapter.
 
-If you use an unsupported database version, please [get in touch](/help/support) with us for information on our Extended Support Contracts. We can provide testing and support for older databases and integrate those fixes into the Gitea codebase.
+If you use an unsupported database version, please [get in touch](/help/support) with us for information on our Extended Support Contracts. We can provide testing and support for older databases and integrate those fixes into the RIA Hub codebase.
 
-Database instance can be on same machine as Gitea (local database setup), or on different machine (remote database).
+Database instance can be on same machine as RIA Hub (local database setup), or on different machine (remote database).
 
-Note: All steps below requires that the database engine of your choice is installed on your system. For remote database setup, install the server application on database instance and client program on your Gitea server. The client program is used to test connection to the database from Gitea server, while Gitea itself use database driver provided by Go to accomplish the same thing. In addition, make sure you use same engine version for both server and client for some engine features to work. For security reason, protect `root` (MySQL) or `postgres` (PostgreSQL) database superuser with secure password. The steps assumes that you run Linux for both database and Gitea servers.
+Note: All steps below requires that the database engine of your choice is installed on your system. For remote database setup, install the server application on database instance and client program on your RIA Hub server. The client program is used to test connection to the database from RIA Hub server, while RIA Hub itself use database driver provided by Go to accomplish the same thing. In addition, make sure you use same engine version for both server and client for some engine features to work. For security reason, protect `root` (MySQL) or `postgres` (PostgreSQL) database superuser with secure password. The steps assumes that you run Linux for both database and RIA Hub servers.
 
 ## MySQL/MariaDB
 
@@ -41,7 +41,7 @@ Note: All steps below requires that the database engine of your choice is instal
 
     Enter the password as prompted.
 
-3. Create database user which will be used by Gitea, authenticated by password. This example uses `'gitea'` as password. Please use a secure password for your instance.
+3. Create database user which will be used by RIA Hub, authenticated by password. This example uses `'gitea'` as password. Please use a secure password for your instance.
 
     For local database:
 
@@ -57,14 +57,14 @@ Note: All steps below requires that the database engine of your choice is instal
     CREATE USER 'gitea'@'192.0.2.10' IDENTIFIED BY 'gitea';
     ```
 
-    where `192.0.2.10` is the IP address of your Gitea instance.
+    where `192.0.2.10` is the IP address of your RIA Hub instance.
 
     Replace username and password above as appropriate.
 
 4. Create database with UTF-8 charset and case-sensitive collation.
 
     `utf8mb4_bin` is a common collation for both MySQL/MariaDB.
-    When Gitea starts, it will try to find a better collation (`utf8mb4_0900_as_cs` or `uca1400_as_cs`) and alter the database if it is possible.
+    When RIA Hub starts, it will try to find a better collation (`utf8mb4_0900_as_cs` or `uca1400_as_cs`) and alter the database if it is possible.
     If you would like to use other collation, you can set `[database].CHARSET_COLLATION` in the `app.ini` file.
 
     ```sql
@@ -91,7 +91,7 @@ Note: All steps below requires that the database engine of your choice is instal
 
 6. Quit from database console by `exit`.
 
-7. On your Gitea server, test connection to the database:
+7. On your RIA Hub server, test connection to the database:
 
     ```
     mysql -u gitea -h 203.0.113.3 -p giteadb
@@ -153,13 +153,13 @@ Note: All steps below requires that the database engine of your choice is instal
     host    giteadb    gitea    192.0.2.10/32    scram-sha-256
     ```
 
-    Replace database name, user, and IP address of Gitea instance with your own.
+    Replace database name, user, and IP address of RIA Hub instance with your own.
 
     Note: rules on `pg_hba.conf` are evaluated sequentially, that is the first matching rule will be used for authentication. Your PostgreSQL installation may come with generic authentication rules that match all users and databases. You may need to place the rules presented here above such generic rules if it is the case.
 
     Restart PostgreSQL to apply new authentication rules.
 
-7. On your Gitea server, test connection to the database.
+7. On your RIA Hub server, test connection to the database.
 
     For local database:
 
@@ -179,18 +179,18 @@ Note: All steps below requires that the database engine of your choice is instal
 
 ## Database Connection over TLS
 
-If the communication between Gitea and your database instance is performed through a private network, or if Gitea and the database are running on the same server, this section can be omitted since the security between Gitea and the database instance is not critically exposed. If instead the database instance is on a public network, use TLS to encrypt the connection to the database, as it is possible for third-parties to intercept the traffic data.
+If the communication between RIA Hub and your database instance is performed through a private network, or if RIA Hub and the database are running on the same server, this section can be omitted since the security between RIA Hub and the database instance is not critically exposed. If instead the database instance is on a public network, use TLS to encrypt the connection to the database, as it is possible for third-parties to intercept the traffic data.
 
 ### Prerequisites
 
-- You need two valid TLS certificates, one for the database instance (database server) and one for the Gitea instance (database client). Both certificates must be signed by a trusted CA.
+- You need two valid TLS certificates, one for the database instance (database server) and one for the RIA Hub instance (database client). Both certificates must be signed by a trusted CA.
 - The database certificate must contain `TLS Web Server Authentication` in the `X509v3 Extended Key Usage` extension attribute, while the client certificate needs `TLS Web Client Authentication` in the corresponding attribute.
-- On the database server certificate, one of `Subject Alternative Name` or `Common Name` entries must be the fully-qualified domain name (FQDN) of the database instance (e.g. `db.example.com`). On the database client certificate, one of the entries mentioned above must contain the database username that Gitea will be using to connect.
-- You need domain name mappings of both Gitea and database servers to their respective IP addresses. Either set up DNS records for them or add local mappings to `/etc/hosts` (`%WINDIR%\System32\drivers\etc\hosts` in Windows) on each system. This allows the database connections to be performed by domain name instead of IP address. See documentation of your system for details.
+- On the database server certificate, one of `Subject Alternative Name` or `Common Name` entries must be the fully-qualified domain name (FQDN) of the database instance (e.g. `db.example.com`). On the database client certificate, one of the entries mentioned above must contain the database username that RIA Hub will be using to connect.
+- You need domain name mappings of both RIA Hub and database servers to their respective IP addresses. Either set up DNS records for them or add local mappings to `/etc/hosts` (`%WINDIR%\System32\drivers\etc\hosts` in Windows) on each system. This allows the database connections to be performed by domain name instead of IP address. See documentation of your system for details.
 
 ### PostgreSQL TLS
 
-The PostgreSQL driver used by Gitea supports two-way TLS. In two-way TLS, both database client and server authenticate each other by sending their respective certificates to their respective opposite for validation. In other words, the server verifies client certificate, and the client verifies server certificate.
+The PostgreSQL driver used by RIA Hub supports two-way TLS. In two-way TLS, both database client and server authenticate each other by sending their respective certificates to their respective opposite for validation. In other words, the server verifies client certificate, and the client verifies server certificate.
 
 1. On the server with the database instance, place the following credentials:
 
@@ -215,7 +215,7 @@ The PostgreSQL driver used by Gitea supports two-way TLS. In two-way TLS, both d
     chmod 0600 /path/to/root.crt /path/to/postgresql.crt /path/to/postgresql.key
     ```
 
-4. Edit `pg_hba.conf` rule to only allow Gitea database user to connect over SSL, and to require client certificate verification.
+4. Edit `pg_hba.conf` rule to only allow RIA Hub database user to connect over SSL, and to require client certificate verification.
 
     For PostgreSQL 12:
 
@@ -229,11 +229,11 @@ The PostgreSQL driver used by Gitea supports two-way TLS. In two-way TLS, both d
     hostssl    giteadb    gitea    192.0.2.10/32    scram-sha-256    clientcert=1
     ```
 
-    Replace database name, user, and IP address of Gitea instance as appropriate.
+    Replace database name, user, and IP address of RIA Hub instance as appropriate.
 
 5. Restart PostgreSQL to apply configurations above.
 
-6. On the server running the Gitea instance, place the following credentials under the home directory of the user who runs Gitea (e.g. `git`):
+6. On the server running the RIA Hub instance, place the following credentials under the home directory of the user who runs RIA Hub (e.g. `git`):
 
     - `~/.postgresql/postgresql.crt`: Database client certificate
     - `~/.postgresql/postgresql.key`: Database client private key
@@ -258,7 +258,7 @@ The PostgreSQL driver used by Gitea supports two-way TLS. In two-way TLS, both d
 
 ### MySQL/MariaDB TLS
 
-While the MySQL driver used by Gitea also supports two-way TLS, Gitea currently supports only one-way TLS. See issue #10828 for details.
+While the MySQL driver used by RIA Hub also supports two-way TLS, RIA Hub currently supports only one-way TLS. See issue #10828 for details.
 
 In one-way TLS, the database client verifies the certificate sent from server during the connection handshake, and the server assumes that the connected client is legitimate, since client certificate verification doesn't take place.
 
@@ -287,7 +287,7 @@ In one-way TLS, the database client verifies the certificate sent from server du
 
 4. Restart MySQL to apply the setting.
 
-5. The database user for Gitea may have been created earlier, but it would authenticate only against the IP addresses of the server running Gitea. To authenticate against its domain name, recreate the user, and this time also set it to require TLS for connecting to the database:
+5. The database user for RIA Hub may have been created earlier, but it would authenticate only against the IP addresses of the server running RIA Hub. To authenticate against its domain name, recreate the user, and this time also set it to require TLS for connecting to the database:
 
     ```sql
     DROP USER 'gitea'@'192.0.2.10';
@@ -296,11 +296,11 @@ In one-way TLS, the database client verifies the certificate sent from server du
     FLUSH PRIVILEGES;
     ```
 
-    Replace database user name, password, and Gitea instance domain as appropriate.
+    Replace database user name, password, and RIA Hub instance domain as appropriate.
 
-6. Make sure that the CA certificate chain required to validate the database server certificate is on the system certificate store of both the database and Gitea servers. Consult your system documentation for instructions on adding a CA certificate to the certificate store.
+6. Make sure that the CA certificate chain required to validate the database server certificate is on the system certificate store of both the database and RIA Hub servers. Consult your system documentation for instructions on adding a CA certificate to the certificate store.
 
-7. On the server running Gitea, test connection to the database:
+7. On the server running RIA Hub, test connection to the database:
 
     ```
     mysql -u gitea -h example.db -p --ssl

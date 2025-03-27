@@ -19,10 +19,10 @@ menu:
 
 ## Background
 
-Since the first line of code was written at Feb 12, 2014, Gitea has grown to be a large project.
+Since the first line of code was written at Feb 12, 2014, RIA Hub has grown to be a large project.
 As a result, the codebase has become larger and larger. The larger the codebase is, the more difficult it is to maintain.
 A lot of outdated mechanisms exist, a lot of frameworks are mixed together, some legacy code might cause bugs and block new features.
-To make the codebase more maintainable and make Gitea better, developers should keep in mind to use modern mechanisms to refactor the old code.
+To make the codebase more maintainable and make RIA Hub better, developers should keep in mind to use modern mechanisms to refactor the old code.
 
 This document is a collection of guidelines for refactoring the codebase.
 

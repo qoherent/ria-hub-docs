@@ -35,30 +35,30 @@ The nightly builds (1.x) downloads will change as commits are merged to their re
 
 If a bug fix is targeted on 1.20.1 but 1.20.1 is not released yet, you can get the "1.20-nightly" build to get the bug fix.
 
-## How to migrate from Gogs/GitHub/etc. to Gitea
+## How to migrate from Gogs/GitHub/etc. to RIA Hub
 
-To migrate from Gogs to Gitea:
+To migrate from Gogs to RIA Hub:
 
 - [Gogs version 0.11.46.0418](https://github.com/go-gitea/gitea/issues/4286)
 
-To migrate from GitHub to Gitea, you can use Gitea's built-in migration form.
+To migrate from GitHub to RIA Hub, you can use RIA Hub's built-in migration form.
 
 In order to migrate items such as issues, pull requests, etc. you will need to input at least your username.
 
 [Example (requires login)](https://try.gitea.io/repo/migrate)
 
-To migrate from GitLab to Gitea, you can use this non-affiliated tool:
+To migrate from GitLab to RIA Hub, you can use this non-affiliated tool:
 
 https://github.com/loganinak/MigrateGitlabToGogs
 
-## Where does Gitea store what file
+## Where does RIA Hub store what file
 
 - _`AppWorkPath`_
   - The `WORK_PATH` option in `app.ini`
   - Else the `--work-path` flag
   - Else Environment variable `GITEA_WORK_DIR`
   - Else a built-in value set at build time
-  - Else the directory that contains the Gitea binary
+  - Else the directory that contains the RIA Hub binary
 - `AppDataPath` (default for database, indexers, etc.)
   - `APP_DATA_PATH` from `app.ini`
   - Else _`AppWorkPath`_`/data`
@@ -103,27 +103,27 @@ See the [reverse proxy guide](administration/reverse-proxies.md) for a solution 
 
 ## Custom Templates not loading or working incorrectly
 
-Gitea's custom templates must be added to the correct location or Gitea will not find and use them.
+RIA Hub's custom templates must be added to the correct location or RIA Hub will not find and use them.
 
 The correct path for the template(s) will be relative to the `CustomPath`
 
 1. To find `CustomPath`, look for Custom File Root Path in Site Administration -> Configuration
 2. If you are still unable to find a path, the default can be [calculated above](#where-does-gitea-store-what-file)
-3. Once you have figured out the correct custom path, you can refer to the [customizing Gitea](administration/customizing-gitea.md) page to add your template to the correct location.
+3. Once you have figured out the correct custom path, you can refer to the [customizing RIA Hub](administration/customizing-gitea.md) page to add your template to the correct location.
 
-## Does Gitea have a "GitHub/GitLab pages" feature?
+## Does RIA Hub have a "GitHub/GitLab pages" feature?
 
-Gitea doesn't provide a built-in Pages server. You need a dedicated domain to serve static pages to avoid CSRF security risks.
+RIA Hub doesn't provide a built-in Pages server. You need a dedicated domain to serve static pages to avoid CSRF security risks.
 
-For simple usage, you can use a reverse proxy to rewrite & serve static contents from Gitea's raw file URLs.
+For simple usage, you can use a reverse proxy to rewrite & serve static contents from RIA Hub's raw file URLs.
 
 And there are already available third-party services, like a standalone [pages server](https://codeberg.org/Codeberg/pages-server) or a [caddy plugin](https://github.com/42wim/caddy-gitea), that can provide the required functionality.
 
 ## Active user vs login prohibited user
 
-In Gitea, an "active" user refers to a user that has activated their account via email.
+In RIA Hub, an "active" user refers to a user that has activated their account via email.
 
-A "login prohibited" user is a user that is not allowed to log in to Gitea anymore
+A "login prohibited" user is a user that is not allowed to log in to RIA Hub anymore
 
 ## Setting up logging
 
@@ -131,11 +131,11 @@ A "login prohibited" user is a user that is not allowed to log in to Gitea anymo
 
 ## What is Swagger?
 
-[Swagger](https://swagger.io/) is what Gitea uses for its API documentation.
+[Swagger](https://swagger.io/) is what RIA Hub uses for its API documentation.
 
-All Gitea instances have the built-in API and there is no way to disable it completely.
+All RIA Hub instances have the built-in API and there is no way to disable it completely.
 You can, however, disable showing its documentation by setting `ENABLE_SWAGGER` to `false` in the `api` section of your `app.ini`.
-For more information, refer to Gitea's [API docs](development/api-usage.md).
+For more information, refer to RIA Hub's [API docs](development/api-usage.md).
 
 You can see the latest API (for example) on https://try.gitea.io/api/swagger
 
@@ -150,7 +150,7 @@ There are multiple things you can combine to prevent spammers.
 1. By whitelisting or blocklisting certain email domains
 2. By only whitelisting certain domains with OpenID (see below)
 3. Setting `ENABLE_CAPTCHA` to `true` in your `app.ini` and properly configuring `RECAPTCHA_SECRET` and `RECAPTCHA_SITEKEY`
-4. Settings `DISABLE_REGISTRATION` to `true` and creating new users via the [CLI](administration/command-line.md), [API](development/api-usage.md), or Gitea's Admin UI
+4. Settings `DISABLE_REGISTRATION` to `true` and creating new users via the [CLI](administration/command-line.md), [API](development/api-usage.md), or RIA Hub's Admin UI
 
 ### Only allow/block certain email domains
 
@@ -170,7 +170,7 @@ The current way to achieve this is to create/modify a user with a max repo creat
 
 Restricted users are limited to a subset of the content based on their organization/team memberships and collaborations, ignoring the public flag on organizations/repos etc.\_\_
 
-Example use case: A company runs a Gitea instance that requires login. Most repos are public (accessible/browsable by all co-workers).
+Example use case: A company runs a RIA Hub instance that requires login. Most repos are public (accessible/browsable by all co-workers).
 
 At some point, a customer or third party needs access to a specific repo and only that repo. Making such a customer account restricted and granting any needed access using team membership(s) and/or collaboration(s) is a simple way to achieve that without the need to make everything private.
 
@@ -180,7 +180,7 @@ Use [Fail2Ban](administration/fail2ban-setup.md) to monitor and stop automated l
 
 ## How to add/use custom themes
 
-Gitea supports three official themes right now, `gitea-light`, `gitea-dark`, and `gitea-auto` (automatically switches between the previous two depending on operating system settings).
+RIA Hub supports three official themes right now, `gitea-light`, `gitea-dark`, and `gitea-auto` (automatically switches between the previous two depending on operating system settings).
 To add your own theme, currently the only way is to provide a complete theme (not just color overrides)
 
 As an example, let's say our theme is `arc-blue` (this is a real theme, and can be found [in this issue](https://github.com/go-gitea/gitea/issues/6011))
@@ -193,9 +193,9 @@ Allow users to use it by adding `arc-blue` to the list of `THEMES` in your `app.
 
 SSHD is the built-in SSH server on most Unix systems.
 
-Gitea also provides its own SSH server, for usage when SSHD is not available.
+RIA Hub also provides its own SSH server, for usage when SSHD is not available.
 
-## Gitea is running slow
+## RIA Hub is running slow
 
 The most common culprit for this is loading federated avatars.
 
@@ -205,7 +205,7 @@ Another option that may need to be changed is setting `DISABLE_GRAVATAR` to `tru
 
 ## Can't create repositories/files
 
-Make sure that Gitea has sufficient permissions to write to its home directory and data directory.
+Make sure that RIA Hub has sufficient permissions to write to its home directory and data directory.
 
 See [AppDataPath and RepoRootPath](#where-does-gitea-store-what-file)
 
@@ -213,7 +213,7 @@ See [AppDataPath and RepoRootPath](#where-does-gitea-store-what-file)
 
 `ReadWritePaths=/etc/gitea/app.ini`
 
-Which makes all other paths non-writeable to Gitea.
+Which makes all other paths non-writeable to RIA Hub.
 
 ## Translation is incorrect/how to add more translations
 
@@ -235,21 +235,21 @@ There are a few possibilities:
 
 If you cannot reach repositories over `ssh`, but `https` works fine, consider looking into the following.
 
-First, make sure you can access Gitea via SSH.
+First, make sure you can access RIA Hub via SSH.
 
 `ssh git@myremote.example`
 
 If the connection is successful, you should receive an error message like the following:
 
 ```
-Hi there, You've successfully authenticated, but Gitea does not provide shell access.
-If this is unexpected, please log in with password and setup Gitea under another user.
+Hi there, You've successfully authenticated, but RIA Hub does not provide shell access.
+If this is unexpected, please log in with password and setup RIA Hub under another user.
 ```
 
-If you do not get the above message but still connect, it means your SSH key is **not** being managed by Gitea. This means hooks won't run, among other potential problems.
+If you do not get the above message but still connect, it means your SSH key is **not** being managed by RIA Hub. This means hooks won't run, among other potential problems.
 
 If you cannot connect at all, your SSH key may not be configured correctly locally.
-This is specific to SSH and not Gitea, so will not be covered here.
+This is specific to SSH and not RIA Hub, so will not be covered here.
 
 ### SSH Common Errors
 
@@ -262,7 +262,7 @@ This error signifies that the server rejected a log in attempt, check the
 following things:
 
 - On the client:
-  - Ensure the public and private ssh keys are added to the correct Gitea user.
+  - Ensure the public and private ssh keys are added to the correct RIA Hub user.
   - Make sure there are no issues in the remote url. In particular, ensure the name of the
     Git user (before the `@`) is spelled correctly.
   - Ensure public and private ssh keys are correct on client machine.
@@ -271,9 +271,9 @@ following things:
   - Check the permissions of the `.ssh` directory in the system user's home directory.
   - Verify that the correct public keys are added to `.ssh/authorized_keys`.
 
-    Try to run `Rewrite '.ssh/authorized_keys' file (for Gitea SSH keys)` on the
-    Gitea admin panel.
-  - Read Gitea logs.
+    Try to run `Rewrite '.ssh/authorized_keys' file (for RIA Hub SSH keys)` on the
+    RIA Hub admin panel.
+  - Read RIA Hub logs.
   - Read /var/log/auth (or similar).
   - Check permissions of repositories.
 
@@ -307,7 +307,7 @@ To migrate an repository _with_ all tags, you need to do two things:
  git push --tags
 ```
 
-- (Re-)sync tags of all repositories within Gitea:
+- (Re-)sync tags of all repositories within RIA Hub:
 
 ```
 gitea admin repo-sync-releases
@@ -329,9 +329,9 @@ By default, your LFS token will expire after 20 minutes. If you have a slow conn
 
 You may want to set this value to `60m` or `120m`.
 
-## How can I create users before starting Gitea
+## How can I create users before starting RIA Hub
 
-Gitea provides a sub-command `gitea migrate` to initialize the database, after which you can use the [admin CLI commands](administration/command-line.md#admin) to add users like normal.
+RIA Hub provides a sub-command `gitea migrate` to initialize the database, after which you can use the [admin CLI commands](administration/command-line.md#admin) to add users like normal.
 
 ## How can I enable password reset
 
@@ -352,7 +352,7 @@ There is no setting for password resets. It is enabled when a [mail service](adm
 
 ## Why is my markdown broken
 
-In Gitea version `1.11` we moved to [goldmark](https://github.com/yuin/goldmark) for markdown rendering, which is [CommonMark](https://commonmark.org/) compliant.
+In RIA Hub version `1.11` we moved to [goldmark](https://github.com/yuin/goldmark) for markdown rendering, which is [CommonMark](https://commonmark.org/) compliant.
 
 If you have markdown that worked as you expected prior to version `1.11` and after upgrading it's not working anymore, please look through the CommonMark spec to see whether the problem is due to a bug or non-compliant syntax.
 
@@ -360,28 +360,28 @@ If it is the latter, _usually_ there is a compliant alternative listed in the sp
 
 ## Upgrade errors with MySQL
 
-If you are receiving errors on upgrade of Gitea using MySQL that read:
+If you are receiving errors on upgrade of RIA Hub using MySQL that read:
 
 > `ORM engine initialization failed: migrate: do migrate: Error: 1118: Row size too large...`
 
 Please run `gitea doctor convert` or run `ALTER TABLE table_name ROW_FORMAT=dynamic;` for each table in the database.
 
 The underlying problem is that the space allocated for indices by the default row format
-is too small. Gitea requires that the `ROWFORMAT` for its tables is `DYNAMIC`.
+is too small. RIA Hub requires that the `ROWFORMAT` for its tables is `DYNAMIC`.
 
 If you are receiving an error line containing `Error 1071: Specified key was too long; max key length is 1000 bytes...`
-then you are attempting to run Gitea on tables which use the ISAM engine. While this may have worked by chance in previous versions of Gitea, it has never been officially supported and
+then you are attempting to run RIA Hub on tables which use the ISAM engine. While this may have worked by chance in previous versions of RIA Hub, it has never been officially supported and
 you must use InnoDB. You should run `ALTER TABLE table_name ENGINE=InnoDB;` for each table in the database.
 
 ## Why are Emoji displaying only as placeholders or in monochrome
 
-Gitea requires the system or browser to have one of the supported Emoji fonts installed, which are Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji and Twemoji Mozilla. Generally, the operating system should already provide one of these fonts, but especially on Linux, it may be necessary to install them manually.
+RIA Hub requires the system or browser to have one of the supported Emoji fonts installed, which are Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji and Twemoji Mozilla. Generally, the operating system should already provide one of these fonts, but especially on Linux, it may be necessary to install them manually.
 
 ## Initial logging
 
-Before Gitea has read the configuration file and set-up its logging it will log a number of things to stdout in order to help debug things if logging does not work.
+Before RIA Hub has read the configuration file and set-up its logging it will log a number of things to stdout in order to help debug things if logging does not work.
 
-You can stop this logging by setting the `--quiet` or `-q` option. Please note this will only stop logging until Gitea has set-up its own logging.
+You can stop this logging by setting the `--quiet` or `-q` option. Please note this will only stop logging until RIA Hub has set-up its own logging.
 
 If you report a bug or issue you MUST give us logs with this information restored.
 
@@ -396,22 +396,22 @@ unchanged in the database schema. This may lead to warning such as:
 2020/08/02 11:32:29 ...rm/session_schema.go:360:Sync() [W] Table user Column keep_activity_private db default is , struct default is 0
 ```
 
-These can safely be ignored, but you are able to stop these warnings by getting Gitea to recreate these tables using:
+These can safely be ignored, but you are able to stop these warnings by getting RIA Hub to recreate these tables using:
 
 ```
 gitea doctor recreate-table user
 ```
 
-This will cause Gitea to recreate the user table and copy the old data into the new table
+This will cause RIA Hub to recreate the user table and copy the old data into the new table
 with the defaults set appropriately.
 
-You can ask Gitea to recreate multiple tables using:
+You can ask RIA Hub to recreate multiple tables using:
 
 ```
 gitea doctor recreate-table table1 table2 ...
 ```
 
-And if you would like Gitea to recreate all tables simply call:
+And if you would like RIA Hub to recreate all tables simply call:
 
 ```
 gitea doctor recreate-table
@@ -430,9 +430,9 @@ It is highly recommended to back-up your database before running these commands.
 - If the above steps are done correctly, you should be able to select repositories to adopt.
   - If no repositories are found, enable [debug logging](administration/config-cheat-sheet.md#repository) to check for any specific errors.
 
-## Gitea can't start on NFS
+## RIA Hub can't start on NFS
 
-In most cases, it's caused by broken NFS lock system. You can try to stop Gitea process and
+In most cases, it's caused by broken NFS lock system. You can try to stop RIA Hub process and
 run `flock -n /data-nfs/gitea/queues/LOCK echo 'lock acquired'` to see whether the lock can be acquired immediately.
 If the lock can't be acquired, NFS might report some errors like `lockd: cannot monitor node-3, statd: server rpc.statd not responding, timed out` in its server logs.
 

@@ -16,8 +16,8 @@ menu:
 # Multi-factor Authentication (MFA)
 
 Multi-factor Authentication (also referred to as MFA or 2FA) enhances security by requiring a time-sensitive set of credentials in addition to a password.
-If a password were later to be compromised, logging into Gitea will not be possible without the additional credentials and the account would remain secure.
-Gitea supports both TOTP (Time-based One-Time Password) tokens and FIDO-based hardware keys using the Webauthn API.
+If a password were later to be compromised, logging into RIA Hub will not be possible without the additional credentials and the account would remain secure.
+RIA Hub supports both TOTP (Time-based One-Time Password) tokens and FIDO-based hardware keys using the Webauthn API.
 
 MFA can be configured within the "Security" tab of the user settings page.
 
@@ -31,5 +31,5 @@ This access token can be used as if it were a password in order to allow the Git
 > **Warning** - By its very nature, an access token sidesteps the security benefits of MFA.
 > It must be kept secure and should only be used as a last resort.
 
-The Gitea API supports providing the relevant TOTP password in the `X-Gitea-OTP` header, as described in [API Usage](development/api-usage.md).
+The RIA Hub API supports providing the relevant TOTP password in the `X-RIA Hub-OTP` header, as described in [API Usage](development/api-usage.md).
 This should be used instead of an access token where possible.

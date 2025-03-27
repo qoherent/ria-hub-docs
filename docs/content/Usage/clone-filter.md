@@ -23,10 +23,10 @@ Clone filters are especially useful for large repo and/or metered connection,
 where full clone (without `--filter`) can be expensive (as all history data
 must be downloaded).
 
-This requires Git version 2.22 or later, both on the Gitea server and on the
+This requires Git version 2.22 or later, both on the RIA Hub server and on the
 client. For clone filters to work properly, make sure that Git version
 on the client is at least the same as on the server (or later). Login to
-Gitea server as admin and head to Site Administration -> Configuration to
+RIA Hub server as admin and head to Site Administration -> Configuration to
 see Git version of the server.
 
 By default, clone filters are enabled, unless `DISABLE_PARTIAL_CLONE` under

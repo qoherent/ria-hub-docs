@@ -17,11 +17,11 @@ menu:
 
 # Installation with Docker
 
-Gitea provides automatically updated Docker images within its Docker Hub organization. It is
+RIA Hub provides automatically updated Docker images within its Docker Hub organization. It is
 possible to always use the latest stable tag or to use another service that handles updating
 Docker images.
 
-The rootless image uses Gitea internal SSH to provide Git protocol and doesn't support OpenSSH.
+The rootless image uses RIA Hub internal SSH to provide Git protocol and doesn't support OpenSSH.
 
 This reference setup guides users through the setup based on `docker-compose`, but the installation
 of `docker-compose` is out of scope of this documentation. To install `docker-compose` itself, follow
@@ -59,7 +59,7 @@ services:
       - "2222:2222"
 ```
 
-Note that the volume should be owned by the user/group with the UID/GID specified in the config file. By default Gitea in docker will use uid:1000 gid:1000. If needed you can set ownership on those folders with the command:
+Note that the volume should be owned by the user/group with the UID/GID specified in the config file. By default RIA Hub in docker will use uid:1000 gid:1000. If needed you can set ownership on those folders with the command:
 
 ```sh
 sudo chown 1000:1000 config/ data/
@@ -67,7 +67,7 @@ sudo chown 1000:1000 config/ data/
 
 > If you don't give the volume correct permissions, the container may not start.
 
-For a stable release you could use `:latest-rootless`, `:1-rootless` or specify a certain release like `:@version@-rootless`, but if you'd like to use the latest development version then `:nightly-rootless` would be an appropriate tag. If you'd like to run the latest commit from a release branch you can use the `:1.x-nightly-rootless` tag, where x is the minor version of Gitea. (e.g. `:1.16-nightly-rootless`)
+For a stable release you could use `:latest-rootless`, `:1-rootless` or specify a certain release like `:@version@-rootless`, but if you'd like to use the latest development version then `:nightly-rootless` would be an appropriate tag. If you'd like to run the latest commit from a release branch you can use the `:1.x-nightly-rootless` tag, where x is the minor version of RIA Hub. (e.g. `:1.16-nightly-rootless`)
 
 ## Custom port
 
@@ -96,7 +96,7 @@ services:
 
 ## MySQL database
 
-To start Gitea in combination with a MySQL database, apply these changes to the
+To start RIA Hub in combination with a MySQL database, apply these changes to the
 `docker-compose.yml` file created above.
 
 ```diff
@@ -137,7 +137,7 @@ services:
 
 ## PostgreSQL database
 
-To start Gitea in combination with a PostgreSQL database, apply these changes to
+To start RIA Hub in combination with a PostgreSQL database, apply these changes to
 the `docker-compose.yml` file created above.
 
 ```diff
@@ -236,7 +236,7 @@ services:
 ## Start
 
 To start this setup based on `docker-compose`, execute `docker-compose up -d`,
-to launch Gitea in the background. Using `docker-compose ps` will show if Gitea
+to launch RIA Hub in the background. Using `docker-compose ps` will show if RIA Hub
 started properly. Logs can be viewed with `docker-compose logs`.
 
 To shut down the setup, execute `docker-compose down`. This will stop
@@ -247,7 +247,7 @@ Notice: if using a non-3000 port on http, change app.ini to match
 
 ## Install
 
-After starting the Docker setup via `docker-compose`, Gitea should be available using a
+After starting the Docker setup via `docker-compose`, RIA Hub should be available using a
 favorite browser to finalize the installation. Visit http://server-ip:3000 and follow the
 installation wizard. If the database was started with the `docker-compose` setup as
 documented above, please note that `db` must be used as the database hostname.
@@ -288,7 +288,7 @@ docker-compose up -d
 
 In addition to the environment variables above, any settings in `app.ini` can be set
 or overridden with an environment variable of the form: `GITEA__SECTION_NAME__KEY_NAME`.
-These settings are applied each time the docker container starts, and won't be passed into Gitea's sub-processes.
+These settings are applied each time the docker container starts, and won't be passed into RIA Hub's sub-processes.
 Full information [here](https://github.com/go-gitea/gitea/tree/main/contrib/environment-to-ini).
 
 These environment variables can be passed to the docker container in `docker-compose.yml`.
@@ -313,13 +313,13 @@ services:
       - GITEA__mailer__PASSWD="""${GITEA__mailer__PASSWD:?GITEA__mailer__PASSWD not set}"""
 ```
 
-To set required TOKEN and SECRET values, consider using Gitea's built-in [generate utility functions](administration/command-line.md#generate).
+To set required TOKEN and SECRET values, consider using RIA Hub's built-in [generate utility functions](administration/command-line.md#generate).
 
 # SSH Container Passthrough
 
 Since SSH is running inside the container, SSH needs to be passed through from the host to the container if SSH support is desired. One option would be to run the container SSH on a non-standard port (or moving the host port to a non-standard port). Another option which might be more straightforward is to forward SSH commands from the host to the container. This setup is explained in the following.
 
-This guide assumes that you have created a user on the host called `git` with permission to run `docker exec`, and that the Gitea container is called `gitea`. You will need to modify that user's shell to forward the commands to the `sh` executable inside the container, using `docker exec`.
+This guide assumes that you have created a user on the host called `git` with permission to run `docker exec`, and that the RIA Hub container is called `gitea`. You will need to modify that user's shell to forward the commands to the `sh` executable inside the container, using `docker exec`.
 
 First, create the file `/usr/local/bin/gitea-shell` on the host, with the following contents:
 
@@ -342,7 +342,7 @@ Once the wrapper is in place, you can make it the shell for the `git` user:
 sudo usermod -s /usr/local/bin/gitea-shell git
 ```
 
-Now that all the SSH commands are forwarded to the container, you need to set up the SSH authentication on the host. This is done by leveraging the [SSH AuthorizedKeysCommand](administration/command-line.md#keys) to match the keys against those accepted by Gitea. Add the following block to `/etc/ssh/sshd_config`, on the host:
+Now that all the SSH commands are forwarded to the container, you need to set up the SSH authentication on the host. This is done by leveraging the [SSH AuthorizedKeysCommand](administration/command-line.md#keys) to match the keys against those accepted by RIA Hub. Add the following block to `/etc/ssh/sshd_config`, on the host:
 
 ```bash
 Match User git

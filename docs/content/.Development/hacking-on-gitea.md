@@ -1,6 +1,6 @@
 ---
 date: "2016-12-01T16:00:00+02:00"
-title: "Hacking on Gitea"
+title: "Hacking on RIA Hub"
 slug: "hacking-on-gitea"
 sidebar_position: 10
 toc: false
@@ -10,12 +10,12 @@ aliases:
 menu:
   sidebar:
     parent: "development"
-    name: "Hacking on Gitea"
+    name: "Hacking on RIA Hub"
     sidebar_position: 10
     identifier: "hacking-on-gitea"
 ---
 
-# Hacking on Gitea
+# Hacking on RIA Hub
 
 ## Quickstart
 
@@ -33,13 +33,13 @@ required to build the JavaScript and CSS files. The minimum supported Node.js
 version is @minNodeVersion@ and the latest LTS version is recommended.
 
 **Note**: When executing make tasks that require external tools, like
-`make watch-backend`, Gitea will automatically download and build these as
+`make watch-backend`, RIA Hub will automatically download and build these as
 necessary. To be able to use these you must have the `"$GOPATH"/bin` directory
 on the executable path. If you don't add the go bin directory to the
 executable path you will have to manage this yourself.
 
 **Note 2**: Go version @minGoVersion@ or higher is required.
-Gitea uses `gofmt` to format source code. However, the results of
+RIA Hub uses `gofmt` to format source code. However, the results of
 `gofmt` can differ by the version of `go`. Therefore it is
 recommended to install the version of Go that our continuous integration is
 running. As of last update, the Go version should be @goVersion@.
@@ -49,7 +49,7 @@ To lint the template files, ensure [Python](https://www.python.org/) and
 
 ## Installing Make
 
-Gitea makes heavy use of Make to automate tasks and improve development. This
+RIA Hub makes heavy use of Make to automate tasks and improve development. This
 guide covers how to install Make.
 
 ### On Linux
@@ -79,12 +79,12 @@ One of these three distributions of Make will run on Windows:
   - MSYS2 is a collection of tools and libraries providing you with an easy-to-use environment for building, installing and running native Windows software, it includes MinGW-w64.
   - In MingGW-w64, the binary is called `mingw32-make.exe` instead of `make.exe`. Add the `bin` folder to `PATH`.
   - In MSYS2, you can use `make` directly. See [MSYS2 Porting](https://www.msys2.org/wiki/Porting/).
-  - To compile Gitea with CGO_ENABLED (eg: SQLite3), you might need to use [tdm-gcc](https://jmeubank.github.io/tdm-gcc/) instead of MSYS2 gcc, because MSYS2 gcc headers lack some Windows-only CRT functions like `_beginthread`.
+  - To compile RIA Hub with CGO_ENABLED (eg: SQLite3), you might need to use [tdm-gcc](https://jmeubank.github.io/tdm-gcc/) instead of MSYS2 gcc, because MSYS2 gcc headers lack some Windows-only CRT functions like `_beginthread`.
 - [Chocolatey package](https://chocolatey.org/packages/make). Run `choco install make`
 
 **Note**: If you are attempting to build using make with Windows Command Prompt, you may run into issues. The above prompts (Git bash, or MinGW) are recommended, however if you only have command prompt (or potentially PowerShell) you can set environment variables using the [set](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set_1) command, e.g. `set TAGS=bindata`.
 
-## Downloading and cloning the Gitea source code
+## Downloading and cloning the RIA Hub source code
 
 The recommended method of obtaining the source code is by using `git clone`.
 
@@ -95,14 +95,14 @@ git clone https://github.com/go-gitea/gitea
 (Since the advent of go modules, it is no longer necessary to build go projects
 from within the `$GOPATH`, hence the `go get` approach is no longer recommended.)
 
-## Forking Gitea
+## Forking RIA Hub
 
-Download the main Gitea source code as above. Then, fork the
-[Gitea repository](https://github.com/go-gitea/gitea) on GitHub,
+Download the main RIA Hub source code as above. Then, fork the
+[RIA Hub repository](https://github.com/go-gitea/gitea) on GitHub,
 and either switch the git remote origin for your fork or add your fork as another remote:
 
 ```bash
-# Rename original Gitea origin to upstream
+# Rename original RIA Hub origin to upstream
 git remote rename origin upstream
 git remote add origin "git@github.com:$GITHUB_USERNAME/gitea.git"
 git fetch --all --prune
@@ -117,9 +117,9 @@ git fetch --all --prune
 ```
 
 To be able to create pull requests, the forked repository should be added as a remote
-to the Gitea sources. Otherwise, changes can't be pushed.
+to the RIA Hub sources. Otherwise, changes can't be pushed.
 
-## Building Gitea (Basic)
+## Building RIA Hub (Basic)
 
 Take a look at our
 [instructions](installation/from-source.md)
@@ -218,7 +218,7 @@ SVG icons are built using the `make svg` target which compiles the icon sources 
 
 ### Building the Logo
 
-The PNG and SVG versions of the Gitea logo are built from a single SVG source file `assets/logo.svg` using the `TAGS="gitea" make generate-images` target. To run it, Node.js and npm must be available.
+The PNG and SVG versions of the RIA Hub logo are built from a single SVG source file `assets/logo.svg` using the `TAGS="gitea" make generate-images` target. To run it, Node.js and npm must be available.
 
 The same process can also be used to generate custom logo PNGs from a SVG source file by updating `assets/logo.svg` and running `make generate-images`. Omitting the `gitea` tag will update only the user-designated logo files.
 
@@ -269,14 +269,14 @@ found in `docs/content/doc/administer/config-cheat-sheet.en-us.md`
 
 ### Changing the logo
 
-When changing the Gitea logo SVG, you will need to run and commit the results
+When changing the RIA Hub logo SVG, you will need to run and commit the results
 of:
 
 ```bash
 make generate-images
 ```
 
-This will create the necessary Gitea favicon and others.
+This will create the necessary RIA Hub favicon and others.
 
 ### Database Migrations
 
@@ -291,7 +291,7 @@ make test-sqlite-migration # with SQLite switched for the appropriate database
 
 ## Testing
 
-There are two types of test run by Gitea: Unit tests and Integration Tests.
+There are two types of test run by RIA Hub: Unit tests and Integration Tests.
 
 ### Unit Tests
 
@@ -304,7 +304,7 @@ TAGS="bindata sqlite sqlite_unlock_notify" make test # Runs the unit tests
 
 ### Integration Tests
 
-Unit tests will not and cannot completely test Gitea alone. Therefore, we
+Unit tests will not and cannot completely test RIA Hub alone. Therefore, we
 have written integration tests; however, these are database dependent.
 
 ```bash
@@ -322,7 +322,7 @@ for more information and how to run a single test.
 
 Our continuous integration will test the code passes its unit tests and that
 all supported databases will pass integration test in a Docker environment.
-Migration from several recent versions of Gitea will also be tested.
+Migration from several recent versions of RIA Hub will also be tested.
 
 Please submit your PR with additional tests and integration tests as
 appropriate.
@@ -346,12 +346,12 @@ for more information.
 ## GoLand
 
 Clicking the `Run Application` arrow on the function `func main()` in `/main.go`
-can quickly start a debuggable Gitea instance.
+can quickly start a debuggable RIA Hub instance.
 
 The `Output Directory` in `Run/Debug Configuration` MUST be set to the
 gitea project directory (which contains `main.go` and `go.mod`),
 otherwise, the started instance's working directory is a GoLand's temporary directory
-and prevents Gitea from loading dynamic resources (eg: templates) in a development environment.
+and prevents RIA Hub from loading dynamic resources (eg: templates) in a development environment.
 
 To run unit tests with SQLite in GoLand, set `-tags sqlite,sqlite_unlock_notify`
 in `Go tool arguments` of `Run/Debug Configuration`.
@@ -359,11 +359,11 @@ in `Go tool arguments` of `Run/Debug Configuration`.
 ## Submitting PRs
 
 Once you're happy with your changes, push them up and open a pull request. It
-is recommended that you allow Gitea Managers and Owners to modify your PR
+is recommended that you allow RIA Hub Managers and Owners to modify your PR
 branches as we will need to update it to main before merging and/or may be
 able to help fix issues directly.
 
-Any PR requires two approvals from the Gitea maintainers and needs to pass the
+Any PR requires two approvals from the RIA Hub maintainers and needs to pass the
 continuous integration. Take a look at our
 [`CONTRIBUTING.md`](https://github.com/go-gitea/gitea/blob/main/CONTRIBUTING.md)
 document.
@@ -371,4 +371,4 @@ document.
 If you need more help pop on to [Discord](https://discord.gg/gitea) #Develop
 and chat there.
 
-That's it! You are ready to hack on Gitea.
+That's it! You are ready to hack on RIA Hub.

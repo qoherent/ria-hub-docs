@@ -19,7 +19,7 @@ menu:
 
 ## Nginx
 
-If you want Nginx to serve your Gitea instance, add the following `server` section to the `http` section of `nginx.conf`:
+If you want Nginx to serve your RIA Hub instance, add the following `server` section to the `http` section of `nginx.conf`:
 
 ```
 server {
@@ -47,7 +47,7 @@ You can fine tune the `client_max_body_size` option according to [nginx document
 
 ## Nginx with a sub-path
 
-In case you already have a site, and you want Gitea to share the domain name, you can setup Nginx to serve Gitea under a sub-path by adding the following `server` section inside the `http` section of `nginx.conf`:
+In case you already have a site, and you want RIA Hub to share the domain name, you can setup Nginx to serve RIA Hub under a sub-path by adding the following `server` section inside the `http` section of `nginx.conf`:
 
 ```
 server {
@@ -78,11 +78,11 @@ We can tune the performance in splitting requests into categories static and dyn
 CSS files, JavaScript files, images and web fonts are static content.
 The front page, a repository view or issue list is dynamic content.
 
-Nginx can serve static resources directly and proxy only the dynamic requests to Gitea.
+Nginx can serve static resources directly and proxy only the dynamic requests to RIA Hub.
 Nginx is optimized for serving static content, while the proxying of large responses might be the opposite of that
 (see [https://serverfault.com/q/587386](https://serverfault.com/q/587386)).
 
-Download a snapshot of the Gitea source repository to `/path/to/gitea/`.
+Download a snapshot of the RIA Hub source repository to `/path/to/gitea/`.
 After this, run `make frontend` in the repository directory to generate the static resources. We are only interested in the `public/` directory for this task, so you can delete the rest.
 (You will need to have [Node with npm](https://nodejs.org/en/download/) and `make` installed to generate the static resources)
 
@@ -113,7 +113,7 @@ server {
 Set `[server] STATIC_URL_PREFIX = http://cdn.example.com/gitea` in your configuration.
 
 ```apacheconf
-# application server running Gitea
+# application server running RIA Hub
 server {
     listen 80;
     server_name git.example.com;
@@ -142,7 +142,7 @@ server {
 
 ## Apache HTTPD
 
-If you want Apache HTTPD to serve your Gitea instance, you can add the following to your Apache HTTPD configuration (usually located at `/etc/apache2/httpd.conf` in Ubuntu):
+If you want Apache HTTPD to serve your RIA Hub instance, you can add the following to your Apache HTTPD configuration (usually located at `/etc/apache2/httpd.conf` in Ubuntu):
 
 ```apacheconf
 <VirtualHost *:80>
@@ -156,11 +156,11 @@ If you want Apache HTTPD to serve your Gitea instance, you can add the following
 
 Note: The following Apache HTTPD mods must be enabled: `proxy`, `proxy_http`.
 
-If you wish to use Let's Encrypt with webroot validation, add the line `ProxyPass /.well-known !` before `ProxyPass` to disable proxying these requests to Gitea.
+If you wish to use Let's Encrypt with webroot validation, add the line `ProxyPass /.well-known !` before `ProxyPass` to disable proxying these requests to RIA Hub.
 
 ## Apache HTTPD with a sub-path
 
-In case you already have a site, and you want Gitea to share the domain name, you can setup Apache HTTPD to serve Gitea under a sub-path by adding the following to you Apache HTTPD configuration (usually located at `/etc/apache2/httpd.conf` in Ubuntu):
+In case you already have a site, and you want RIA Hub to share the domain name, you can setup Apache HTTPD to serve RIA Hub under a sub-path by adding the following to you Apache HTTPD configuration (usually located at `/etc/apache2/httpd.conf` in Ubuntu):
 
 ```apacheconf
 <VirtualHost *:80>
@@ -181,7 +181,7 @@ Note: The following Apache HTTPD mods must be enabled: `proxy`, `proxy_http`.
 
 ## Caddy
 
-If you want Caddy to serve your Gitea instance, you can add the following server block to your Caddyfile:
+If you want Caddy to serve your RIA Hub instance, you can add the following server block to your Caddyfile:
 
 ```apacheconf
 git.example.com {
@@ -191,7 +191,7 @@ git.example.com {
 
 ## Caddy with a sub-path
 
-In case you already have a site, and you want Gitea to share the domain name, you can setup Caddy to serve Gitea under a sub-path by adding the following to your server block in your Caddyfile:
+In case you already have a site, and you want RIA Hub to share the domain name, you can setup Caddy to serve RIA Hub under a sub-path by adding the following to your server block in your Caddyfile:
 
 ```apacheconf
 git.example.com {
@@ -206,16 +206,16 @@ Then set `[server] ROOT_URL = http://git.example.com/git/` in your configuration
 
 ## IIS
 
-If you wish to run Gitea with IIS. You will need to setup IIS with URL Rewrite as reverse proxy.
+If you wish to run RIA Hub with IIS. You will need to setup IIS with URL Rewrite as reverse proxy.
 
-1. Setup an empty website in IIS, named let's say, `Gitea Proxy`.
+1. Setup an empty website in IIS, named let's say, `RIA Hub Proxy`.
 2. Follow the first two steps in [Microsoft's Technical Community Guide to Setup IIS with URL Rewrite](https://techcommunity.microsoft.com/t5/iis-support-blog/setup-iis-with-url-rewrite-as-a-reverse-proxy-for-real-world/ba-p/846222#M343). That is:
 
 - Install Application Request Routing (ARR for short) either by using the Microsoft Web Platform Installer 5.1 (WebPI) or downloading the extension from [IIS.net](https://www.iis.net/downloads/microsoft/application-request-routing)
 - Once the module is installed in IIS, you will see a new Icon in the IIS Administration Console called URL Rewrite.
-- Open the IIS Manager Console and click on the `Gitea Proxy` Website from the tree view on the left. Select and double click the URL Rewrite Icon from the middle pane to load the URL Rewrite interface.
+- Open the IIS Manager Console and click on the `RIA Hub Proxy` Website from the tree view on the left. Select and double click the URL Rewrite Icon from the middle pane to load the URL Rewrite interface.
 - Choose the `Add Rule` action from the right pane of the management console and select the `Reverse Proxy Rule` from the `Inbound and Outbound Rules` category.
-- In the Inbound Rules section, set the server name to be the host that Gitea is running on with its port. e.g. if you are running Gitea on the localhost with port 3000, the following should work: `127.0.0.1:3000`
+- In the Inbound Rules section, set the server name to be the host that RIA Hub is running on with its port. e.g. if you are running RIA Hub on the localhost with port 3000, the following should work: `127.0.0.1:3000`
 - Enable SSL Offloading
 - In the Outbound Rules, ensure `Rewrite the domain names of the links in HTTP response` is set and set the `From:` field as above and the `To:` to your external hostname, say: `git.example.com`
 - Now edit the `web.config` for your website to match the following: (changing `127.0.0.1:3000` and `git.example.com` as appropriate)
@@ -289,14 +289,14 @@ If you wish to run Gitea with IIS. You will need to setup IIS with URL Rewrite a
 
 ## HAProxy
 
-If you want HAProxy to serve your Gitea instance, you can add the following to your HAProxy configuration
+If you want HAProxy to serve your RIA Hub instance, you can add the following to your HAProxy configuration
 
-add an acl in the frontend section to redirect calls to gitea.example.com to the correct backend
+add an acl in the frontend section to redirect calls to riahub.example.com to the correct backend
 
 ```
 frontend http-in
     ...
-    acl acl_gitea hdr(host) -i gitea.example.com
+    acl acl_gitea hdr(host) -i riahub.example.com
     use_backend gitea if acl_gitea
     ...
 ```
@@ -308,11 +308,11 @@ backend gitea
     server localhost:3000 check
 ```
 
-If you redirect the http content to https, the configuration work the same way, just remember that the connection between HAProxy and Gitea will be done via http so you do not have to enable https in Gitea's configuration.
+If you redirect the http content to https, the configuration work the same way, just remember that the connection between HAProxy and RIA Hub will be done via http so you do not have to enable https in RIA Hub's configuration.
 
 ## HAProxy with a sub-path
 
-In case you already have a site, and you want Gitea to share the domain name, you can setup HAProxy to serve Gitea under a sub-path by adding the following to you HAProxy configuration:
+In case you already have a site, and you want RIA Hub to share the domain name, you can setup HAProxy to serve RIA Hub under a sub-path by adding the following to you HAProxy configuration:
 
 ```
 frontend http-in
@@ -322,7 +322,7 @@ frontend http-in
     ...
 ```
 
-With that configuration http://example.com/gitea/ will redirect to your Gitea instance.
+With that configuration http://example.com/gitea/ will redirect to your RIA Hub instance.
 
 then for the backend section
 
@@ -332,13 +332,13 @@ backend gitea
     server localhost:3000 check
 ```
 
-The added http-request will automatically add a trailing slash if needed and internally remove /gitea from the path to allow it to work correctly with Gitea by setting properly http://example.com/gitea as the root.
+The added http-request will automatically add a trailing slash if needed and internally remove /gitea from the path to allow it to work correctly with RIA Hub by setting properly http://example.com/gitea as the root.
 
 Then you **MUST** set something like `[server] ROOT_URL = http://example.com/gitea/` correctly in your configuration.
 
 ## Traefik
 
-If you want traefik to serve your Gitea instance, you can add the following label section to your `docker-compose.yaml` (Assuming the provider is docker).
+If you want traefik to serve your RIA Hub instance, you can add the following label section to your `docker-compose.yaml` (Assuming the provider is docker).
 
 ```yaml
 gitea:
@@ -350,11 +350,11 @@ gitea:
     - "traefik.http.services.gitea-websecure.loadbalancer.server.port=3000"
 ```
 
-This config assumes that you are handling HTTPS on the traefik side and using HTTP between Gitea and traefik.
+This config assumes that you are handling HTTPS on the traefik side and using HTTP between RIA Hub and traefik.
 
 ## Traefik with a sub-path
 
-In case you already have a site, and you want Gitea to share the domain name, you can setup Traefik to serve Gitea under a sub-path by adding the following to your `docker-compose.yaml` (Assuming the provider is docker) :
+In case you already have a site, and you want RIA Hub to share the domain name, you can setup Traefik to serve RIA Hub under a sub-path by adding the following to your `docker-compose.yaml` (Assuming the provider is docker) :
 
 ```yaml
 gitea:
@@ -368,15 +368,15 @@ gitea:
     - "traefik.http.routers.gitea.middlewares=gitea-stripprefix"
 ```
 
-This config assumes that you are handling HTTPS on the traefik side and using HTTP between Gitea and traefik.
+This config assumes that you are handling HTTPS on the traefik side and using HTTP between RIA Hub and traefik.
 
 Then you **MUST** set something like `[server] ROOT_URL = http://example.com/gitea/` correctly in your configuration.
 
 ## General sub-path configuration
 
-Usually it's not recommended to put Gitea in a sub-path, it's not widely used and may have some issues in rare cases.
+Usually it's not recommended to put RIA Hub in a sub-path, it's not widely used and may have some issues in rare cases.
 
-If you really need to do so, to make Gitea works with sub-path (eg: `http://example.com/gitea/`), here are the requirements:
+If you really need to do so, to make RIA Hub works with sub-path (eg: `http://example.com/gitea/`), here are the requirements:
 
 1. Set `[server] ROOT_URL = http://example.com/gitea/` in your `app.ini` file.
 2. Make the reverse-proxy pass `http://example.com/gitea/foo` to `http://gitea-server:3000/foo`.
@@ -385,5 +385,5 @@ If you really need to do so, to make Gitea works with sub-path (eg: `http://exam
 ## Docker / Container Registry
 
 The container registry uses a fixed sub-path `/v2` which can't be changed.
-Even if you deploy Gitea with a different sub-path, `/v2` will be used by the `docker` client.
+Even if you deploy RIA Hub with a different sub-path, `/v2` will be used by the `docker` client.
 Therefore you may need to add an additional route to your reverse proxy configuration.

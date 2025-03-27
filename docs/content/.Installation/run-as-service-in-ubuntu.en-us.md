@@ -17,7 +17,7 @@ menu:
 
 # Run as a Linux service
 
-You can run Gitea as a Linux service, using either systemd or supervisor. The steps below tested on Ubuntu 16.04, but those should work on any Linux distributions (with little modification).
+You can run RIA Hub as a Linux service, using either systemd or supervisor. The steps below tested on Ubuntu 16.04, but those should work on any Linux distributions (with little modification).
 
 ## Using systemd
 
@@ -28,14 +28,14 @@ Uncomment any service that needs to be enabled on this host, such as MySQL.
 Change the user, home directory, and other required startup values. Change the
 PORT or remove the -p flag if default port is used.
 
-Enable and start Gitea at boot:
+Enable and start RIA Hub at boot:
 
 ```
 sudo systemctl enable gitea
 sudo systemctl start gitea
 ```
 
-If you have systemd version 220 or later, you can enable and immediately start Gitea at once by:
+If you have systemd version 220 or later, you can enable and immediately start RIA Hub at once by:
 
 ```
 sudo systemctl enable gitea --now
@@ -52,7 +52,7 @@ sudo apt install supervisor
 Create a log dir for the supervisor logs:
 
 ```
-# assuming Gitea is installed in /home/git/gitea/
+# assuming RIA Hub is installed in /home/git/gitea/
 mkdir /home/git/gitea/log/supervisor
 ```
 

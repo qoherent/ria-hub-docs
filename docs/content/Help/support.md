@@ -18,7 +18,7 @@ menu:
 # Support Options
 
 - [Paid Commercial Support](https://about.gitea.com/)
-- [Discord](https://discord.gg/Gitea)
+- [Discord](https://discord.gg/RIA Hub)
 - [Discourse Forum](https://discourse.gitea.io/)
 - [Matrix](https://matrix.to/#/#gitea-space:matrix.org)
   - NOTE: Most of the Matrix channels are bridged with their counterpart in Discord and may experience some degree of flakiness with the bridge process.
@@ -34,7 +34,7 @@ If you found a bug, please [create an issue on GitHub](https://github.com/go-git
 
 1. Your `app.ini` (with any sensitive data scrubbed as necessary).
 2. Any error messages you are seeing.
-3. The Gitea logs, and all other related logs for the situation.
+3. The RIA Hub logs, and all other related logs for the situation.
    - It's more useful to collect `trace` / `debug` level logs (see the next section).
    - When using systemd, use `journalctl --lines 1000 --unit gitea` to collect logs.
    - When using docker, use `docker logs --tail 1000 <gitea-container>` to collect logs.
@@ -50,7 +50,7 @@ If you found a bug, please [create an issue on GitHub](https://github.com/go-git
 By default, the logs are outputted to console with `info` level.
 If you need to set log level and/or collect logs from files,
 you could just copy the following config into your `app.ini` (remove all other `[log]` sections),
-then you will find the `*.log` files in Gitea's log directory (default: `%(GITEA_WORK_DIR)/log`).
+then you will find the `*.log` files in RIA Hub's log directory (default: `%(GITEA_WORK_DIR)/log`).
 
 ```ini
 ; To show all SQL logs, you can also set LOG_SQL=true in the [database] section
@@ -61,7 +61,7 @@ MODE=console,file
 
 ## Collecting Stacktrace by Command Line
 
-Gitea could use Golang's pprof handler and toolchain to collect stacktrace and other runtime information.
+RIA Hub could use Golang's pprof handler and toolchain to collect stacktrace and other runtime information.
 
 If the web UI stops working, you could try to collect the stacktrace by command line:
 
@@ -72,7 +72,7 @@ If the web UI stops working, you could try to collect the stacktrace by command 
     ENABLE_PPROF = true
     ```
 
-2. Restart Gitea
+2. Restart RIA Hub
 
 3. Try to trigger the bug, when the requests get stuck for a while,
    use `curl` or browser to visit: `http://127.0.0.1:6060/debug/pprof/goroutine?debug=1` to get the stacktrace.

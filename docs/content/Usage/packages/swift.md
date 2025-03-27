@@ -26,15 +26,15 @@ To work with the Swift package registry, you need to use [swift](https://www.swi
 To register the package registry and provide credentials, execute:
 
 ```shell
-swift package-registry set https://gitea.example.com/api/packages/{owner}/swift
-swift package-registry login https://gitea.example.com/api/packages/{owner}/swift --username {username} --password {password}
+swift package-registry set https://riahub.example.com/api/packages/{owner}/swift
+swift package-registry login https://riahub.example.com/api/packages/{owner}/swift --username {username} --password {password}
 ```
 
 | Placeholder  | Description |
 | ------------ | ----------- |
 | `owner`      | The owner of the package. |
-| `username`   | Your Gitea username. |
-| `password`   | Your Gitea password. If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password. |
+| `username`   | Your RIA Hub username. |
+| `password`   | Your RIA Hub password. If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password. |
 
 The login is optional and only needed if the package registry is private.
 
@@ -53,13 +53,13 @@ curl -X PUT --user {username}:{password} \
 	 -H "Accept: application/vnd.swift.registry.v1+json" \
 	 -F source-archive=@/path/to/package.zip \
 	 -F metadata={metadata} \
-	 https://gitea.example.com/api/packages/{owner}/swift/{scope}/{name}/{version}
+	 https://riahub.example.com/api/packages/{owner}/swift/{scope}/{name}/{version}
 ```
 
 | Placeholder | Description |
 | ----------- | ----------- |
-| `username`  | Your Gitea username. |
-| `password`  | Your Gitea password. If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password. |
+| `username`  | Your RIA Hub username. |
+| `password`  | Your RIA Hub password. If you are using 2FA or OAuth use a [personal access token](development/api-usage.md#authentication) instead of the password. |
 | `owner`     | The owner of the package. |
 | `scope`     | The package scope. |
 | `name`      | The package name. |
