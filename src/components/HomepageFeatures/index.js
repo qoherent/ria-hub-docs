@@ -2,43 +2,52 @@ import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
+// *** IMPORTANT: Create or find relevant SVG icons and update the paths below ***
+// You can use sites like unDraw (like the originals), FontAwesome, Heroicons,
+// or create your own custom SVGs. Place them in /static/img/.
+
 const FeatureList = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'All-in-One Development Hub',
+    // *** REPLACE with relevant SVG *** eg code branching, server stack, workflow
+    Svg: require('@site/static/img/ria.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Manage your Git repositories, review code, collaborate with your team,
+        host packages, and automate CI/CD pipelines—all from your self-hosted RIA Hub instance.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Tailored for ML & Radio SDR',
+    // *** REPLACE with relevant SVG *** eg brain/gears for ML, signal waves for SDR
+    Svg: require('@site/static/img/ria.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Built with the needs of Machine Learning and Software-Defined Radio projects in mind.
+        Handle large artifacts (with Git LFS), manage complex workflows, and foster focused collaboration.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Lightweight & Easy Deployment',
+    // *** REPLACE with relevant SVG *** eg rocket, checklist, gears
+    Svg: require('@site/static/img/ria.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Run RIA Hub efficiently even on low-resource hardware like a Raspberry Pi.
+        Deploy easily across Linux, macOS, and Windows thanks to its Go-based architecture.
       </>
     ),
   },
 ];
 
-function Feature({Svg, title, description}) {
+// No changes needed below this line for functionality
+function Feature({ Svg, title, description }) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
+        {/* Make sure the SVG styling works for your new icons */}
         <Svg className={styles.featureSvg} role="img" />
       </div>
       <div className="text--center padding-horiz--md">

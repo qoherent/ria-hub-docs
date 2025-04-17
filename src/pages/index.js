@@ -1,43 +1,29 @@
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import React from 'react';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-
-import Heading from '@theme/Heading';
-import styles from './index.module.css';
-
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
-}
+import '../css/custom.css'; // Just import the CSS for side effects
+import { FaCodeBranch, FaRocket, FaShieldAlt, FaProjectDiagram } from 'react-icons/fa';
 
 export default function Home() {
-  const {siteConfig} = useDocusaurusContext();
   return (
-    <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
-      <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-      </main>
+    <Layout title="RIA Hub Documentation" description="Self-hosted Git service for everyone.">
+      <header className="hero">
+        <div className="globeContainer">
+          <div className="globe"></div>
+          <div className="orbit">
+            <FaCodeBranch className="icon icon1" />
+            <FaRocket className="icon icon2" />
+            <FaShieldAlt className="icon icon3" />
+            <FaProjectDiagram className="icon icon4" />
+          </div>
+        </div>
+        <h1 className="title">Welcome to RIA Hub</h1>
+        <p className="subtitle">
+          Fast, painless, and fully self-hosted Git service with everything built in.
+        </p>
+        <a className="ctaButton" href="/docs/">
+          🚀 Explore the Docs
+        </a>
+      </header>
     </Layout>
   );
 }
