@@ -1,14 +1,19 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import '../css/custom.css'; // Just import the CSS for side effects
+import '../css/custom.css';
 import { FaCodeBranch, FaRocket, FaShieldAlt, FaProjectDiagram } from 'react-icons/fa';
+import RiaLogo from '../../static/img/ria.svg'; 
 
 export default function Home() {
   return (
     <Layout title="RIA Hub Documentation" description="Self-hosted Git service for everyone.">
       <header className="hero">
         <div className="globeContainer">
-          <div className="globe"></div>
+          <div className="globe">
+            <div className="logoOverlay">
+              <img src={RiaLogo} alt="RIA Hub Logo" className="logoImage" />
+            </div>
+          </div>
           <div className="orbit">
             <FaCodeBranch className="icon icon1" />
             <FaRocket className="icon icon2" />
