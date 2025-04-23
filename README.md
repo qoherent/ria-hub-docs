@@ -1,41 +1,25 @@
-# Website
+# RIA Hub Docs
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Documentation site for RIA Hub, built with docusaurus.
 
-### Installation
+### 1. Clone the Repository
 
+```bash
+git clone https://github.com/qoherent/ria-hub-docs.git
+cd ria-hyb-docs
 ```
-$ yarn
-```
+### 2. Install Dependencies
 
-### Local Development
+Make sure you have [Node.js](https://nodejs.org/) installed. Then run:
 
-```
-$ yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
-
-```
-$ yarn build
+```bash
+npm install
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+### 3. Start the Development Server
 
-### Deployment
+To start the local dev server:
 
-Using SSH:
-
+```bash
+npm start
 ```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.

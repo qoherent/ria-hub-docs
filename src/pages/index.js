@@ -2,7 +2,6 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import '../css/custom.css';
 import { FaCodeBranch, FaRocket, FaShieldAlt, FaProjectDiagram } from 'react-icons/fa';
-import RiaLogo from '../../static/img/ria.svg'; 
 
 export default function Home() {
   return (
@@ -11,7 +10,7 @@ export default function Home() {
         <div className="globeContainer">
           <div className="globe">
             <div className="logoOverlay">
-              <img src={RiaLogo} alt="RIA Hub Logo" className="logoImage" />
+              <img src="static/img/ria.svg" alt="RIA Hub Logo" className="logoImage" />
             </div>
           </div>
           <div className="orbit">
@@ -26,7 +25,7 @@ export default function Home() {
           Fast, painless, and fully self-hosted Git service with everything built in.
         </p>
         <a className="ctaButton" href="/docs/">
-          🚀 Explore the Docs
+          Explore the Docs
         </a>
       </header>
     </Layout>
