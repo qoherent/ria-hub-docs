@@ -6,7 +6,7 @@ Documentation site for RIA Hub, built with docusaurus.
 
 ```bash
 git clone https://github.com/qoherent/ria-hub-docs.git
-cd ria-hyb-docs
+cd ria-hub-docs
 ```
 ### 2. Install Dependencies
 
