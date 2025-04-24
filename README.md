@@ -23,3 +23,7 @@ To start the local dev server:
 ```bash
 npm start
 ```
+
+### Adding to the Docs
+
+To add to the docs, go to docs/content. Every folder with a . in front is not visible when running the docs. 
