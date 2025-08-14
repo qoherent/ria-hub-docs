@@ -26,4 +26,6 @@ npm start
 
 ### Adding to the Docs
 
-To add to the docs, go to docs/content. Every folder with a . in front is not visible when running the docs. 
+To add to the docs, go to docs/content. Every folder with a . in front is not visible when running the docs.
+
+## Deployed via gh-pages
